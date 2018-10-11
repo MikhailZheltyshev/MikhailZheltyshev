@@ -7,9 +7,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import static java.lang.System.setProperty;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -20,7 +17,6 @@ public class HW1 {
 
         //0 Init new browser instance
         WebDriver driver = new ChromeDriver();
-        //driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
         //1 Navigate to the Test site
         driver.navigate().to("https://epam.github.io/JDI/index.html");
@@ -43,10 +39,10 @@ public class HW1 {
         assertEquals(driver.getTitle(), "Home Page");
 
         //6 Assert Menu Buttons Are Displayed And Have Proper Text
-        //6.1 Get List of Menu Buttons
+        //6.1 Getting List of Menu Buttons
         List<WebElement> upperToolbarItems = driver.findElements(By.cssSelector(".uui-navigation.nav.navbar-nav.m-l8 li"));
 
-        //6.2 Assert Browser Up-Level Buttons Are displayed
+        //6.2 Assert Browser Up-Level Buttons Are displayed - need to be redone!!!!
         assertTrue(upperToolbarItems.get(0).isDisplayed());
         assertTrue(upperToolbarItems.get(1).isDisplayed());
         assertTrue(upperToolbarItems.get(2).isDisplayed());
@@ -78,5 +74,43 @@ public class HW1 {
                 "(about 20 internal and\n" +
                 "some external projects),\n" +
                 "wish to get more…");
+
+        //9 Assert a text of the main header
+        String mainHeaderText = driver.findElement(By.cssSelector("h3.main-title.text-center")).getText();
+        assertEquals(mainHeaderText, "EPAM FRAMEWORK WISHES…");
+        String mainSubHeaderText = driver.findElement(By.cssSelector(".main-txt.text-center")).getText();
+        assertEquals(mainSubHeaderText, "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD" +
+                " TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION" +
+                " ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN" +
+                " VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
+
+        //10 Assertthat there is the iframe in the center of page
+        assertTrue(driver.findElements( By.id("iframe") ).size() == 1);
+
+        //11 Switch to the iframe and check that there is Epam logo in the left top conner of iframe
+        driver.switchTo().frame("iframe");
+        assertTrue(driver.findElements( By.id("epam_logo") ).size() == 1);
+
+        //12 Switch to original window back
+        driver.switchTo().defaultContent();
+
+        //13 Assert a text of the sub header
+        String defaultHeaderText = driver.findElement(By.cssSelector("[class='text-center']")).getText();
+        assertEquals(defaultHeaderText, "JDI GITHUB");
+
+        //14 Assert that JDI GITHUB is a link and has a proper URL
+        WebElement linkToJDIGitHub = driver.findElement(By.cssSelector("[class='text-center'] a"));
+        assertTrue(linkToJDIGitHub.isDisplayed());
+        assertEquals(linkToJDIGitHub.getAttribute("href"), "https://github.com/epam/JDI");
+
+        //15 Assert that there is Left Section
+        WebElement navSideBarElement = driver.findElement(By.name("navigation-sidebar"));
+        assertTrue(navSideBarElement.isDisplayed());
+
+        //16 Assert that there is Footer
+        assertTrue(driver.findElement(By.cssSelector("footer")).isDisplayed());
+
+        //17 Close browser
+        driver.close();
     }
 }
