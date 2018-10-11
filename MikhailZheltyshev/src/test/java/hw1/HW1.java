@@ -15,10 +15,10 @@ public class HW1 {
     @Test
     public void homeWork1() {
 
-        //0 Init new browser instance
+        //0 Init new Chrome driver instance
         WebDriver driver = new ChromeDriver();
 
-        //1 Navigate to the Test site
+        //1 Open test site by URL
         driver.navigate().to("https://epam.github.io/JDI/index.html");
 
         //2 Assert Browser Title
@@ -30,7 +30,7 @@ public class HW1 {
         driver.findElement(By.cssSelector("[id = 'Password']")).sendKeys("1234");
         driver.findElement(By.cssSelector(".login [type = 'submit']")).click();
 
-        //4 Assert User is Logged in
+        //4 Assert User name in the left-top side of screen that user is loggined
         WebElement loggedUserNameElement = driver.findElement(By.cssSelector(".profile-photo span"));
         assertTrue(loggedUserNameElement.isDisplayed());
         assertEquals(loggedUserNameElement.getText(), "PITER CHAILOVSKII");
@@ -38,23 +38,24 @@ public class HW1 {
         //5 Assert Browser Title
         assertEquals(driver.getTitle(), "Home Page");
 
-        //6 Assert Menu Buttons Are Displayed And Have Proper Text
-        //6.1 Getting List of Menu Buttons
-        List<WebElement> upperToolbarItems = driver.findElements(By.cssSelector(".uui-navigation.nav.navbar-nav.m-l8 li"));
+        //6 Assert that there are 4 items on the header section are displayed and they have proper texts
+        //6.1 Getting List<WebElement> of Menu Buttons
+        List<WebElement> upperToolbarItems = driver.findElements(By.cssSelector("ul.uui-navigation.nav.navbar-nav.m-l8 > li"));
 
-        //6.2 Assert Browser Up-Level Buttons Are displayed - need to be redone!!!!
+        //6.2 Assert There are 4 Browser Up-Level Buttons And They Are displayed
+        assertEquals(upperToolbarItems.size(), 4);
         assertTrue(upperToolbarItems.get(0).isDisplayed());
         assertTrue(upperToolbarItems.get(1).isDisplayed());
         assertTrue(upperToolbarItems.get(2).isDisplayed());
-        assertTrue(upperToolbarItems.get(11).isDisplayed());
+        assertTrue(upperToolbarItems.get(3).isDisplayed());
 
         //6.3 Assert Browser Up-Level Buttons Have Proper Text
         assertEquals(upperToolbarItems.get(0).getText(), "HOME");
         assertEquals(upperToolbarItems.get(1).getText(), "CONTACT FORM");
         assertEquals(upperToolbarItems.get(2).getText(), "SERVICE");
-        assertEquals(upperToolbarItems.get(11).getText(), "METALS & COLORS");
+        assertEquals(upperToolbarItems.get(3).getText(), "METALS & COLORS");
 
-        //7 Assert that 4 icons are presented and displayed on the index page
+        //7 Assert that there are 4 images on the Index Page and they are displayed
         List<WebElement> benefitIconElements = driver.findElements(By.cssSelector(".benefit-icon"));
         assertEquals(benefitIconElements.size(), 4);
         for (WebElement icon: benefitIconElements){
