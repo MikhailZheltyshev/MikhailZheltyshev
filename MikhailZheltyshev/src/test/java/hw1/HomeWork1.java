@@ -10,13 +10,14 @@ import java.util.List;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class HW1 {
+public class HomeWork1 {
 
     @Test
-    public void homeWork1() {
+    public void JDIIndexPageSimpleTest() {
 
-        //0 Init new Chrome driver instance
+        //0 Init new Chrome driver instance and set BR window to maximize
         WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
 
         //1 Open test site by URL
         driver.navigate().to("https://epam.github.io/JDI/index.html");
