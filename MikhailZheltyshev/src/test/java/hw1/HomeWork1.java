@@ -13,9 +13,8 @@ import static org.testng.Assert.assertTrue;
 public class HomeWork1 {
 
     @Test
-    public void JDIIndexPageSimpleTest() {
+    public void testJdiIndexPage() {
 
-        //0 Init new Chrome driver instance and set BR window to maximize
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
 
@@ -45,10 +44,9 @@ public class HomeWork1 {
 
         //6.2 Assert There are 4 Browser Up-Level Buttons And They Are displayed
         assertEquals(upperToolbarItems.size(), 4);
-        assertTrue(upperToolbarItems.get(0).isDisplayed());
-        assertTrue(upperToolbarItems.get(1).isDisplayed());
-        assertTrue(upperToolbarItems.get(2).isDisplayed());
-        assertTrue(upperToolbarItems.get(3).isDisplayed());
+        for (WebElement item: upperToolbarItems){
+            assertTrue(item.isDisplayed());
+        }
 
         //6.3 Assert Browser Up-Level Buttons Have Proper Text
         assertEquals(upperToolbarItems.get(0).getText(), "HOME");
@@ -87,11 +85,11 @@ public class HomeWork1 {
                 " VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
 
         //10 Assertthat there is the iframe in the center of page
-        assertTrue(driver.findElements( By.id("iframe") ).size() == 1);
+        assertTrue(driver.findElement( By.id("iframe") ).isDisplayed());
 
         //11 Switch to the iframe and check that there is Epam logo in the left top conner of iframe
         driver.switchTo().frame("iframe");
-        assertTrue(driver.findElements( By.id("epam_logo") ).size() == 1);
+        assertTrue(driver.findElement( By.id("epam_logo") ).isDisplayed());
 
         //12 Switch to original window back
         driver.switchTo().defaultContent();

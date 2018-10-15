@@ -12,14 +12,14 @@ import org.testng.asserts.SoftAssert;
 
 public class HomeWork1SoftAsserts {
 
-    @Test
-    public void JDIIndexPageSimpleTest() {
+    private SoftAssert soft = new SoftAssert();
 
-        //0 Init new Chrome driver instance and set BR window to maximize
-        //Also added soft assert variable for convenience
+    @Test
+    public void testJdiIndexPage() {
+
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        SoftAssert soft = new SoftAssert();
+
 
         //1 Open test site by URL
         driver.navigate().to("https://epam.github.io/JDI/index.html");
@@ -47,10 +47,9 @@ public class HomeWork1SoftAsserts {
 
         //6.2 Assert There are 4 Browser Up-Level Buttons And They Are displayed
         soft.assertEquals(upperToolbarItems.size(), 4);
-        soft.assertTrue(upperToolbarItems.get(0).isDisplayed());
-        soft.assertTrue(upperToolbarItems.get(1).isDisplayed());
-        soft.assertTrue(upperToolbarItems.get(2).isDisplayed());
-        soft.assertTrue(upperToolbarItems.get(3).isDisplayed());
+        for (WebElement item: upperToolbarItems){
+            soft.assertTrue(item.isDisplayed());
+        }
 
         //6.3 Assert Browser Up-Level Buttons Have Proper Text
         soft.assertEquals(upperToolbarItems.get(0).getText(), "HOME");
@@ -89,11 +88,11 @@ public class HomeWork1SoftAsserts {
                 " VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
 
         //10 Assertthat there is the iframe in the center of page
-        soft.assertTrue(driver.findElements( By.id("iframe") ).size() == 1);
+        soft.assertTrue(driver.findElement( By.id("iframe") ).isDisplayed());
 
         //11 Switch to the iframe and check that there is Epam logo in the left top conner of iframe
         driver.switchTo().frame("iframe");
-        soft.assertTrue(driver.findElements( By.id("epam_logo") ).size() == 1);
+        soft.assertTrue(driver.findElement( By.id("epam_logo") ).isDisplayed());
 
         //12 Switch to original window back
         driver.switchTo().defaultContent();
