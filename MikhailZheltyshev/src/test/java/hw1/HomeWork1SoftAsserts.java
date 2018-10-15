@@ -20,7 +20,6 @@ public class HomeWork1SoftAsserts {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
 
-
         //1 Open test site by URL
         driver.navigate().to("https://epam.github.io/JDI/index.html");
 
