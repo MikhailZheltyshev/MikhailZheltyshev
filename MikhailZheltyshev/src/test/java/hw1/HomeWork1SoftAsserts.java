@@ -86,7 +86,7 @@ public class HomeWork1SoftAsserts {
                 " ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN" +
                 " VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
 
-        //10 Assertthat there is the iframe in the center of page
+        //10 Assert that there is the iframe in the center of page
         soft.assertTrue(driver.findElement( By.id("iframe") ).isDisplayed());
 
         //11 Switch to the iframe and check that there is Epam logo in the left top conner of iframe
