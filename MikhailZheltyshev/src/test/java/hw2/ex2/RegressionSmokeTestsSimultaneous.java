@@ -11,7 +11,7 @@ import java.util.List;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class RegressionSmokeSimultaneousTests {
+public class RegressionSmokeTestsSimultaneous {
 
     @Test(groups = {"Smoke", "Regression"})
     public void testJdiIndexPageSR1() {
