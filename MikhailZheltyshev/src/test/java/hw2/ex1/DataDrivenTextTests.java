@@ -13,10 +13,10 @@ import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
 
-public class HomeWork2Exc1 extends TestBase {
+public class DataDrivenTextTests extends TestBase {
 
     @Test(dataProvider = "checkTextsOnIndexDataProvider", dataProviderClass = DataProviders.class)
-    public void checkTextUnderTheImagesOfIndex(int textNum, String textExpected) {
+    public void checkTextUnderTheImagesOnIndex(int textNum, String textExpected) {
 
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -25,7 +25,7 @@ public class HomeWork2Exc1 extends TestBase {
         //1 Open test site by URL
         driver.navigate().to("https://epam.github.io/JDI/index.html");
 
-        //2 Assert that all texts under icons on Index page have proper text according to DataProvider data set
+        //2 Assert that corresponding text under the icon on Index page is correct according to DataProvider data set
         List<WebElement> textsUnderIconsElements = driver.findElements(By.cssSelector(".benefit-txt"));
         assertEquals(textsUnderIconsElements.get(textNum).getText(),textExpected);
 

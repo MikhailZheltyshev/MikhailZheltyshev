@@ -14,25 +14,23 @@ public class TestBaseForHw2Ex3 {
 
     protected WebDriver driver;
 
-    @BeforeSuite(alwaysRun = true)
+    @BeforeSuite()
     public void beforeSuite(){
         setProperty("webdriver.chrome.driver", "chromedriver.exe");
     }
 
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass()
     public void beforeClass(){
         driver = new ChromeDriver();
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass()
     public void afterClass(){
         driver.close();
     }
 
-    @AfterSuite(alwaysRun = true)
+    @AfterSuite()
     public void afterSuite(){
         System.out.println(currentTimeMillis());
     }
-
-
 }
