@@ -17,7 +17,7 @@ public class SimpleTest {
 
     @Test
     public void simpleTest() {
-        setProperty("webdriver.chrome.driver","C:\\Users\\mihal\\Documents\\GitHub\\MikhailZheltyshev\\MikhailZheltyshev\\src\\main\\resources\\chromedriver.exe");
+        setProperty("webdriver.chrome.driver","chromedriver.exe");
 
         //1 Open new browser instance
         WebDriver driver = new ChromeDriver();

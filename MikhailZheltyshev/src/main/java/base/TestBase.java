@@ -12,7 +12,7 @@ public class TestBase {
 
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite(){
-        setProperty("webdriver.chrome.driver", "C:\\Users\\mihal\\Documents\\GitHub\\MikhailZheltyshev\\MikhailZheltyshev\\src\\main\\resources\\chromedriver.exe");
+        setProperty("webdriver.chrome.driver", "chromedriver.exe");
         time = currentTimeMillis();
     }
 
