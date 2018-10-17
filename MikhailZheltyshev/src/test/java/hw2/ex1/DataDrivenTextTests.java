@@ -1,6 +1,6 @@
 package hw2.ex1;
 
-import DataProviders.DataProviders;
+import dataProviders.DataProviders;
 import base.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

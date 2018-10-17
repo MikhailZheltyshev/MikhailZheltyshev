@@ -6,21 +6,19 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import java.util.List;
-
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class TestWithAllAnnotations extends TestBaseForHw2Ex3 {
 
     @BeforeMethod
-    public void beforeMethod(){
+    public void beforeMethod() {
         driver.manage().window().maximize();
     }
 
     @AfterMethod
-    public void afterMethod(){
+    public void afterMethod() {
         System.out.println(driver.getTitle());
     }
 
@@ -40,9 +38,6 @@ public class TestWithAllAnnotations extends TestBaseForHw2Ex3 {
         driver.findElement(By.cssSelector(".login [type = 'submit']")).click();
 
         //4 Assert User name in the left-top side of screen that user is loggined
-        WebElement loggedUserNameElement = driver.findElement(By.cssSelector(".profile-photo span"));
-        assertTrue(loggedUserNameElement.isDisplayed());
-        assertEquals(loggedUserNameElement.getText(), "PITER CHAILOVSKII");
 
         //5 Assert Browser Title
         assertEquals(driver.getTitle(), "Home Page");
@@ -53,7 +48,7 @@ public class TestWithAllAnnotations extends TestBaseForHw2Ex3 {
 
         //6.2 Assert There are 4 Browser Up-Level Buttons And They Are displayed
         assertEquals(upperToolbarItems.size(), 4);
-        for (WebElement item: upperToolbarItems){
+        for (WebElement item : upperToolbarItems) {
             assertTrue(item.isDisplayed());
         }
 
@@ -66,20 +61,20 @@ public class TestWithAllAnnotations extends TestBaseForHw2Ex3 {
         //7 Assert that there are 4 images on the Index Page and they are displayed
         List<WebElement> benefitIconElements = driver.findElements(By.cssSelector(".benefit-icon"));
         assertEquals(benefitIconElements.size(), 4);
-        for (WebElement icon: benefitIconElements){
+        for (WebElement icon : benefitIconElements) {
             assertTrue(icon.isDisplayed());
         }
 
         //8 Assert that there are 4 texts on the Index Page under icons and they have proper text
         List<WebElement> textsUnderIconsElements = driver.findElements(By.cssSelector(".benefit-txt"));
         assertEquals(textsUnderIconsElements.size(), 4);
-        assertEquals(textsUnderIconsElements.get(0).getText(),"To include good practices\n" +
+        assertEquals(textsUnderIconsElements.get(0).getText(), "To include good practices\n" +
                 "and ideas from successful\n" +
                 "EPAM project");
-        assertEquals(textsUnderIconsElements.get(1).getText(),"To be flexible and\n" +
+        assertEquals(textsUnderIconsElements.get(1).getText(), "To be flexible and\n" +
                 "customizable");
-        assertEquals(textsUnderIconsElements.get(2).getText(),"To be multiplatform");
-        assertEquals(textsUnderIconsElements.get(3).getText(),"Already have good base\n" +
+        assertEquals(textsUnderIconsElements.get(2).getText(), "To be multiplatform");
+        assertEquals(textsUnderIconsElements.get(3).getText(), "Already have good base\n" +
                 "(about 20 internal and\n" +
                 "some external projects),\n" +
                 "wish to get more…");
@@ -94,11 +89,11 @@ public class TestWithAllAnnotations extends TestBaseForHw2Ex3 {
                 " VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
 
         //10 Assertthat there is the iframe in the center of page
-        assertTrue(driver.findElement( By.id("iframe") ).isDisplayed());
+        assertTrue(driver.findElement(By.id("iframe")).isDisplayed());
 
         //11 Switch to the iframe and check that there is Epam logo in the left top conner of iframe
         driver.switchTo().frame("iframe");
-        assertTrue(driver.findElement( By.id("epam_logo") ).isDisplayed());
+        assertTrue(driver.findElement(By.id("epam_logo")).isDisplayed());
 
         //12 Switch to original window back
         driver.switchTo().defaultContent();

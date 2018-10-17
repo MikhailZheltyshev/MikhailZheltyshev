@@ -1,24 +1,36 @@
-package lesson2;
+package lesson3;
 
-import dataProviders.DataProviders;
 import base.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pageObjects.HomePage;
 
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
 
-public class SimpleTestDataProvider extends TestBase {
+public class SimpleTestPageObject extends TestBase {
 
-    @Test(dataProvider = "simpleDataProvider", dataProviderClass = DataProviders.class)
-    public void simpleTest(String str, int i) {
-        //1 Open BR
-        WebDriver driver = new ChromeDriver();
+    private WebDriver driver = new ChromeDriver();
+    private HomePage homePage = PageFactory.initElements(driver,HomePage.class);
+
+    @BeforeMethod
+    public void beforeClass() {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void afterMethod() {driver.close();}
+
+    @Test()
+    public void simpleTest() {
 
         //2 Navigate
         driver.navigate().to("https://epam.github.io/JDI/index.html");
@@ -27,15 +39,9 @@ public class SimpleTestDataProvider extends TestBase {
         assertEquals(driver.getTitle(), "Home Page");
 
         //4 Login
-        driver.findElement(By.cssSelector(".profile-photo")).click();
-        driver.findElement(By.cssSelector("[id = 'Name']")).sendKeys("epam");
-        driver.findElement(By.cssSelector("[id = 'Password']")).sendKeys("1234");
-        driver.findElement(By.cssSelector(".login [type = 'submit']")).click();
+        homePage.login("epam","1234");
 
         String mainTitle = driver.findElement(By.cssSelector("h3.main-title")).getText();
         assertEquals(mainTitle, "EPAM FRAMEWORK WISHES…");
-
-        driver.close();
-        System.out.println("String: " + str + " Integer: " +  i);
     }
 }
