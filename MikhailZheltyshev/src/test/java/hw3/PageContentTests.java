@@ -10,7 +10,7 @@ import pageObjects.HomePage;
 
 import java.util.concurrent.TimeUnit;
 
-public class ContentPageTests {
+public class PageContentTests {
 
     private WebDriver driver = new ChromeDriver();
     private HomePage homePage = PageFactory.initElements(driver, HomePage.class);
@@ -30,10 +30,10 @@ public class ContentPageTests {
     public void testJdiIndexPage() {
 
         //1 Open test site by URL
-        homePage.open(driver);
+        homePage.open("https://epam.github.io/JDI/index.html", driver);
 
         //2 Assert Browser Title
-        homePage.checkTitle(driver, "Home Page");
+        homePage.checkTitle("Home Page", driver);
 
         //3 Perform login
         homePage.login("epam", "1234");
@@ -42,7 +42,7 @@ public class ContentPageTests {
         homePage.checkLoggedUserName("PITER CHAILOVSKII");
 
         //5 Assert Browser Title
-        homePage.checkTitle(driver, "Home Page");
+        homePage.checkTitle("Home Page", driver);
 
         //6 Assert that there are 4 items on the header section are displayed and they have proper texts
         homePage.checkUpperToolbarButtons();
@@ -56,10 +56,10 @@ public class ContentPageTests {
         //9 Assert a text of the main header
         homePage.checkMainHeaderText();
 
-        //10 Assertthat there is the iframe in the center of page
+        //10 Assert that there is the iframe in the center of page
         homePage.checkIframeIsDisplayed();
 
-        //11 Switch to the iframe and check that there is Epam logo in the left top conner of iframe
+        //11 Switch to the iframe and check that there is Epam logo in the left top corner of the iframe
         homePage.checkEpamLogoInIframe(driver);
 
         //12 Switch to original window back

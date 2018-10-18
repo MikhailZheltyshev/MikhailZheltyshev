@@ -1,11 +1,10 @@
 package pageObjects;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.annotations.DataProvider;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
@@ -28,7 +27,7 @@ public class HomePage {
     private WebElement loggedUserNameElement;
 
     @FindBy(css = ".m-l8 > li")
-    private List <WebElement> upperToolbarItems;
+    private List<WebElement> upperToolbarItems;
 
     @FindBy(css = ".benefit-icon")
     private List<WebElement> benefitIconElements;
@@ -60,11 +59,11 @@ public class HomePage {
     @FindBy(css = "footer")
     private WebElement footerElement;
 
-    public void open(WebDriver driver) {
-        driver.get("https://epam.github.io/JDI/index.html");
+    public void open(String Url, WebDriver driver) {
+        driver.get(Url);
     }
 
-    public void checkTitle(WebDriver driver, String expectedTitle){
+    public void checkTitle(String expectedTitle, WebDriver driver) {
         assertEquals(driver.getTitle(), expectedTitle);
     }
 
@@ -83,7 +82,7 @@ public class HomePage {
     public void checkUpperToolbarButtons() {
 
         assertEquals(upperToolbarItems.size(), 4);
-        for (WebElement item: upperToolbarItems){
+        for (WebElement item : upperToolbarItems) {
             assertTrue(item.isDisplayed());
         }
 
@@ -95,20 +94,20 @@ public class HomePage {
 
     public void checkBenefitIcons() {
         assertEquals(benefitIconElements.size(), 4);
-        for (WebElement icon: benefitIconElements){
+        for (WebElement icon : benefitIconElements) {
             assertTrue(icon.isDisplayed());
         }
     }
 
     public void checkBenefitTexts() {
         assertEquals(textsUnderIconsElements.size(), 4);
-        assertEquals(textsUnderIconsElements.get(0).getText(),"To include good practices\n" +
+        assertEquals(textsUnderIconsElements.get(0).getText(), "To include good practices\n" +
                 "and ideas from successful\n" +
                 "EPAM project");
-        assertEquals(textsUnderIconsElements.get(1).getText(),"To be flexible and\n" +
+        assertEquals(textsUnderIconsElements.get(1).getText(), "To be flexible and\n" +
                 "customizable");
-        assertEquals(textsUnderIconsElements.get(2).getText(),"To be multiplatform");
-        assertEquals(textsUnderIconsElements.get(3).getText(),"Already have good base\n" +
+        assertEquals(textsUnderIconsElements.get(2).getText(), "To be multiplatform");
+        assertEquals(textsUnderIconsElements.get(3).getText(), "Already have good base\n" +
                 "(about 20 internal and\n" +
                 "some external projects),\n" +
                 "wish to get more…");
