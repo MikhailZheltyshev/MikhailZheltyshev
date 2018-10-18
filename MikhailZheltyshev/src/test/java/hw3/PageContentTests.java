@@ -1,5 +1,7 @@
 package hw3;
 
+import enums.Titles;
+import enums.Urls;
 import enums.Users;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,6 +13,8 @@ import pageObjects.HomePage;
 
 import java.util.concurrent.TimeUnit;
 
+import static enums.Titles.HOME_PAGE;
+import static enums.Urls.*;
 import static enums.Users.*;
 
 public class PageContentTests {
@@ -33,19 +37,19 @@ public class PageContentTests {
     public void testJdiIndexPage() {
 
         //1 Open test site by URL
-        homePage.open("https://epam.github.io/JDI/index.html", driver);
+        homePage.open(MAIN_PAGE.url, driver);
 
         //2 Assert Browser Title
-        homePage.checkTitle("Home Page", driver);
+        homePage.checkTitle(HOME_PAGE.title, driver);
 
         //3 Perform login
         homePage.login(PITER_CHAILOVSKII.login, PITER_CHAILOVSKII.password);
 
         //4 Assert User name in the left-top side of screen that user is loggined
-        homePage.checkLoggedUserName("PITER CHAILOVSKII");
+        homePage.checkLoggedUserName(PITER_CHAILOVSKII.displayName);
 
         //5 Assert Browser Title
-        homePage.checkTitle("Home Page", driver);
+        homePage.checkTitle(HOME_PAGE.title, driver);
 
         //6 Assert that there are 4 items on the header section are displayed and they have proper texts
         homePage.checkUpperToolbarButtons();
@@ -72,7 +76,7 @@ public class PageContentTests {
         homePage.checkSubHeaderText();
 
         //14 Assert that JDI GITHUB is a link and has a proper URL
-        homePage.checkJdiLink("https://github.com/epam/JDI");
+        homePage.checkJdiLink(JDI_GITHUB_PAGE.url);
 
         //15 Assert that there is Left Section
         homePage.checkLeftSideBarIsDisplayed();

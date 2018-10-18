@@ -61,30 +61,26 @@ public class HomePage {
     @FindBy(css = "footer")
     private WebElement footerElement;
 
-    //====================================================CONSTANTS=====================================================
-    private static final List<String> EXPECTED_UPPER_BUTTONS_TEXTS = Arrays.asList(
+    private final List<String> EXPECTED_UPPER_BUTTONS_TEXTS = Arrays.asList(
             "HOME",
             "CONTACT FORM",
             "SERVICE",
             "METALS & COLORS"
     );
 
-    private static final String EXPECTED_MAIN_HEADER_TEXT = "EPAM FRAMEWORK WISHES…";
+    private final String EXPECTED_MAIN_HEADER_TEXT = "EPAM FRAMEWORK WISHES…";
 
-    private static final String EXPECTED_SUB_HEADER_TEXT = "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, " +
+    private final String EXPECTED_SUB_HEADER_TEXT = "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, " +
             "SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD " +
             "EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT " +
             "IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.";
 
-    private static final String EXPECTED_DEFAULT_HEADER_TEXT = "JDI GITHUB";
+    private final String EXPECTED_DEFAULT_HEADER_TEXT = "JDI GITHUB";
 
     //==================================================METHODS=========================================================
+    //==================================================actions=========================================================
     public void open(String Url, WebDriver driver) {
         driver.get(Url);
-    }
-
-    public void checkTitle(String expectedTitle, WebDriver driver) {
-        assertEquals(driver.getTitle(), expectedTitle);
     }
 
     public void login(String name, String pwd) {
@@ -92,6 +88,15 @@ public class HomePage {
         login.sendKeys(name);
         password.sendKeys(pwd);
         submit.click();
+    }
+
+    public void switchBackToOriginalWindow(WebDriver driver) {
+        driver.switchTo().defaultContent();
+    }
+
+    //==================================================checks==========================================================
+    public void checkTitle(String expectedTitle, WebDriver driver) {
+        assertEquals(driver.getTitle(), expectedTitle);
     }
 
     public void checkLoggedUserName(String expectedName) {
@@ -145,10 +150,6 @@ public class HomePage {
         assertTrue(epamLogo.isDisplayed());
     }
 
-    public void switchBackToOriginalWindow(WebDriver driver) {
-        driver.switchTo().defaultContent();
-    }
-
     public void checkSubHeaderText() {
         String defaultHeaderText = defaultHeaderElement.getText();
         assertEquals(defaultHeaderText, EXPECTED_DEFAULT_HEADER_TEXT);
@@ -165,9 +166,5 @@ public class HomePage {
 
     public void checkFooterIsDisplayed() {
         assertTrue(footerElement.isDisplayed());
-    }
-
-    public void close(WebDriver driver) {
-        driver.close();
     }
 }
