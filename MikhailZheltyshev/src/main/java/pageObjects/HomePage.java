@@ -12,7 +12,7 @@ import static org.testng.Assert.assertTrue;
 
 public class HomePage {
 
-    //==================================================WEB-ELEMENTS=====================================================
+    //==========================================WEB-ELEMENTS AND CONSTANTS==============================================
     @FindBy(css = ".profile-photo")
     private WebElement profileButton;
 
