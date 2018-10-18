@@ -1,5 +1,6 @@
 package hw3;
 
+import enums.Users;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -9,6 +10,8 @@ import org.testng.annotations.Test;
 import pageObjects.HomePage;
 
 import java.util.concurrent.TimeUnit;
+
+import static enums.Users.*;
 
 public class PageContentTests {
 
@@ -21,7 +24,7 @@ public class PageContentTests {
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod()
     public void afterMethod() {
         driver.close();
     }
@@ -36,7 +39,7 @@ public class PageContentTests {
         homePage.checkTitle("Home Page", driver);
 
         //3 Perform login
-        homePage.login("epam", "1234");
+        homePage.login(PITER_CHAILOVSKII.login, PITER_CHAILOVSKII.password);
 
         //4 Assert User name in the left-top side of screen that user is loggined
         homePage.checkLoggedUserName("PITER CHAILOVSKII");

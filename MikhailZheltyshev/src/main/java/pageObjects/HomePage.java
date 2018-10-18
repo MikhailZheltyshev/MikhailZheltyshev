@@ -12,7 +12,7 @@ import static org.testng.Assert.assertTrue;
 
 public class HomePage {
 
-    //==================================================WEBELEMENTS=====================================================
+    //==================================================WEB-ELEMENTS=====================================================
     @FindBy(css = ".profile-photo")
     private WebElement profileButton;
 
@@ -87,10 +87,10 @@ public class HomePage {
         assertEquals(driver.getTitle(), expectedTitle);
     }
 
-    public void login(String login, String password) {
+    public void login(String name, String pwd) {
         profileButton.click();
-        this.login.sendKeys(login);
-        this.password.sendKeys(password);
+        login.sendKeys(name);
+        password.sendKeys(pwd);
         submit.click();
     }
 
