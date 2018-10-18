@@ -11,6 +11,8 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class HomePage {
+
+    //==================================================WEBELEMENTS=====================================================
     @FindBy(css = ".profile-photo")
     private WebElement profileButton;
 
@@ -59,6 +61,24 @@ public class HomePage {
     @FindBy(css = "footer")
     private WebElement footerElement;
 
+    //====================================================CONSTANTS=====================================================
+    private static final List<String> EXPECTED_UPPER_BUTTONS_TEXTS = Arrays.asList(
+            "HOME",
+            "CONTACT FORM",
+            "SERVICE",
+            "METALS & COLORS"
+    );
+
+    private static final String EXPECTED_MAIN_HEADER_TEXT = "EPAM FRAMEWORK WISHES…";
+
+    private static final String EXPECTED_SUB_HEADER_TEXT = "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, " +
+            "SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD " +
+            "EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT " +
+            "IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.";
+
+    private static final String EXPECTED_DEFAULT_HEADER_TEXT = "JDI GITHUB";
+
+    //==================================================METHODS=========================================================
     public void open(String Url, WebDriver driver) {
         driver.get(Url);
     }
@@ -84,12 +104,8 @@ public class HomePage {
         assertEquals(upperToolbarItems.size(), 4);
         for (WebElement item : upperToolbarItems) {
             assertTrue(item.isDisplayed());
+            assertTrue(EXPECTED_UPPER_BUTTONS_TEXTS.contains(item.getText()));
         }
-
-        assertEquals(upperToolbarItems.get(0).getText(), "HOME");
-        assertEquals(upperToolbarItems.get(1).getText(), "CONTACT FORM");
-        assertEquals(upperToolbarItems.get(2).getText(), "SERVICE");
-        assertEquals(upperToolbarItems.get(3).getText(), "METALS & COLORS");
     }
 
     public void checkBenefitIcons() {
@@ -115,12 +131,9 @@ public class HomePage {
 
     public void checkMainHeaderText() {
         String mainHeaderText = mainHeaderElement.getText();
-        assertEquals(mainHeaderText, "EPAM FRAMEWORK WISHES…");
+        assertEquals(mainHeaderText, EXPECTED_MAIN_HEADER_TEXT);
         String mainSubHeaderText = mainSubHeader.getText();
-        assertEquals(mainSubHeaderText, "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD" +
-                " TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION" +
-                " ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN" +
-                " VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
+        assertEquals(mainSubHeaderText, EXPECTED_SUB_HEADER_TEXT);
     }
 
     public void checkIframeIsDisplayed() {
@@ -138,7 +151,7 @@ public class HomePage {
 
     public void checkSubHeaderText() {
         String defaultHeaderText = defaultHeaderElement.getText();
-        assertEquals(defaultHeaderText, "JDI GITHUB");
+        assertEquals(defaultHeaderText, EXPECTED_DEFAULT_HEADER_TEXT);
     }
 
     public void checkJdiLink(String expectedUrl) {
