@@ -43,11 +43,11 @@ public class HomePageSelenide {
 
     private final String EXPECTED_HOME_PAGE_TITLE = "Home Page";
 
-    private final List<String> upperServiceMenuCategories = Arrays.asList(
+    private final List<String> UPPER_SERVICE_MENU_CATEGORIES = Arrays.asList(
             "Support", "Dates", "Complex Table", "Simple Table", "Tables With Wages", "Different Elements"
     );
 
-    private final List<String> leftServiceMenuCategories = Arrays.asList(
+    private final List<String> LEFT_SERVICE_MENU_CATEGORIES = Arrays.asList(
             "Support", "Dates", "Complex Table", "Simple Table", "Tables With Wages", "Different Elements"
     );
 
@@ -77,7 +77,7 @@ public class HomePageSelenide {
     }
 
     public void checkUpperServiceMenuContent(){
-        upperServiceMenuElements.shouldHave(CollectionCondition.texts(upperServiceMenuCategories));
+        upperServiceMenuElements.shouldHave(CollectionCondition.texts(UPPER_SERVICE_MENU_CATEGORIES));
     }
 
     public void clickOnLeftSelect(){
@@ -85,6 +85,6 @@ public class HomePageSelenide {
     }
 
     public void checkLeftServiceMenuContent(){
-        leftServiceMenuElements.shouldHave(CollectionCondition.texts(leftServiceMenuCategories));
+        leftServiceMenuElements.shouldHave(CollectionCondition.texts(LEFT_SERVICE_MENU_CATEGORIES));
     }
 }
