@@ -1,8 +1,5 @@
 package hw3;
 
-import enums.Titles;
-import enums.Urls;
-import enums.Users;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -13,9 +10,7 @@ import pageObjects.HomePage;
 
 import java.util.concurrent.TimeUnit;
 
-import static enums.Titles.HOME_PAGE;
-import static enums.Urls.*;
-import static enums.Users.*;
+import static enums.Users.PITER_CHAILOVSKII;
 
 public class PageContentTests {
 
@@ -37,10 +32,10 @@ public class PageContentTests {
     public void testJdiIndexPage() {
 
         //1 Open test site by URL
-        homePage.open(MAIN_PAGE.url, driver);
+        homePage.open(driver);
 
         //2 Assert Browser Title
-        homePage.checkTitle(HOME_PAGE.title, driver);
+        homePage.checkTitle(driver);
 
         //3 Perform login
         homePage.login(PITER_CHAILOVSKII.login, PITER_CHAILOVSKII.password);
@@ -49,7 +44,7 @@ public class PageContentTests {
         homePage.checkLoggedUserName(PITER_CHAILOVSKII.displayName);
 
         //5 Assert Browser Title
-        homePage.checkTitle(HOME_PAGE.title, driver);
+        homePage.checkTitle(driver);
 
         //6 Assert that there are 4 items on the header section are displayed and they have proper texts
         homePage.checkUpperToolbarButtons();
@@ -76,7 +71,7 @@ public class PageContentTests {
         homePage.checkSubHeaderText();
 
         //14 Assert that JDI GITHUB is a link and has a proper URL
-        homePage.checkJdiLink(JDI_GITHUB_PAGE.url);
+        homePage.checkJdiLink();
 
         //15 Assert that there is Left Section
         homePage.checkLeftSideBarIsDisplayed();

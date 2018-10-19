@@ -1,5 +1,7 @@
 package pageObjects;
 
+import enums.Titles;
+import enums.Urls;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,6 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import java.util.Arrays;
 import java.util.List;
 
+import static enums.Titles.HOME_PAGE;
+import static enums.Urls.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -79,8 +83,8 @@ public class HomePage {
 
     //==================================================METHODS=========================================================
     //==================================================actions=========================================================
-    public void open(String Url, WebDriver driver) {
-        driver.get(Url);
+    public void open(WebDriver driver) {
+        driver.get(Urls.HOME_PAGE.url);
     }
 
     public void login(String name, String pwd) {
@@ -95,8 +99,8 @@ public class HomePage {
     }
 
     //==================================================checks==========================================================
-    public void checkTitle(String expectedTitle, WebDriver driver) {
-        assertEquals(driver.getTitle(), expectedTitle);
+    public void checkTitle(WebDriver driver) {
+        assertEquals(driver.getTitle(), HOME_PAGE.title);
     }
 
     public void checkLoggedUserName(String expectedName) {
@@ -155,9 +159,9 @@ public class HomePage {
         assertEquals(defaultHeaderText, EXPECTED_DEFAULT_HEADER_TEXT);
     }
 
-    public void checkJdiLink(String expectedUrl) {
+    public void checkJdiLink() {
         assertTrue(linkToJdiGitHub.isDisplayed());
-        assertEquals(linkToJdiGitHub.getAttribute("href"), expectedUrl);
+        assertEquals(linkToJdiGitHub.getAttribute("href"), Urls.JDI_GITHUB_PAGE.url);
     }
 
     public void checkLeftSideBarIsDisplayed() {
