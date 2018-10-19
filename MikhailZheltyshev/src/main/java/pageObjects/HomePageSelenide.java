@@ -1,10 +1,8 @@
 package pageObjects;
 
 import com.codeborne.selenide.*;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -43,11 +41,13 @@ public class HomePageSelenide {
     @FindBy(css = "[class = 'sub']")
     private ElementsCollection leftServiceMenuElements;
 
-    public final List<String> upperServiceMenuCategories = Arrays.asList(
+    private final String EXPECTED_HOME_PAGE_TITLE = "Home Page";
+
+    private final List<String> upperServiceMenuCategories = Arrays.asList(
             "Support", "Dates", "Complex Table", "Simple Table", "Tables With Wages", "Different Elements"
     );
 
-    public final List<String> leftServiceMenuCategories = Arrays.asList(
+    private final List<String> leftServiceMenuCategories = Arrays.asList(
             "Support", "Dates", "Complex Table", "Simple Table", "Tables With Wages", "Different Elements"
     );
 
@@ -56,8 +56,8 @@ public class HomePageSelenide {
         Selenide.open(url);
     }
 
-    public void checkTitle(String expectedTitle) {
-        assertEquals(getWebDriver().getTitle(), expectedTitle);
+    public void checkTitle() {
+        assertEquals(getWebDriver().getTitle(), EXPECTED_HOME_PAGE_TITLE);
     }
 
     public void login(String name, String pwd) {

@@ -1,10 +1,10 @@
 //TODO REPLACE ALL CONSTANTS WITH ENUMS WHERE IT'S POSSIBLE
 //TODO IMPLEMENT ALL REMAINING STEPS
+//TODO MOAR ENCAPSULATION
 
 package hw4;
 
 import base.SelenideTestBase;
-import enums.Titles;
 import enums.Urls;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -12,6 +12,7 @@ import pageObjects.HomePageSelenide;
 import pageObjects.ServicePageSelenide;
 
 import static com.codeborne.selenide.Selenide.*;
+import static enums.Urls.*;
 import static enums.Users.PITER_CHAILOVSKII;
 import static org.testng.Assert.assertEquals;
 
@@ -30,10 +31,10 @@ public class ServicePageTests extends SelenideTestBase {
     public void simpleTest() {
 
         //1 Open test site by URL
-        homePage.open(Urls.HOME_PAGE.url);
+        homePage.open(HOME_PAGE.url);
 
         //2 Assert Browser title
-        homePage.checkTitle(Titles.HOME_PAGE.title);
+        homePage.checkTitle();
 
         //3 Perform login
         homePage.login(PITER_CHAILOVSKII.login, PITER_CHAILOVSKII.password);

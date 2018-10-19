@@ -1,6 +1,5 @@
 package pageObjects;
 
-import enums.Titles;
 import enums.Urls;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,8 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import java.util.Arrays;
 import java.util.List;
 
-import static enums.Titles.HOME_PAGE;
-import static enums.Urls.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -65,6 +62,8 @@ public class HomePage {
     @FindBy(css = "footer")
     private WebElement footerElement;
 
+    private final String EXPECTED_HOME_PAGE_TITLE = "Home Page";
+
     private final List<String> EXPECTED_UPPER_BUTTONS_TEXTS = Arrays.asList(
             "HOME",
             "CONTACT FORM",
@@ -100,7 +99,7 @@ public class HomePage {
 
     //==================================================checks==========================================================
     public void checkTitle(WebDriver driver) {
-        assertEquals(driver.getTitle(), HOME_PAGE.title);
+        assertEquals(driver.getTitle(), EXPECTED_HOME_PAGE_TITLE);
     }
 
     public void checkLoggedUserName(String expectedName) {
