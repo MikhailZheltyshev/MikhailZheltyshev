@@ -5,16 +5,14 @@
 package hw4;
 
 import base.SelenideTestBase;
-import enums.Urls;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pageObjects.HomePageSelenide;
 import pageObjects.ServicePageSelenide;
 
-import static com.codeborne.selenide.Selenide.*;
-import static enums.Urls.*;
+import static com.codeborne.selenide.Selenide.page;
+import static enums.Urls.HOME_PAGE;
 import static enums.Users.PITER_CHAILOVSKII;
-import static org.testng.Assert.assertEquals;
 
 public class ServicePageTests extends SelenideTestBase {
 
@@ -57,6 +55,5 @@ public class ServicePageTests extends SelenideTestBase {
 
         //6.2 Check for content
         homePage.checkLeftServiceMenuContent();
-
     }
 }

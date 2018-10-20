@@ -1,15 +1,18 @@
 package pageObjects;
 
-import com.codeborne.selenide.*;
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class HomePageSelenide {
 
@@ -32,7 +35,7 @@ public class HomePageSelenide {
     @FindBy(css = "[class = 'dropdown']")
     private SelenideElement upperServiceButton;
 
-    @FindBy(css = "[class = 'dropdown-menu']")
+    @FindBy(css = "[class = 'dropdown-menu'] > li")
     private ElementsCollection upperServiceMenuElements;
 
     @FindBy(css = "[class = 'sidebar-menu'] > [index='3']")
@@ -44,11 +47,11 @@ public class HomePageSelenide {
     private final String EXPECTED_HOME_PAGE_TITLE = "Home Page";
 
     private final List<String> UPPER_SERVICE_MENU_CATEGORIES = Arrays.asList(
-            "Support", "Dates", "Complex Table", "Simple Table", "Tables With Wages", "Different Elements"
+            "SUPPORT\n"  + "DATES\n" + "COMPLEX TABLE\n" + "SIMPLE TABLE\n" +"USER TABLE\n" + "TABLE WITH PAGES\n" + "DIFFERENT ELEMENTS\n" + "PERFORMANCE"
     );
 
     private final List<String> LEFT_SERVICE_MENU_CATEGORIES = Arrays.asList(
-            "Support", "Dates", "Complex Table", "Simple Table", "Tables With Wages", "Different Elements"
+            "SUPPORT\n"  + "DATES\n" + "COMPLEX TABLE\n" + "SIMPLE TABLE\n" +"USER TABLE\n" + "TABLE WITH PAGES\n" + "DIFFERENT ELEMENTS\n" + "PERFORMANCE"
     );
 
     //==================================================METHODS=========================================================
@@ -77,7 +80,10 @@ public class HomePageSelenide {
     }
 
     public void checkUpperServiceMenuContent(){
-        upperServiceMenuElements.shouldHave(CollectionCondition.texts(UPPER_SERVICE_MENU_CATEGORIES));
+        //upperServiceMenuElements.shouldHave(CollectionCondition.texts(UPPER_SERVICE_MENU_CATEGORIES));
+        //Изначально был взят неправильный селектор, без li
+        System.out.println(Arrays.asList(upperServiceMenuElements.texts().get(0)));
+
     }
 
     public void clickOnLeftSelect(){
@@ -85,6 +91,7 @@ public class HomePageSelenide {
     }
 
     public void checkLeftServiceMenuContent(){
-        leftServiceMenuElements.shouldHave(CollectionCondition.texts(LEFT_SERVICE_MENU_CATEGORIES));
+        System.out.println(Arrays.asList(leftServiceMenuElements.texts().get(0).split("\n")));
+        //shouldHave(CollectionCondition.texts(LEFT_SERVICE_MENU_CATEGORIES));
     }
 }

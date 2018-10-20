@@ -1,4 +1,4 @@
-package lessons4;
+package lesson4;
 
 import base.SelenideTestBase;
 import com.codeborne.selenide.CollectionCondition;

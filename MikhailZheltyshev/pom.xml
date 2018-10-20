@@ -8,6 +8,10 @@
     <artifactId>MikhailZheltyshev</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <suiteXmlFile>testng.xml</suiteXmlFile>
+    </properties>
+
     <dependencies>
 
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
@@ -42,7 +46,7 @@
                 <configuration>
                     <suiteXmlFiles>
                         <!--suppress UnresolvedMavenProperty -->
-                        <suiteXmlFile>\${suiteXmlFile}</suiteXmlFile>
+                        <suiteXmlFile>src\test\resources\${suiteXmlFile}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
