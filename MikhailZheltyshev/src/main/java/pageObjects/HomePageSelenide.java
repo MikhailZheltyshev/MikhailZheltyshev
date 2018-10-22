@@ -42,21 +42,21 @@ public class HomePageSelenide {
     @FindBy(css = "[class = 'sidebar-menu'] > [index='3']")
     private SelenideElement leftServiceButton;
 
-    @FindBy(css = "[class = 'sub']")
+    @FindBy(css = "[class = 'sub'] > li")
     private ElementsCollection leftServiceMenuElements;
 
     private final String EXPECTED_HOME_PAGE_TITLE = "Home Page";
 
     private final List<String> EXPECTED_UPPER_SERVICE_MENU_CATEGORIES = Arrays.asList(
-            "SUPPORT","DATES","COMPLEX TABLE","SIMPLE TABLE", "TABLE WITH WAGES","DIFFERENT ELEMENTS"
+            "Support", "Dates", "Complex Table", "Simple Table", "Table with pages", "Different elements"
     );
 
     private final List<String> EXPECTED_LEFT_SERVICE_MENU_CATEGORIES = Arrays.asList(
-            "SUPPORT","DATES","COMPLEX TABLE","SIMPLE TABLE", "TABLE WITH WAGES","DIFFERENT ELEMENTS"
+            "Support", "Dates", "Complex Table", "Simple Table", "Table with pages", "Different elements"
     );
 
     //==================================================METHODS=========================================================
-    public void open(String url){
+    public void open(String url) {
         Selenide.open(url);
     }
 
@@ -76,22 +76,24 @@ public class HomePageSelenide {
         loggedUserNameElement.shouldHave(text(expectedName));
     }
 
-    public void clickOnUpperSelect(){
+    public void clickOnUpperSelect() {
         upperServiceButton.click();
     }
 
-    public void checkUpperServiceMenuContent(){
-        //upperServiceMenuElements.shouldHave(CollectionCondition.exactTexts(EXPECTED_UPPER_SERVICE_MENU_CATEGORIES));
-        //assertTrue(EXPECTED_UPPER_SERVICE_MENU_CATEGORIES.containsAll(upperServiceMenuElements.texts()));
+    public void checkUpperServiceMenuContent() {
+        for (String category : EXPECTED_UPPER_SERVICE_MENU_CATEGORIES) {
+            assertTrue(upperServiceMenuElements.texts().contains(category.toUpperCase()));
+        }
     }
 
-    public void clickOnLeftSelect(){
+    public void clickOnLeftSelect() {
         leftServiceButton.click();
     }
 
-    public void checkLeftServiceMenuContent(){
-        //leftServiceMenuElements.shouldHave(CollectionCondition.exactTexts(EXPECTED_LEFT_SERVICE_MENU_CATEGORIES));
-        //assertTrue(EXPECTED_LEFT_SERVICE_MENU_CATEGORIES.containsAll(leftServiceMenuElements.texts()));
+    public void checkLeftServiceMenuContent() {
+        for (String category : EXPECTED_LEFT_SERVICE_MENU_CATEGORIES) {
+            assertTrue(leftServiceMenuElements.texts().contains(category));
+        }
     }
 
     public void openDifferentElementsPageThroughTheHeaderMenu() {
