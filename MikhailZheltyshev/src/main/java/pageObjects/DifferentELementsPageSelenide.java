@@ -11,6 +11,11 @@ import java.util.List;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
+import static enums.DIfferentElementsPageCheckBoxes.*;
+import static enums.DIfferentElementsPageDropDownItems.YELLOW;
+import static enums.DIfferentElementsPageRadioButtons.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class DifferentELementsPageSelenide {
 
@@ -25,7 +30,7 @@ public class DifferentELementsPageSelenide {
     @FindBy(css = "select.uui-form-element")
     SelenideElement colorsDropDownMenuElement;
 
-    @FindBy(css= ".colors")
+    @FindBy(css = ".colors")
     SelenideElement colorsDropDownMenu;
 
     @FindBy(css = "[class = 'uui-button']")
@@ -44,80 +49,64 @@ public class DifferentELementsPageSelenide {
     private final List<String> RADIO_BUTTONS = Arrays.asList("Gold", "Silver", "Bronze", "Selen");
     private final List<String> DROP_DOWN_ITEMS = Arrays.asList("Yellow", "Blue", "Green", "Red");
 
+    DifferentElementsLogHelper logParser = new DifferentElementsLogHelper();
+
     //==================================================METHODS=========================================================
-    public void checkDifferentElementsPageContent(){
+    public void checkDifferentElementsPageContent() {
         checkBoxElements.shouldHave(size(4));
         radioButtonElements.shouldHave(size(4));
         colorsDropDownMenuElement.shouldBe(visible);
         buttonElements.shouldHave(size(2));
     }
 
-    public void checkRightSectionExists(){
+    public void checkRightSectionExists() {
         rightSectionElement.exists();
     }
 
-    public void checkLeftSectionExists(){
+    public void checkLeftSectionExists() {
         rightSectionElement.exists();
     }
 
-    public void selectWaterAndWindCheckBoxes(){
-        checkBoxElements.find(text(CHECK_BOXES.get(0))).click();
-        checkBoxElements.find(text(CHECK_BOXES.get(2))).click();
+    public void selectWaterAndWindCheckBoxes() {
+        checkBoxElements.find(text(WATER.displayName)).click();
+        checkBoxElements.find(text(WIND.displayName)).click();
     }
 
-    public void checkWaterAndWindLoggedAsActivated(){
-        DifferentElementsLogHelper logParser;
+    public void checkLoggingOfCheckBoxesChecked() {
+        assertEquals(logParser.getLogRecord(1).getKey(), WATER.displayName);
+        assertEquals(logParser.getLogRecord(1).getValue(), "true");
+        assertEquals(logParser.getLogRecord(0).getKey(), WIND.displayName);
+        assertEquals(logParser.getLogRecord(0).getValue(), "true");
     }
-
-//    public void checkLoggingOfCheckBoxes() {
-//        refresh();
-//        DifferentElementsLogHelper logParser = new DifferentElementsLogHelper();
-//
-//        for (String item: CHECK_BOXES) {
-//            checkBoxElements.find(Condition.text(item)).click();
-//            logParser.parseLastLogRecord();
-//            assertEquals(logParser.getElementName(), item);
-//            assertEquals(logParser.getElementStatus(),"true");
-//
-//            checkBoxElements.find(Condition.text(item)).click();
-//            logParser.parseLastLogRecord();
-//            assertEquals(logParser.getElementName(), item);
-//            assertEquals(logParser.getElementStatus(),"false");
-//        }
-//    }
 
     public void selectSelenRadioButton() {
-        radioButtonElements.find(text(RADIO_BUTTONS.get(3))).click();
+        radioButtonElements.find(text(SELEN.displayName)).click();
     }
 
-//    public void checkLoggingOfRadioButtons() {
-//        DifferentElementsLogHelper logParser = new DifferentElementsLogHelper();
-//
-//        for (String item: RADIO_BUTTONS) {
-//            radioButtonElements.find(Condition.text(item)).click();
-//            logParser.parseLastLogRecord();
-//            assertEquals(logParser.getElementName(), "metal");
-//            assertEquals(logParser.getElementStatus(),item);
-//
-//        }
-//    }
+    public void checkLoggingOfRadioButtons() {
+        assertEquals(logParser.getLogRecord(0).getKey(), "metal");
+        assertEquals(logParser.getLogRecord(0).getValue(), SELEN.displayName);
+    }
 
     public void selectYellowFromDropDownMenu() {
         colorsDropDownMenu.click();
-        dropDownMenuOptions.find(text(DROP_DOWN_ITEMS.get(0))).click();
+        dropDownMenuOptions.find(text(YELLOW.displayName)).click();
     }
 
-//    public void checkLoggingOfDropDownMenu() {
-//        refresh();
-//        DifferentElementsLogHelper logParser = new DifferentElementsLogHelper();
-//
-//        for (String item:DROP_DOWN_ITEMS) {
-//            colorsDropDownMenu.click();
-//            colorsDropDownMenuElements.find(Condition.text(item)).click();
-//            logParser.parseLastLogRecord();
-//            assertEquals(logParser.getElementName(), "Colors");
-//            assertEquals(logParser.getElementStatus(),item);
-//        }
-//    }
+    public void checkLoggingOfDropDownMenu() {
+        assertEquals(logParser.getLogRecord(0).getKey(), "Colors");
+        assertEquals(logParser.getLogRecord(0).getValue(), YELLOW.displayName);
+    }
 
+    public void unselectWaterAndWindCheckBoxes() {
+        checkBoxElements.find(text(WATER.displayName)).click();
+        checkBoxElements.find(text(WIND.displayName)).click();
+    }
+
+    public void checkLoggingOfCheckBoxesUnchecked() {
+        assertEquals(logParser.getLogRecord(1).getKey(), WATER.displayName);
+        assertEquals(logParser.getLogRecord(1).getValue(), "false");
+        assertEquals(logParser.getLogRecord(0).getKey(), WIND.displayName);
+        assertEquals(logParser.getLogRecord(0).getValue(), "false");
+    }
 }

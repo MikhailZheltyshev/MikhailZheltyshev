@@ -1,49 +1,30 @@
 package utils;
 
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.AbstractMap;
 import java.util.ArrayDeque;
-import java.util.Queue;
-import java.util.Stack;
 
 import static com.codeborne.selenide.Selenide.$$;
 
 public class DifferentElementsLogHelper {
 
-    ElementsCollection currentLog;
 
-    private ArrayDeque<AbstractMap.SimpleEntry<String,String>> loggerStack = new ArrayDeque<>();
+    private ElementsCollection currentLog;
 
-    private int previousLogSize = 0;
-
-    private String elementName;
-    private String elementStatus;
-    private String[] lastLogRow;
-
-    public void updateLog(){
-            currentLog = $$(".logs li");
-            int index = (currentLog.size() - previousLogSize) - 1;
-
-            while (index >= 0){
-
-                lastLogRow = currentLog.get(index).getText().split(" ");
-                elementName = lastLogRow[1].replace(":","");
-                elementStatus = lastLogRow[5];
-
-                loggerStack.push(new AbstractMap.SimpleEntry<>(elementName,elementStatus));
-
-                previousLogSize++;
-                index--;
-            }
-
+    private void updateLog() {
+        currentLog = $$(".logs li");
     }
 
-    public String getElementName() {
-        return elementName;
-    }
-
-    public String getElementStatus() {
-        return elementStatus;
+    public AbstractMap.SimpleEntry getLogRecord(int recordIndex){
+        updateLog();
+        if (recordIndex <= currentLog.size() && (recordIndex) >= 0){
+            String[] lastLogRow = currentLog.get(recordIndex).getText().split(" ");
+            return new AbstractMap.SimpleEntry<>(lastLogRow[1].replace(":", ""), lastLogRow[5]);
+        } else {
+            return new AbstractMap.SimpleEntry<>("","");
+        }
     }
 }
