@@ -1,7 +1,6 @@
 package pageObjects;
 
 import com.codeborne.selenide.*;
-import enums.Urls;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.Arrays;
@@ -10,8 +9,10 @@ import java.util.List;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static enums.ServiceMenuButtons.DATES;
 import static enums.ServiceMenuButtons.DIFFERENT_ELEMENTS;
-import static enums.Urls.*;
+import static enums.Urls.DATES_PAGE;
+import static enums.Urls.DIFFERENT_ELEMENTS_PAGE;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -100,5 +101,11 @@ public class HomePageSelenide {
         clickOnUpperSelect();
         upperServiceMenuElements.find(Condition.text(DIFFERENT_ELEMENTS.name)).click();
         assertEquals(WebDriverRunner.url(), DIFFERENT_ELEMENTS_PAGE.url);
+    }
+
+    public void openDatesPageThroughTheHeaderMenu() {
+        clickOnUpperSelect();
+        upperServiceMenuElements.find(Condition.text(DATES.name)).click();
+        assertEquals(WebDriverRunner.url(), DATES_PAGE.url);
     }
 }

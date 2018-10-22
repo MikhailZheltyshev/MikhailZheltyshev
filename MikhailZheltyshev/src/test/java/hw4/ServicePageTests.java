@@ -26,7 +26,7 @@ public class ServicePageTests extends SelenideTestBase {
     }
 
     @Test
-    public void simpleTest() {
+    public void servicePageInterfaceCheck() {
 
         //1 Open test site by URL
         homePage.open(HOME_PAGE.url);
