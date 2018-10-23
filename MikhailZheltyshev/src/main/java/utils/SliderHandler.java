@@ -9,28 +9,30 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class SliderHandler {
 
-    SelenideElement sliderRange = $(".range");
+    private SelenideElement sliderRange = $(".range");
 
-    SelenideElement leftHandle = $$(".ui-slider-handle").get(0);
-    SelenideElement rightHandle = $$(".ui-slider-handle").get(1);
 
-    private int getStep(){
-        return sliderRange.getSize().width / 100;
+    private Double getPosition(SelenideElement handle) {
+        double sliderPosition = Double.parseDouble(handle.getCssValue("left")
+                .replaceAll("px", ""));
+        return (sliderPosition / getStep());
     }
 
-    public Double getPosition(SelenideElement handle) {
-        Double sliderCenterPx = Double.parseDouble(handle.getCssValue("left")
-                .replaceAll("px", "")) + handle.getSize().width / 2;
-        return sliderCenterPx / getStep();
+    private Double getStep() {
+        return (double) sliderRange.getSize().width / 100;
     }
 
-    public void setSliderPosition(SelenideElement left, Integer leftPosition, SelenideElement right, Integer rightPosition) {
+    public void setSliderPosition(SelenideElement leftHandle, int leftPosition, SelenideElement rightHandle, int rightPosition) {
         Actions actions = new Actions(getWebDriver());
 
-        double xOffsetL = (leftPosition - getPosition(left)) * getStep();
-        actions.dragAndDropBy(left, (int)xOffsetL, 0).perform();
+        Double currentL = Double.parseDouble(leftHandle.getCssValue("left").replaceAll("px", "")) / getStep();
+        int xOffsetL = (int) ((leftPosition - currentL - 1) * getStep());
+        actions.dragAndDropBy(leftHandle, xOffsetL, 0).perform();
 
-        double xOffsetR = (rightPosition - getPosition(leftHandle)) * getStep();
-        actions.dragAndDropBy(right, (int)xOffsetR, 0).perform();
+        Double currentR = Double.parseDouble(rightHandle.getCssValue("left").replaceAll("px", "")) / getStep();
+        int xOffsetR = (int) ((rightPosition - currentR - 1) * getStep());
+        actions.dragAndDropBy(rightHandle, xOffsetR, 0).perform();
     }
+
+
 }

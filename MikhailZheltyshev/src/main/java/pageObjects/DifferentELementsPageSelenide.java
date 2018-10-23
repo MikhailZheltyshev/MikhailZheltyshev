@@ -3,7 +3,7 @@ package pageObjects;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
-import utils.DifferentElementsLogHelper;
+import utils.ElementsLogHelper;
 
 import java.util.Arrays;
 import java.util.List;
@@ -49,7 +49,7 @@ public class DifferentELementsPageSelenide {
     private final List<String> RADIO_BUTTONS = Arrays.asList("Gold", "Silver", "Bronze", "Selen");
     private final List<String> DROP_DOWN_ITEMS = Arrays.asList("Yellow", "Blue", "Green", "Red");
 
-    DifferentElementsLogHelper logParser = new DifferentElementsLogHelper();
+    private final ElementsLogHelper LOG_PARSER = new ElementsLogHelper();
 
     //==================================================METHODS=========================================================
     public void checkDifferentElementsPageContent() {
@@ -73,10 +73,8 @@ public class DifferentELementsPageSelenide {
     }
 
     public void checkLoggingOfCheckBoxesChecked() {
-        assertEquals(logParser.getLogRecord(1).getKey(), WATER.displayName);
-        assertEquals(logParser.getLogRecord(1).getValue(), "true");
-        assertEquals(logParser.getLogRecord(0).getKey(), WIND.displayName);
-        assertEquals(logParser.getLogRecord(0).getValue(), "true");
+        assertTrue(LOG_PARSER.getStateByRecord(1, WATER, true));
+        assertTrue(LOG_PARSER.getStateByRecord(0, WIND, true));
     }
 
     public void selectSelenRadioButton() {
@@ -84,8 +82,7 @@ public class DifferentELementsPageSelenide {
     }
 
     public void checkLoggingOfRadioButtons() {
-        assertEquals(logParser.getLogRecord(0).getKey(), "metal");
-        assertEquals(logParser.getLogRecord(0).getValue(), SELEN.displayName);
+        assertTrue(LOG_PARSER.getStateByRecord(0, SELEN));
     }
 
     public void selectYellowFromDropDownMenu() {
@@ -94,8 +91,7 @@ public class DifferentELementsPageSelenide {
     }
 
     public void checkLoggingOfDropDownMenu() {
-        assertEquals(logParser.getLogRecord(0).getKey(), "Colors");
-        assertEquals(logParser.getLogRecord(0).getValue(), YELLOW.displayName);
+        assertTrue(LOG_PARSER.getStateByRecord(0, YELLOW));
     }
 
     public void unselectWaterAndWindCheckBoxes() {
@@ -104,9 +100,7 @@ public class DifferentELementsPageSelenide {
     }
 
     public void checkLoggingOfCheckBoxesUnchecked() {
-        assertEquals(logParser.getLogRecord(1).getKey(), WATER.displayName);
-        assertEquals(logParser.getLogRecord(1).getValue(), "false");
-        assertEquals(logParser.getLogRecord(0).getKey(), WIND.displayName);
-        assertEquals(logParser.getLogRecord(0).getValue(), "false");
+        assertTrue(LOG_PARSER.getStateByRecord(1, WATER, false));
+        assertTrue(LOG_PARSER.getStateByRecord(0, WIND, false));
     }
 }
