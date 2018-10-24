@@ -37,7 +37,6 @@ public class ServicePageTests extends SelenideTestBase {
         homePage.checkLoggedUserName(PITER_CHAILOVSKII.displayName);
 
         //5 Click on "Service" subcategory in the header and check that drop down contains options
-
         //5.1 Click
         homePage.clickOnUpperSelect();
 
