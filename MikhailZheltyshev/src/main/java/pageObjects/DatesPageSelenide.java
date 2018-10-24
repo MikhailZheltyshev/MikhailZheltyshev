@@ -1,21 +1,18 @@
 package pageObjects;
 
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
+import enums.DatesPageSliderTypes;
 import org.openqa.selenium.support.FindBy;
 import utils.ElementsLogHelper;
 import utils.SliderHandler;
 
 import static enums.DatesPageSliderTypes.FROM;
 import static enums.DatesPageSliderTypes.TO;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
 
 public class DatesPageSelenide {
 
-    //==================================================WEB-ELEMENTS====================================================
-    @FindBy(css = ".range")
-    SelenideElement sliderRange;
-
+    //============================================WEB-ELEMENTS AND CONSTANTS============================================
     @FindBy(css = ".ui-slider-handle")
     ElementsCollection sliders;
 
@@ -30,7 +27,7 @@ public class DatesPageSelenide {
 
     public void setSlidersFrom0To0() {
         SLIDER_HANDLER.setPosition(sliders.get(0), 0);
-        SLIDER_HANDLER.setPosition( sliders.get(1), 0);
+        SLIDER_HANDLER.setPosition(sliders.get(1), 0);
     }
 
     public void setSlidersFrom100To100() {
@@ -44,46 +41,31 @@ public class DatesPageSelenide {
         sliderHandler.setPosition(sliders.get(1), 70);
     }
 
-    public void checkFromSliderIsSetTo0() {
-        assertTrue(LOG_PARSER.getStateByRecord(1, FROM, 0));
+    public void checkSlidersAreSetFrom0To100Log() {
+        assertEquals(LOG_PARSER.getActualLogRecord(1, DatesPageSliderTypes.class),
+                LOG_PARSER.generateExpectedRecord(FROM, 0));
+        assertEquals(LOG_PARSER.getActualLogRecord(0, DatesPageSliderTypes.class),
+                LOG_PARSER.generateExpectedRecord(TO, 100));
     }
 
-    public void checkToSliderIsSetTo100() {
-        assertTrue(LOG_PARSER.getStateByRecord(0, TO, 100));
+    public void checkSlidersAreSetFrom0To0Log() {
+        assertEquals(LOG_PARSER.getActualLogRecord(1, DatesPageSliderTypes.class),
+                LOG_PARSER.generateExpectedRecord(FROM, 0));
+        assertEquals(LOG_PARSER.getActualLogRecord(0, DatesPageSliderTypes.class),
+                LOG_PARSER.generateExpectedRecord(TO, 0));
     }
 
-    public void checkToSliderIsSetTo0() {
-        assertTrue(LOG_PARSER.getStateByRecord(0, TO, 0));
+    public void checkSlidersAreSetFrom100To100Log() {
+        assertEquals(LOG_PARSER.getActualLogRecord(0, DatesPageSliderTypes.class),
+                LOG_PARSER.generateExpectedRecord(FROM, 100));
+        assertEquals(LOG_PARSER.getActualLogRecord(1, DatesPageSliderTypes.class),
+                LOG_PARSER.generateExpectedRecord(TO, 100));
     }
 
-    public void checkFromSliderIsSetTo100() {
-        assertTrue(LOG_PARSER.getStateByRecord(1, FROM, 100));
-    }
-
-    public void checkToSliderIsSetTo70() {
-        assertTrue(LOG_PARSER.getStateByRecord(0, TO, 70));
-    }
-
-    public void checkFromSliderIsSetTo30() {
-        assertTrue(LOG_PARSER.getStateByRecord(1, FROM, 30));
-    }
-
-    public void checkSlidersAreSetFrom0To100Log(){
-        assertTrue(LOG_PARSER.getStateByRecord(1, FROM, 0));
-        assertTrue(LOG_PARSER.getStateByRecord(0, TO, 100));
-    }
-    public void checkSlidersAreSetFrom0To0Log(){
-        assertTrue(LOG_PARSER.getStateByRecord(1, FROM, 0));
-        assertTrue(LOG_PARSER.getStateByRecord(0, TO, 0));
-    }
-
-    public void checkSlidersAreSetFrom100To100Log(){
-        assertTrue(LOG_PARSER.getStateByRecord(0, FROM, 100));
-        assertTrue(LOG_PARSER.getStateByRecord(1, TO, 100));
-    }
-
-    public void checkSlidersAreSetFrom30To70Log(){
-        assertTrue(LOG_PARSER.getStateByRecord(1, FROM, 30));
-        assertTrue(LOG_PARSER.getStateByRecord(0, TO, 70));
+    public void checkSlidersAreSetFrom30To70Log() {
+        assertEquals(LOG_PARSER.getActualLogRecord(1, DatesPageSliderTypes.class),
+                LOG_PARSER.generateExpectedRecord(FROM, 30));
+        assertEquals(LOG_PARSER.getActualLogRecord(0, DatesPageSliderTypes.class),
+                LOG_PARSER.generateExpectedRecord(TO, 70));
     }
 }

@@ -4,7 +4,7 @@ import org.testng.annotations.DataProvider;
 
 public class DataProviders {
     @DataProvider
-    public Object[][] simpleDataProvider(){
+    public Object[][] simpleDataProvider() {
         return new Object[][]{
                 {"String1", 1},
                 {"String2", 2},
@@ -13,7 +13,7 @@ public class DataProviders {
     }
 
     @DataProvider(parallel = true)
-    public Object[][] checkTextsOnIndexDataProvider(){
+    public Object[][] checkTextsOnIndexDataProvider() {
         return new Object[][]{
                 {0, "To include good practices\n" +
                         "and ideas from successful\n" +

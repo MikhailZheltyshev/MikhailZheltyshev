@@ -1,20 +1,14 @@
 package utils;
 
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
 import enums.DIfferentElementsPageCheckBoxes;
 import enums.DIfferentElementsPageDropDownItems;
 import enums.DIfferentElementsPageRadioButtons;
 import enums.DatesPageSliderTypes;
-import org.openqa.selenium.support.FindBy;
-
-import java.util.AbstractMap;
-import java.util.ArrayDeque;
 
 import static com.codeborne.selenide.Selenide.$$;
 
 public class ElementsLogHelper {
-
 
     private ElementsCollection currentLog;
 
@@ -22,51 +16,39 @@ public class ElementsLogHelper {
         currentLog = $$(".logs li");
     }
 
-    public AbstractMap.SimpleEntry getLogRecord(int recordIndex) {
+    public String getActualLogRecord(int recordIndex, Class elementType) {
         updateLog();
-        if (recordIndex <= currentLog.size() && (recordIndex) >= 0) {
-            String[] lastLogRow = currentLog.get(recordIndex).getText().split(" ");
-            return new AbstractMap.SimpleEntry<>(lastLogRow[1].replace(":", ""), lastLogRow[5]);
-        } else {
-            return new AbstractMap.SimpleEntry<>("", "");
+        String[] lastLogRow;
+        if (elementType == DIfferentElementsPageCheckBoxes.class) {
+            lastLogRow = currentLog.get(recordIndex).getText().replaceAll(":", "").split(" ");
+            return lastLogRow[1] + ": condition changed to " + lastLogRow[5];
+        } else if (elementType == DIfferentElementsPageRadioButtons.class) {
+            lastLogRow = currentLog.get(recordIndex).getText().replaceAll(":", "").split(" ");
+            return "metal: value changed to " + lastLogRow[5];
+        } else if (elementType == DIfferentElementsPageDropDownItems.class) {
+            lastLogRow = currentLog.get(recordIndex).getText().replaceAll(":", "").split(" ");
+            return "Colors: value changed to " + lastLogRow[5];
+        } else if (elementType == DatesPageSliderTypes.class) {
+            lastLogRow = currentLog.get(recordIndex).getText().split(" ");
+            String[] sliderAndPositionPair = (lastLogRow[1] + " " + lastLogRow[2]).split(":");
+            return sliderAndPositionPair[0] + ":" + sliderAndPositionPair[1] + " link clicked";
         }
+        throw new UnsupportedOperationException("Element type is not supported");
     }
 
-    public boolean getStateByRecord(int recordIndex, DIfferentElementsPageCheckBoxes checkBox, boolean isChecked) {
-        updateLog();
-        String[] lastLogRow = currentLog.get(recordIndex).getText().replaceAll(":", "").split(" ");
-
-        return lastLogRow[1].equals(checkBox.displayName) && (Boolean.valueOf(lastLogRow[5]).equals(isChecked));
+    public String generateExpectedRecord(DIfferentElementsPageCheckBoxes expectedCheckBox, boolean state) {
+        return expectedCheckBox.displayName + ": condition changed to " + state;
     }
 
-    public boolean getStateByRecord(int recordIndex, DIfferentElementsPageRadioButtons radioButtonIsSetTo) {
-        updateLog();
-        String[] lastLogRow = currentLog.get(recordIndex).getText().replaceAll(":", "").split(" ");
-        return lastLogRow[1].equals("metal") && (lastLogRow[5].equals(radioButtonIsSetTo.displayName));
+    public String generateExpectedRecord(DIfferentElementsPageRadioButtons expectedRadioButton) {
+        return "metal: value changed to " + expectedRadioButton.displayName;
     }
 
-    public boolean getStateByRecord(int recordIndex, DIfferentElementsPageDropDownItems itemIsSetTo) {
-        updateLog();
-        String[] lastLogRow = currentLog.get(recordIndex).getText().replaceAll(":", "").split(" ");
-        return lastLogRow[1].equals("Colors") && (lastLogRow[5].equals(itemIsSetTo.displayName));
+    public String generateExpectedRecord(DIfferentElementsPageDropDownItems expectedDropDownItem) {
+        return "Colors: value changed to " + expectedDropDownItem.displayName;
     }
 
-    public boolean getStateByRecord(int recordIndex, DatesPageSliderTypes sliderType, int expectedPosition) {
-        updateLog();
-        String[] lastLogRow = currentLog.get(recordIndex).getText().split(" ");
-        String[] sliderAndPositionPair = (lastLogRow[1] + " " + lastLogRow[2]).split(":");
-        return sliderAndPositionPair[0].equals(sliderType.displayName) && (Integer.parseInt(sliderAndPositionPair[1]) == expectedPosition);
-    }
-
-    public boolean getStateByRecordExperemental(int recordIndex, DatesPageSliderTypes sliderType, int expectedPosition) {
-        updateLog();
-        String[] lastLogRow = currentLog.get(recordIndex).getText().split(" ");
-        String[] sliderAndPositionPair = (lastLogRow[1] + " " + lastLogRow[2]).split(":");
-        if (!(sliderAndPositionPair[0].equals(sliderType.displayName) && (Integer.parseInt(sliderAndPositionPair[1]) == expectedPosition))){
-            throw new AssertionError("Expected log: " + sliderType.displayName + " was set to " + expectedPosition + "\n" +
-                    "Actual log: " + sliderAndPositionPair[0] + " was set to " + sliderAndPositionPair[1]);
-        } else {
-            return true;
-        }
+    public String generateExpectedRecord(DatesPageSliderTypes slider, int expectedPosition) {
+        return slider.displayName + ":" + expectedPosition + " link clicked";
     }
 }
