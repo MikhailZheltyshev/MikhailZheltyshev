@@ -1,17 +1,11 @@
 package pageObjects;
 
-import base.SelenideTestBase;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import enums.DatesPageSliderTypes;
-import javafx.scene.control.Slider;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import utils.ElementsLogHelper;
 import utils.SliderHandler;
 
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static enums.DatesPageSliderTypes.FROM;
 import static enums.DatesPageSliderTypes.TO;
 import static org.testng.Assert.assertTrue;
@@ -26,27 +20,28 @@ public class DatesPageSelenide {
     ElementsCollection sliders;
 
     private final ElementsLogHelper LOG_PARSER = new ElementsLogHelper();
+    private final SliderHandler SLIDER_HANDLER = new SliderHandler();
 
     //=====================================================METHODS======================================================
     public void setSlidersFrom0To100() {
-
-        SliderHandler sliderHandler = new SliderHandler();
-        sliderHandler.setSliderPosition(sliders.get(0), 0, sliders.get(1), 100);
+        SLIDER_HANDLER.setPosition(sliders.get(0), 0);
+        SLIDER_HANDLER.setPosition(sliders.get(1), 100);
     }
 
     public void setSlidersFrom0To0() {
-        SliderHandler sliderHandler = new SliderHandler();
-        sliderHandler.setSliderPosition(sliders.get(0), 0, sliders.get(1), 0);
+        SLIDER_HANDLER.setPosition(sliders.get(0), 0);
+        SLIDER_HANDLER.setPosition( sliders.get(1), 0);
     }
 
     public void setSlidersFrom100To100() {
-        SliderHandler sliderHandler = new SliderHandler();
-        sliderHandler.setSliderPosition(sliders.get(0), 100, sliders.get(1), 100);
+        SLIDER_HANDLER.setPosition(sliders.get(1), 100);
+        SLIDER_HANDLER.setPosition(sliders.get(0), 100);
     }
 
     public void setSlidersFrom30To70() {
         SliderHandler sliderHandler = new SliderHandler();
-        sliderHandler.setSliderPosition(sliders.get(0), 30, sliders.get(1), 70);
+        sliderHandler.setPosition(sliders.get(0), 30);
+        sliderHandler.setPosition(sliders.get(1), 70);
     }
 
     public void checkFromSliderIsSetTo0() {
@@ -71,5 +66,24 @@ public class DatesPageSelenide {
 
     public void checkFromSliderIsSetTo30() {
         assertTrue(LOG_PARSER.getStateByRecord(1, FROM, 30));
+    }
+
+    public void checkSlidersAreSetFrom0To100Log(){
+        assertTrue(LOG_PARSER.getStateByRecord(1, FROM, 0));
+        assertTrue(LOG_PARSER.getStateByRecord(0, TO, 100));
+    }
+    public void checkSlidersAreSetFrom0To0Log(){
+        assertTrue(LOG_PARSER.getStateByRecord(1, FROM, 0));
+        assertTrue(LOG_PARSER.getStateByRecord(0, TO, 0));
+    }
+
+    public void checkSlidersAreSetFrom100To100Log(){
+        assertTrue(LOG_PARSER.getStateByRecord(0, FROM, 100));
+        assertTrue(LOG_PARSER.getStateByRecord(1, TO, 100));
+    }
+
+    public void checkSlidersAreSetFrom30To70Log(){
+        assertTrue(LOG_PARSER.getStateByRecord(1, FROM, 30));
+        assertTrue(LOG_PARSER.getStateByRecord(0, TO, 70));
     }
 }

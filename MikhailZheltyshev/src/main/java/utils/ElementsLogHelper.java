@@ -57,4 +57,16 @@ public class ElementsLogHelper {
         String[] sliderAndPositionPair = (lastLogRow[1] + " " + lastLogRow[2]).split(":");
         return sliderAndPositionPair[0].equals(sliderType.displayName) && (Integer.parseInt(sliderAndPositionPair[1]) == expectedPosition);
     }
+
+    public boolean getStateByRecordExperemental(int recordIndex, DatesPageSliderTypes sliderType, int expectedPosition) {
+        updateLog();
+        String[] lastLogRow = currentLog.get(recordIndex).getText().split(" ");
+        String[] sliderAndPositionPair = (lastLogRow[1] + " " + lastLogRow[2]).split(":");
+        if (!(sliderAndPositionPair[0].equals(sliderType.displayName) && (Integer.parseInt(sliderAndPositionPair[1]) == expectedPosition))){
+            throw new AssertionError("Expected log: " + sliderType.displayName + " was set to " + expectedPosition + "\n" +
+                    "Actual log: " + sliderAndPositionPair[0] + " was set to " + sliderAndPositionPair[1]);
+        } else {
+            return true;
+        }
+    }
 }
