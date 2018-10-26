@@ -5,7 +5,6 @@
 
         <classes>
             <class name="hw5.ex1.ServicePageTests"/>
-            <!--<class name="hw5.ex1.DatesPageTests"/>-->
         </classes>
 
     </test>
