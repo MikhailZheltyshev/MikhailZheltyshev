@@ -1,11 +1,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Test Suite" parallel="methods">
-    <test name="HW 4 Tests">
+    <test name="HW 5 Tests">
 
         <classes>
             <class name="hw5.ex1.ServicePageTests"/>
-            <class name="hw5.ex1.DatesPageTests"/>
+            <!--<class name="hw5.ex1.DatesPageTests"/>-->
         </classes>
 
     </test>

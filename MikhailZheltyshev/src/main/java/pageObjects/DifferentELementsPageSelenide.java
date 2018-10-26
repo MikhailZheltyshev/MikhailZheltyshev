@@ -12,8 +12,7 @@ import utils.ElementsLogHelper;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
-import static enums.DIfferentElementsPageCheckBoxes.WATER;
-import static enums.DIfferentElementsPageCheckBoxes.WIND;
+import static enums.DIfferentElementsPageCheckBoxes.*;
 import static enums.DIfferentElementsPageDropDownItems.YELLOW;
 import static enums.DIfferentElementsPageRadioButtons.SELEN;
 import static org.testng.Assert.assertEquals;
@@ -72,6 +71,12 @@ public class DifferentELementsPageSelenide {
     public void selectWaterAndWindCheckBoxes() {
         checkBoxElements.find(text(WATER.displayName)).click();
         checkBoxElements.find(text(WIND.displayName)).click();
+    }
+
+    @Step("Select \"Earth\" and \"Fair\" checkboxes to simulate test failure")
+    public void selectEartAndFireCheckBoxes() {
+        checkBoxElements.find(text(FIRE.displayName)).click();
+        checkBoxElements.find(text(EARTH.displayName)).click();
     }
 
     @Step("Unselect \"Water\" and \"Wind\" checkboxes")

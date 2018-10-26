@@ -3,7 +3,9 @@ package hw5.ex1;
 import base.SelenideTestBase;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import listeners.AllureAttachmentListener;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.DifferentELementsPageSelenide;
 import pageObjects.HomePageSelenide;
@@ -14,15 +16,16 @@ import static enums.Users.PITER_CHAILOVSKII;
 
 @Feature("UI Tests")
 @Story("Service Page Testing")
+@Listeners(AllureAttachmentListener.class)
 public class ServicePageTests extends SelenideTestBase {
 
     private HomePageSelenide homePage;
-    private DifferentELementsPageSelenide differentELementsPage;
+    private DifferentELementsPageSelenide differentElementsPage;
 
     @BeforeClass
     public void beforeClass() {
         homePage = page(HomePageSelenide.class);
-        differentELementsPage = page(DifferentELementsPageSelenide.class);
+        differentElementsPage = page(DifferentELementsPageSelenide.class);
     }
 
     @Test
@@ -58,36 +61,36 @@ public class ServicePageTests extends SelenideTestBase {
         homePage.openDifferentElementsPageThroughTheHeaderMenu();
 
         //8 Check interface on Different elements page, it contains all needed elements
-        differentELementsPage.checkDifferentElementsPageContent();
+        differentElementsPage.checkDifferentElementsPageContent();
 
         //9 Assert that there is Right Section
-        differentELementsPage.checkRightSectionExists();
+        differentElementsPage.checkRightSectionExists();
 
         //10 Assert that there is Left Section
-        differentELementsPage.checkLeftSectionExists();
+        differentElementsPage.checkLeftSectionExists();
 
-        //11 Select checkboxes
-        differentELementsPage.selectWaterAndWindCheckBoxes();
+        //11 Select not expected checkboxes for failure simulation
+        differentElementsPage.selectEartAndFireCheckBoxes();
 
         //12 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        differentELementsPage.checkLoggingOfCheckBoxesChecked();
+        differentElementsPage.checkLoggingOfCheckBoxesChecked();
 
         //13 Select radio
-        differentELementsPage.selectSelenRadioButton();
+        differentElementsPage.selectSelenRadioButton();
 
         //14 Assert that for radiobutton there is a log row and value is corresponded to the status of radiobutton. 
-        differentELementsPage.checkLoggingOfRadioButtons();
+        differentElementsPage.checkLoggingOfRadioButtons();
 
         //15 Select in dropdown
-        differentELementsPage.selectYellowFromDropDownMenu();
+        differentElementsPage.selectYellowFromDropDownMenu();
 
         //16 Assert that for dropdown there is a log row and value is corresponded to the selected value 
-        differentELementsPage.checkLoggingOfDropDownMenu();
+        differentElementsPage.checkLoggingOfDropDownMenu();
 
         //17 Unselect and assert checkboxes
-        differentELementsPage.unselectWaterAndWindCheckBoxes();
+        differentElementsPage.unselectWaterAndWindCheckBoxes();
 
         //18 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox
-        differentELementsPage.checkLoggingOfCheckBoxesUnchecked();
+        differentElementsPage.checkLoggingOfCheckBoxesUnchecked();
     }
 }
