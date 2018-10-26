@@ -1,6 +1,7 @@
 package pageObjects;
 
 import com.codeborne.selenide.*;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.Arrays;
@@ -57,14 +58,17 @@ public class HomePageSelenide {
     );
 
     //==================================================METHODS=========================================================
+    @Step("Open test site by URL")
     public void open(String url) {
         Selenide.open(url);
     }
 
+    @Step("Assert Browser title")
     public void checkTitle() {
         assertEquals(getWebDriver().getTitle(), EXPECTED_HOME_PAGE_TITLE);
     }
 
+    @Step("Perform login")
     public void login(String name, String pwd) {
         profileButton.click();
         login.sendKeys(name);
@@ -72,37 +76,44 @@ public class HomePageSelenide {
         submit.click();
     }
 
+    @Step("Assert User name in the left-top side of screen that user is loggined")
     public void checkLoggedUserName(String expectedName) {
         loggedUserNameElement.shouldBe(visible);
         loggedUserNameElement.shouldHave(text(expectedName));
     }
 
+    @Step("Click on \"Service\" subcategory in the header")
     public void clickOnUpperSelect() {
         upperServiceButton.click();
     }
 
+    @Step("Check that upper \"Service\" drop down contains correct options")
     public void checkUpperServiceMenuContent() {
         for (String category : EXPECTED_UPPER_SERVICE_MENU_CATEGORIES) {
             assertTrue(upperServiceMenuElements.texts().contains(category.toUpperCase()));
         }
     }
 
+    @Step("Click on \"Service\" subcategory in the left section")
     public void clickOnLeftSelect() {
         leftServiceButton.click();
     }
 
+    @Step("Check that left \"Service\" drop down contains correct options")
     public void checkLeftServiceMenuContent() {
         for (String category : EXPECTED_LEFT_SERVICE_MENU_CATEGORIES) {
             assertTrue(leftServiceMenuElements.texts().contains(category));
         }
     }
 
+    @Step("Open through the header menu Service -> Different Elements Page")
     public void openDifferentElementsPageThroughTheHeaderMenu() {
         clickOnUpperSelect();
         upperServiceMenuElements.find(Condition.text(DIFFERENT_ELEMENTS.name)).click();
         assertEquals(WebDriverRunner.url(), DIFFERENT_ELEMENTS_PAGE.url);
     }
 
+    @Step("Open through the header menu Service -> Dates Page")
     public void openDatesPageThroughTheHeaderMenu() {
         clickOnUpperSelect();
         upperServiceMenuElements.find(Condition.text(DATES.name)).click();
