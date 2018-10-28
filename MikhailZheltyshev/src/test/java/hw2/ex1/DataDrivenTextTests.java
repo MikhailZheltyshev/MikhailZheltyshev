@@ -41,10 +41,4 @@ public class DataDrivenTextTests extends TestBase {
 
         driver.close();
     }
-
-    @Test
-    public void testDataProvider() throws FileNotFoundException {
-        JsonElement jsonData = new JsonParser().parse(new FileReader("src/test/resources/JDI_ex8_metalsColorsDataSet.json"));
-        Gson gson = new Gson();
-    }
 }
