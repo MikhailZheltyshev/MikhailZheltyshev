@@ -1,13 +1,23 @@
 package hw2.ex1;
 
-import dataProviders.DataProviders;
 import base.TestBase;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+import dataProviders.DataProviders;
+import jsonPojo.DataSet;
+import jsonPojo.TestData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -30,5 +40,11 @@ public class DataDrivenTextTests extends TestBase {
         assertEquals(textsUnderIconsElements.get(textNum).getText(),textExpected);
 
         driver.close();
+    }
+
+    @Test
+    public void testDataProvider() throws FileNotFoundException {
+        JsonElement jsonData = new JsonParser().parse(new FileReader("src/test/resources/JDI_ex8_metalsColorsDataSet.json"));
+        Gson gson = new Gson();
     }
 }

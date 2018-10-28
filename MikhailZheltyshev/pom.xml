@@ -12,6 +12,7 @@
         <suiteXmlFile>testng_hw5.xml</suiteXmlFile>
         <allure.version>2.6.0</allure.version>
         <aspectj.version>1.8.12</aspectj.version>
+        <driver>chrome</driver>
     </properties>
 
     <dependencies>
@@ -31,6 +32,12 @@
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
             <version>4.14.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.epam.jdi</groupId>
+            <artifactId>jdi-uitest-web</artifactId>
+            <version>LATEST</version>
         </dependency>
 
         <dependency>
@@ -90,7 +97,6 @@
             <artifactId>cucumber-testng</artifactId>
             <version>3.0.2</version>
         </dependency>
-
     </dependencies>
 
     <build>
