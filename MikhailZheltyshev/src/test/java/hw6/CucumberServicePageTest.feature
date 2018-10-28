@@ -4,7 +4,7 @@ Feature: Service Page tests
     Given I'm on the Home Page by URL: https://epam.github.io/JDI/index.html
     Then The browser title is Home Page
     When I login as user epam with password 1234
-    Then The user icon is displayed on the header
+    Then The user icon PITER CHAILOVSKII is displayed on the header
     Then Interface on Home Page contains all needed elements
     When I click on the header Service subcategory
     Then Upper Service drop down opens with all needed options

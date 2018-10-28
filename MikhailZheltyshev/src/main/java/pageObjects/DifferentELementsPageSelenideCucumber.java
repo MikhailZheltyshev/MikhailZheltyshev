@@ -13,12 +13,17 @@ import utils.ElementsLogHelper;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.page;
 import static enums.DIfferentElementsPageCheckBoxes.getCheckBoxEnumByName;
 import static enums.DIfferentElementsPageDropDownItems.getDropDownEnumByName;
 import static enums.DIfferentElementsPageRadioButtons.getRadioButtonEnumByName;
 import static org.testng.Assert.assertEquals;
 
 public class DifferentELementsPageSelenideCucumber {
+
+    public DifferentELementsPageSelenideCucumber(){
+        page(this);
+    }
 
     //============================================WEB-ELEMENTS AND CONSTANTS============================================
 

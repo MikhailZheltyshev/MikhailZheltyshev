@@ -13,6 +13,7 @@ import java.util.List;
 import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static enums.ServiceMenuButtons.DATES;
 import static enums.ServiceMenuButtons.DIFFERENT_ELEMENTS;
@@ -22,6 +23,10 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class HomePageSelenideCucumber {
+
+    public HomePageSelenideCucumber(){
+        page(this);
+    }
 
     //==================================================WEB-ELEMENTS====================================================
     @FindBy(css = ".profile-photo")
@@ -96,7 +101,7 @@ public class HomePageSelenideCucumber {
     }
 
     @Step("Assert User name in the left-top side of screen that user is loggined")
-    @Then("The user icon is displayed on the header")
+    @Then("The user icon (.+) is displayed on the header")
     public void checkLoggedUserName(String expectedName) {
         loggedUserNameElement.shouldBe(visible);
         loggedUserNameElement.shouldHave(text(expectedName));
