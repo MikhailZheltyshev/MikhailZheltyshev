@@ -4,7 +4,7 @@
     <test name="HW 5 Tests">
 
         <classes>
-            <class name="hw5.ex1.ServicePageTests"/>
+            <class name="hw5.ServiceDatesPageTests"/>
         </classes>
 
     </test>

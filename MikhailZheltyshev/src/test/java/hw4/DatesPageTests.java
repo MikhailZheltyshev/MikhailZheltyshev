@@ -22,7 +22,7 @@ public class DatesPageTests extends SelenideTestBase {
     }
 
     @Test
-    public void servicePageInterfaceCheck() {
+    public void datesPageInterfaceCheck() {
 
         //1 Open test site by URL
         homePage.open(HOME_PAGE.url);
