@@ -20,20 +20,11 @@ import static enums.Users.PITER_CHAILOVSKII;
 @Listeners(AllureAttachmentListener.class)
 public class ServiceDatesPageTests extends SelenideTestBase {
 
-    private HomePageSelenide homePage;
-    private DifferentELementsPageSelenide differentElementsPage;
-    private DatesPageSelenide datesPageSelenide;
-
-    @BeforeClass
-    public void beforeClass() {
-        homePage = page(HomePageSelenide.class);
-        differentElementsPage = page(DifferentELementsPageSelenide.class);
-        datesPageSelenide = page(DatesPageSelenide.class);
-    }
-
     @Test
     public void servicePageInterfaceCheckFailed() {
 
+        HomePageSelenide homePage = page(HomePageSelenide.class);
+        DifferentELementsPageSelenide differentElementsPage = page(DifferentELementsPageSelenide.class);
         //1 Open test site by URL
         homePage.open(HOME_PAGE.url);
 
@@ -100,6 +91,9 @@ public class ServiceDatesPageTests extends SelenideTestBase {
     @Test
     public void servicePageInterfaceCheck() {
 
+        HomePageSelenide homePage = page(HomePageSelenide.class);
+        DifferentELementsPageSelenide differentElementsPage = page(DifferentELementsPageSelenide.class);
+
         //1 Open test site by URL
         homePage.open(HOME_PAGE.url);
 
@@ -165,6 +159,9 @@ public class ServiceDatesPageTests extends SelenideTestBase {
 
     @Test
     public void datesPageInterfaceCheck() {
+
+        HomePageSelenide homePage = page(HomePageSelenide.class);
+        DatesPageSelenide datesPageSelenide = page(DatesPageSelenide.class);
 
         //1 Open test site by URL
         homePage.open(HOME_PAGE.url);
