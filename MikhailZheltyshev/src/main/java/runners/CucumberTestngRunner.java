@@ -2,7 +2,6 @@ package runners;
 
 import com.codeborne.selenide.Configuration;
 import cucumber.api.CucumberOptions;
-import cucumber.api.java.Before;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 import org.testng.annotations.BeforeSuite;
 
