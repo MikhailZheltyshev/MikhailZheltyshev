@@ -92,7 +92,7 @@ public class DifferentELementsPageSelenide {
 
     @Step("Assert that there is Left Section")
     public void checkLeftSectionExists() {
-        rightSectionElement.exists();
+        leftSectionElement.exists();
     }
 
     @Step("Assert logging of checking \"Water\" and \"Wind\" is correct")
