@@ -1,9 +1,9 @@
 package dataProviders;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import jsonPojo.DataSet;
+import jsonPojo.TestData;
 import org.testng.annotations.DataProvider;
 
 import java.io.FileNotFoundException;
@@ -29,16 +29,13 @@ public class DataProviders {
 
     @DataProvider
     public Object[][] checkMetalsAndColorsPageDataProvider() throws FileNotFoundException {
-        JsonElement jsonData = new JsonParser().parse(new FileReader("src/test/resources/JDI_ex8_metalsColorsDataSet.json"));
         Gson gson = new Gson();
-        DataSet dataSet = gson.fromJson(jsonData, DataSet.class);
-        Object[][] result = new Object[6][1];
-        result[0][0] = dataSet.getData_1();
-        result[1][0] = dataSet.getData_2();
-        result[2][0] = dataSet.getData_3();
-        result[3][0] = dataSet.getData_4();
-        result[4][0] = dataSet.getData_5();
-        result[5][0] = dataSet.getData_6();
+        JsonObject jDataSet = new JsonParser().parse(new FileReader
+                ("src/test/resources/JDI_ex8_metalsColorsDataSet.json")).getAsJsonObject();
+        Object[][] result = new Object[jDataSet.size()][1];
+        for (int i = 1; i <= jDataSet.size(); i++){
+            result[i - 1][0] = gson.fromJson(jDataSet.get("data_" + i), TestData.class);
+        }
         return result;
     }
 }
