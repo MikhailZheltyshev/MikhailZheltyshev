@@ -8,17 +8,19 @@ import enums.DatesPageSliderTypes;
 
 import static com.codeborne.selenide.Selenide.$$;
 
+@SuppressWarnings("Duplicates")
 public class ElementsLogHelper {
 
     private ElementsCollection currentLog;
+
+    private String[] lastLogRow;
 
     private void updateLog() {
         currentLog = $$(".logs li");
     }
 
-    public String getActualLogRecord(int recordIndex, Class elementType) {
+    public String getActualLogRecordTemp(int recordIndex, Class elementType) {
         updateLog();
-        String[] lastLogRow;
         if (elementType == DIfferentElementsPageCheckBoxes.class) {
             lastLogRow = currentLog.get(recordIndex).getText().replaceAll(":", "").split(" ");
             return lastLogRow[1] + ": condition changed to " + lastLogRow[5];
@@ -34,6 +36,11 @@ public class ElementsLogHelper {
             return sliderAndPositionPair[0] + ":" + sliderAndPositionPair[1] + " link clicked";
         }
         throw new UnsupportedOperationException("Element type is not supported");
+    }
+
+    public String getActualLogRecord(int recordIndex, Class elementType) {
+        updateLog();
+        return currentLog.get(recordIndex).getText().split(" ",2)[1];
     }
 
     public String generateExpectedRecord(DIfferentElementsPageCheckBoxes expectedCheckBox, boolean state) {

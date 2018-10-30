@@ -25,4 +25,9 @@ public enum DIfferentElementsPageCheckBoxes {
             throw new UnsupportedOperationException("Enum wasn't found!");
         }
     }
+
+    @Override
+    public String toString() {
+        return displayName;
+    }
 }

@@ -16,10 +16,14 @@ public class SliderHandler {
 
     public void setPosition(SelenideElement handle, int targetPosition) {
         Actions actions = new Actions(getWebDriver());
-        Double current = Double.parseDouble(handle.getCssValue("left").replaceAll("px", "")) / getStep();
+        Double current = getCurrentPosition(handle);
         int xOffset = (int) ((targetPosition - current - 1) * getStep());
         actions.dragAndDropBy(handle, xOffset, 0).perform();
 
+    }
+
+    public Double getCurrentPosition(SelenideElement handle){
+        return Double.parseDouble(handle.getCssValue("left").replaceAll("px", "")) / getStep();
     }
 
     //This method works more stable on Mac platform for some reason.

@@ -12,9 +12,6 @@ import utils.ElementsLogHelper;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
-import static enums.DIfferentElementsPageCheckBoxes.*;
-import static enums.DifferentElementsPageDropDownItems.YELLOW;
-import static enums.DifferentElementsPageRadioButtons.SELEN;
 import static org.testng.Assert.assertEquals;
 
 public class DifferentElementsPageSelenide {
@@ -22,37 +19,32 @@ public class DifferentElementsPageSelenide {
     //============================================WEB-ELEMENTS AND CONSTANTS============================================
 
     @FindBy(css = ".label-checkbox")
-    ElementsCollection checkBoxElements;
+    private ElementsCollection checkBoxElements;
 
     @FindBy(css = ".label-radio")
-    ElementsCollection radioButtonElements;
+    private ElementsCollection radioButtonElements;
 
     @FindBy(css = "select.uui-form-element")
-    SelenideElement colorsDropDownMenuElement;
+    private SelenideElement colorsDropDownMenuElement;
 
     @FindBy(css = ".colors")
-    SelenideElement colorsDropDownMenu;
+    private SelenideElement colorsDropDownMenu;
 
     @FindBy(css = "[class = 'uui-button']")
-    ElementsCollection buttonElements;
+    private ElementsCollection buttonElements;
 
     @FindBy(css = ".right-fix-panel")
-    SelenideElement rightSectionElement;
+    private SelenideElement rightSectionElement;
 
     @FindBy(css = "._mCS_1")
-    SelenideElement leftSectionElement;
+    private SelenideElement leftSectionElement;
 
     @FindBy(css = "option")
-    ElementsCollection dropDownMenuOptions;
+    private ElementsCollection dropDownMenuOptions;
 
     private final ElementsLogHelper LOG_PARSER = new ElementsLogHelper();
 
     //==================================================METHODS=========================================================
-    @Step("Select Selen Radio Button")
-    public void selectSelenRadioButton() {
-        radioButtonElements.find(text(SELEN.displayName)).click();
-    }
-
     @Step("Check interface on Different elements page, it contains all needed elements")
     public void checkDifferentElementsPageContent() {
         checkBoxElements.shouldHave(size(4));
@@ -61,28 +53,43 @@ public class DifferentElementsPageSelenide {
         buttonElements.shouldHave(size(2));
     }
 
-    @Step("Select \"Yellow\" drop down item")
-    public void selectYellowFromDropDownMenu() {
+    @Step("Select {0} and {1} checkboxes")
+    public void selectCheckBoxes(DIfferentElementsPageCheckBoxes... checkboxes) {
+        for (DIfferentElementsPageCheckBoxes checkbox : checkboxes) {
+            checkBoxElements.find(text(checkbox.displayName)).click();
+        }
+    }
+
+    @Step("Unselect {0} and {1} checkboxes")
+    public void unselectCheckBoxes(DIfferentElementsPageCheckBoxes... checkboxes) {
+        for (DIfferentElementsPageCheckBoxes checkbox : checkboxes) {
+            checkBoxElements.find(text(checkbox.displayName)).click();
+        }
+    }
+
+    @Step("Assert logging of checking {0} and {1} is correct")
+    public void checkLoggingOfCheckBoxesChecked(DIfferentElementsPageCheckBoxes... checkboxes) {
+        for (int i = checkboxes.length - 1; i >= 0; i--) {
+            assertEquals(LOG_PARSER.getActualLogRecord(i, DIfferentElementsPageCheckBoxes.class),
+                    LOG_PARSER.generateExpectedRecord(checkboxes[checkboxes.length - i - 1], true));
+        }
+    }
+
+    @Step("Select {0} Radio Button")
+    public void selectRadioButton(DifferentElementsPageRadioButtons radioButton) {
+        radioButtonElements.find(text(radioButton.displayName)).click();
+    }
+
+    @Step("Assert logging of setting {0} radio button is correct")
+    public void checkLoggingOfRadioButtons(DifferentElementsPageRadioButtons radioButton) {
+        assertEquals(LOG_PARSER.getActualLogRecord(0, DifferentElementsPageRadioButtons.class),
+                LOG_PARSER.generateExpectedRecord(radioButton));
+    }
+
+    @Step("Select {0} drop down item")
+    public void selectItemFromDropDownMenu(DifferentElementsPageDropDownItems item) {
         colorsDropDownMenu.click();
-        dropDownMenuOptions.find(text(YELLOW.displayName)).click();
-    }
-
-    @Step("Select \"Water\" and \"Wind\" checkboxes")
-    public void selectWaterAndWindCheckBoxes() {
-        checkBoxElements.find(text(WATER.displayName)).click();
-        checkBoxElements.find(text(WIND.displayName)).click();
-    }
-
-    @Step("Select \"Earth\" and \"Fair\" checkboxes to simulate test failure")
-    public void selectEartAndFireCheckBoxes() {
-        checkBoxElements.find(text(FIRE.displayName)).click();
-        checkBoxElements.find(text(EARTH.displayName)).click();
-    }
-
-    @Step("Unselect \"Water\" and \"Wind\" checkboxes")
-    public void unselectWaterAndWindCheckBoxes() {
-        checkBoxElements.find(text(WATER.displayName)).click();
-        checkBoxElements.find(text(WIND.displayName)).click();
+        dropDownMenuOptions.find(text(item.displayName)).click();
     }
 
     @Step("Assert that there is Right Section")
@@ -95,31 +102,18 @@ public class DifferentElementsPageSelenide {
         leftSectionElement.exists();
     }
 
-    @Step("Assert logging of checking \"Water\" and \"Wind\" is correct")
-    public void checkLoggingOfCheckBoxesChecked() {
-        assertEquals(LOG_PARSER.getActualLogRecord(1, DIfferentElementsPageCheckBoxes.class),
-                LOG_PARSER.generateExpectedRecord(WATER, true));
-        assertEquals(LOG_PARSER.getActualLogRecord(0, DIfferentElementsPageCheckBoxes.class),
-                LOG_PARSER.generateExpectedRecord(WIND, true));
-    }
-
-    @Step("Assert logging of setting \"Selen\" radio button is correct")
-    public void checkLoggingOfRadioButtons() {
-        assertEquals(LOG_PARSER.getActualLogRecord(0, DifferentElementsPageRadioButtons.class),
-                LOG_PARSER.generateExpectedRecord(SELEN));
-    }
 
     @Step("Assert logging of drop down is correct")
-    public void checkLoggingOfDropDownMenu() {
+    public void checkLoggingOfDropDownMenu(DifferentElementsPageDropDownItems item) {
         assertEquals(LOG_PARSER.getActualLogRecord(0, DifferentElementsPageDropDownItems.class),
-                LOG_PARSER.generateExpectedRecord(YELLOW));
+                LOG_PARSER.generateExpectedRecord(item));
     }
 
-    @Step("Assert logging of unchecking \"Water\" and \"Wind\" is correct")
-    public void checkLoggingOfCheckBoxesUnchecked() {
-        assertEquals(LOG_PARSER.getActualLogRecord(1, DIfferentElementsPageCheckBoxes.class),
-                LOG_PARSER.generateExpectedRecord(WATER, false));
-        assertEquals(LOG_PARSER.getActualLogRecord(0, DIfferentElementsPageCheckBoxes.class),
-                LOG_PARSER.generateExpectedRecord(WIND, false));
+    @Step("Assert logging of unchecking {0} and {1} is correct")
+    public void checkLoggingOfCheckBoxesUnchecked(DIfferentElementsPageCheckBoxes... checkboxes) {
+        for (int i = checkboxes.length - 1; i >= 0; i--) {
+            assertEquals(LOG_PARSER.getActualLogRecord(i, DIfferentElementsPageCheckBoxes.class),
+                    LOG_PARSER.generateExpectedRecord(checkboxes[checkboxes.length - i - 1], false));
+        }
     }
 }

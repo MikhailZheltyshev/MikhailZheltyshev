@@ -1,19 +1,17 @@
 package pageObjects;
 
 import com.codeborne.selenide.*;
+import enums.Users;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
-
-import java.util.Arrays;
-import java.util.List;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static enums.ServiceMenuButtons.DATES;
 import static enums.ServiceMenuButtons.DIFFERENT_ELEMENTS;
-import static enums.Urls.DATES_PAGE;
-import static enums.Urls.DIFFERENT_ELEMENTS_PAGE;
+import static enums.ServiceMenuCategories.getExpectedCategoriesList;
+import static enums.Urls.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -49,18 +47,10 @@ public class HomePageSelenide {
 
     private final String EXPECTED_HOME_PAGE_TITLE = "Home Page";
 
-    private final List<String> EXPECTED_UPPER_SERVICE_MENU_CATEGORIES = Arrays.asList(
-            "Support", "Dates", "Complex Table", "Simple Table", "Table with pages", "Different elements"
-    );
-
-    private final List<String> EXPECTED_LEFT_SERVICE_MENU_CATEGORIES = Arrays.asList(
-            "Support", "Dates", "Complex Table", "Simple Table", "Table with pages", "Different elements"
-    );
-
     //==================================================METHODS=========================================================
     @Step("Open test site by URL")
-    public void open(String url) {
-        Selenide.open(url);
+    public void open() {
+        Selenide.open(HOME_PAGE.url);
     }
 
     @Step("Assert Browser title")
@@ -69,17 +59,17 @@ public class HomePageSelenide {
     }
 
     @Step("Perform login")
-    public void login(String name, String pwd) {
+    public void login(Users user) {
         profileButton.click();
-        login.sendKeys(name);
-        password.sendKeys(pwd);
+        login.sendKeys(user.login);
+        password.sendKeys(user.password);
         submit.click();
     }
 
-    @Step("Assert User name in the left-top side of screen that user is loggined")
-    public void checkLoggedUserName(String expectedName) {
+    @Step("Assert User name in the left-top side of screen that user is logged")
+    public void checkLoggedUserName(Users user) {
         loggedUserNameElement.shouldBe(visible);
-        loggedUserNameElement.shouldHave(text(expectedName));
+        loggedUserNameElement.shouldHave(text(user.displayName));
     }
 
     @Step("Click on \"Service\" subcategory in the header")
@@ -89,19 +79,16 @@ public class HomePageSelenide {
 
     @Step("Check that upper \"Service\" drop down contains correct options")
     public void checkUpperServiceMenuContent() {
-        for (String category : EXPECTED_UPPER_SERVICE_MENU_CATEGORIES) {
+        clickOnUpperSelect();
+        for (String category : getExpectedCategoriesList()) {
             assertTrue(upperServiceMenuElements.texts().contains(category.toUpperCase()));
         }
     }
 
-    @Step("Click on \"Service\" subcategory in the left section")
-    public void clickOnLeftSelect() {
-        leftServiceButton.click();
-    }
-
     @Step("Check that left \"Service\" drop down contains correct options")
     public void checkLeftServiceMenuContent() {
-        for (String category : EXPECTED_LEFT_SERVICE_MENU_CATEGORIES) {
+        leftServiceButton.click();
+        for (String category : getExpectedCategoriesList()) {
             assertTrue(leftServiceMenuElements.texts().contains(category));
         }
     }
