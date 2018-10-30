@@ -14,12 +14,15 @@ import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.object
 import enums.jdi.ColorsList;
 import enums.jdi.MetalsList;
 import enums.jdi.Nature;
-import jsonPojo.DataSet;
+import jsonPojo.TestData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import site.sections.Results;
 import site.sections.Summary;
+
+import java.util.Arrays;
+import java.util.List;
 
 @JPage(url = "/metals-colors.html", title = "Metal and Colors")
 public class MetalAndColorsPageJdi extends WebPage {
@@ -47,12 +50,22 @@ public class MetalAndColorsPageJdi extends WebPage {
     public IDropDown<MetalsList> metals;
 
     @JDropList(
-            jroot = @JFindBy(css = ".dropdown.salad"),
+            jroot = @JFindBy(css = ".form-group.salad"),
             jlist = @JFindBy(tagName = "li"),
             jexpand = @JFindBy(css = ".caret"),
             jvalue = @JFindBy(tagName = "button")
     )
     public IDropList vegetables;
+
+    @JDropList(
+            jroot = @JFindBy(css = ".form-group.salad"),
+            jlist = @JFindBy(tagName = "li"),
+            jvalue = @JFindBy(css = "button")
+    )
+    public IDropList saladDL;
+
+    @JFindBy(id = "salad-dropdown")
+    public IButton button;
 
     @FindBy(css = "#elements-checklist p")
     public ICheckList<Nature> nature = new CheckList<Nature>() {
@@ -62,21 +75,31 @@ public class MetalAndColorsPageJdi extends WebPage {
         }
     };
 
-    @JDropList(
-            jroot = @JFindBy(xpath = ".form-group.salad"),
-            jlist = @JFindBy(tagName = "li"),
-            jvalue = @JFindBy(tagName = "button")
-    )
-    public IDropList saladDL;
-
     @FindBy(id = "submit-button")
     public IButton submitBtn;
 
-    public String getExpectedResultText(DataSet dataSet){
-        return "Summary: " + dataSet.getData_1().getSummary()[0] + dataSet.getData_1().getSummary()[1] + "\n" +
-        "Color: " + dataSet.getData_1().getColor() + "\n" +
-        "Metal: " + dataSet.getData_1().getMetals() + "\n" +
-        "Vegetables: " + dataSet.getData_1().getVegetables()[0];
+    public String getExpectedResultText(TestData data) {
+        String summaryRow = "Summary: " + data.getSummary()[0] + data.getSummary()[1];
+        String colorRow = "Color: " + data.getColor();
+        String metalRow = "Metal: " + data.getMetals();
+        String vegetableRow = "Vegetables: " + data.getVegetables()[0];
+        return summaryRow +
+                colorRow +
+                metalRow +
+                vegetableRow;
+    }
+
+    public List<String> getExpectedResultTextList(TestData data) {
+        String summaryRow = "Summary: " + (data.getSummary()[0] + data.getSummary()[1]);
+        StringBuilder elementsRow = new StringBuilder("Elements:");
+        for (String veg : data.getElements()) {
+            elementsRow.append(" ").append(veg).append(",");
+        }
+        elementsRow = new StringBuilder(elementsRow.substring(0, elementsRow.length() - 1));
+        String colorRow = "Color: " + data.getColor();
+        String metalRow = "Metal: " + data.getMetals();
+        String vegetableRow = "Vegetables: " + "Vegetables";
+        return Arrays.asList(summaryRow, elementsRow.toString(), colorRow, metalRow, vegetableRow);
     }
 }
 
