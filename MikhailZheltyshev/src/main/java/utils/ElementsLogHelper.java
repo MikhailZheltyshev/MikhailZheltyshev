@@ -2,8 +2,8 @@ package utils;
 
 import com.codeborne.selenide.ElementsCollection;
 import enums.DIfferentElementsPageCheckBoxes;
-import enums.DIfferentElementsPageDropDownItems;
-import enums.DIfferentElementsPageRadioButtons;
+import enums.DifferentElementsPageDropDownItems;
+import enums.DifferentElementsPageRadioButtons;
 import enums.DatesPageSliderTypes;
 
 import static com.codeborne.selenide.Selenide.$$;
@@ -22,10 +22,10 @@ public class ElementsLogHelper {
         if (elementType == DIfferentElementsPageCheckBoxes.class) {
             lastLogRow = currentLog.get(recordIndex).getText().replaceAll(":", "").split(" ");
             return lastLogRow[1] + ": condition changed to " + lastLogRow[5];
-        } else if (elementType == DIfferentElementsPageRadioButtons.class) {
+        } else if (elementType == DifferentElementsPageRadioButtons.class) {
             lastLogRow = currentLog.get(recordIndex).getText().replaceAll(":", "").split(" ");
             return "metal: value changed to " + lastLogRow[5];
-        } else if (elementType == DIfferentElementsPageDropDownItems.class) {
+        } else if (elementType == DifferentElementsPageDropDownItems.class) {
             lastLogRow = currentLog.get(recordIndex).getText().replaceAll(":", "").split(" ");
             return "Colors: value changed to " + lastLogRow[5];
         } else if (elementType == DatesPageSliderTypes.class) {
@@ -40,11 +40,11 @@ public class ElementsLogHelper {
         return expectedCheckBox.displayName + ": condition changed to " + state;
     }
 
-    public String generateExpectedRecord(DIfferentElementsPageRadioButtons expectedRadioButton) {
+    public String generateExpectedRecord(DifferentElementsPageRadioButtons expectedRadioButton) {
         return "metal: value changed to " + expectedRadioButton.displayName;
     }
 
-    public String generateExpectedRecord(DIfferentElementsPageDropDownItems expectedDropDownItem) {
+    public String generateExpectedRecord(DifferentElementsPageDropDownItems expectedDropDownItem) {
         return "Colors: value changed to " + expectedDropDownItem.displayName;
     }
 

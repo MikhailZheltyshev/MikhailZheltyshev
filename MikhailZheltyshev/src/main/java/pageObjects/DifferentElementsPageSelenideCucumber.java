@@ -5,8 +5,8 @@ import com.codeborne.selenide.SelenideElement;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import enums.DIfferentElementsPageCheckBoxes;
-import enums.DIfferentElementsPageDropDownItems;
-import enums.DIfferentElementsPageRadioButtons;
+import enums.DifferentElementsPageDropDownItems;
+import enums.DifferentElementsPageRadioButtons;
 import org.openqa.selenium.support.FindBy;
 import utils.ElementsLogHelper;
 
@@ -15,13 +15,13 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.page;
 import static enums.DIfferentElementsPageCheckBoxes.getCheckBoxEnumByName;
-import static enums.DIfferentElementsPageDropDownItems.getDropDownEnumByName;
-import static enums.DIfferentElementsPageRadioButtons.getRadioButtonEnumByName;
+import static enums.DifferentElementsPageDropDownItems.getDropDownEnumByName;
+import static enums.DifferentElementsPageRadioButtons.getRadioButtonEnumByName;
 import static org.testng.Assert.assertEquals;
 
-public class DifferentELementsPageSelenideCucumber {
+public class DifferentElementsPageSelenideCucumber {
 
-    public DifferentELementsPageSelenideCucumber(){
+    public DifferentElementsPageSelenideCucumber(){
         page(this);
     }
 
@@ -105,13 +105,13 @@ public class DifferentELementsPageSelenideCucumber {
 
     @Then("Selecting of (.+) radio-button will be properly logged")
     public void checkLoggingOfRadioButtons(String radioButtonName) {
-        assertEquals(LOG_PARSER.getActualLogRecord(0, DIfferentElementsPageRadioButtons.class),
+        assertEquals(LOG_PARSER.getActualLogRecord(0, DifferentElementsPageRadioButtons.class),
                 LOG_PARSER.generateExpectedRecord(getRadioButtonEnumByName(radioButtonName)));
     }
 
     @Then("Selecting of (.+) drop down menu item will be properly logged")
     public void checkLoggingOfDropDownMenu(String dropDownItemName) {
-        assertEquals(LOG_PARSER.getActualLogRecord(0, DIfferentElementsPageDropDownItems.class),
+        assertEquals(LOG_PARSER.getActualLogRecord(0, DifferentElementsPageDropDownItems.class),
                 LOG_PARSER.generateExpectedRecord(getDropDownEnumByName(dropDownItemName)));
     }
 

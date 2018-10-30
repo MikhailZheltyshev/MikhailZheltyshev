@@ -1,6 +1,6 @@
 package enums;
 
-public enum DIfferentElementsPageRadioButtons {
+public enum DifferentElementsPageRadioButtons {
     GOLD("Gold"),
     SILVER("Silver"),
     BRONZE("Bronze"),
@@ -8,11 +8,11 @@ public enum DIfferentElementsPageRadioButtons {
 
     public String displayName;
 
-    DIfferentElementsPageRadioButtons(String name){
+    DifferentElementsPageRadioButtons(String name){
         displayName = name;
     }
 
-    public static DIfferentElementsPageRadioButtons getRadioButtonEnumByName(String displayName) {
+    public static DifferentElementsPageRadioButtons getRadioButtonEnumByName(String displayName) {
         if (displayName.equals(GOLD.displayName)) {
             return GOLD;
         } else if (displayName.equals(SILVER.displayName)) {

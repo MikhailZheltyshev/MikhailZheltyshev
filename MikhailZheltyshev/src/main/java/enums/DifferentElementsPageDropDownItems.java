@@ -1,6 +1,6 @@
 package enums;
 
-public enum DIfferentElementsPageDropDownItems {
+public enum DifferentElementsPageDropDownItems {
     YELLOW("Yellow"),
     BLUE("Blue"),
     GREEN("Green"),
@@ -8,11 +8,11 @@ public enum DIfferentElementsPageDropDownItems {
 
     public String displayName;
 
-    DIfferentElementsPageDropDownItems(String name){
+    DifferentElementsPageDropDownItems(String name){
         displayName = name;
     }
 
-    public static DIfferentElementsPageDropDownItems getDropDownEnumByName(String displayName) {
+    public static DifferentElementsPageDropDownItems getDropDownEnumByName(String displayName) {
         if (displayName.equals(YELLOW.displayName)) {
             return YELLOW;
         } else if (displayName.equals(BLUE.displayName)) {

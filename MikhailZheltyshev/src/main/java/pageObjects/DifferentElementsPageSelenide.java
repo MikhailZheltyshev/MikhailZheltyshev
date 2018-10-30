@@ -3,8 +3,8 @@ package pageObjects;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import enums.DIfferentElementsPageCheckBoxes;
-import enums.DIfferentElementsPageDropDownItems;
-import enums.DIfferentElementsPageRadioButtons;
+import enums.DifferentElementsPageDropDownItems;
+import enums.DifferentElementsPageRadioButtons;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import utils.ElementsLogHelper;
@@ -13,11 +13,11 @@ import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static enums.DIfferentElementsPageCheckBoxes.*;
-import static enums.DIfferentElementsPageDropDownItems.YELLOW;
-import static enums.DIfferentElementsPageRadioButtons.SELEN;
+import static enums.DifferentElementsPageDropDownItems.YELLOW;
+import static enums.DifferentElementsPageRadioButtons.SELEN;
 import static org.testng.Assert.assertEquals;
 
-public class DifferentELementsPageSelenide {
+public class DifferentElementsPageSelenide {
 
     //============================================WEB-ELEMENTS AND CONSTANTS============================================
 
@@ -105,13 +105,13 @@ public class DifferentELementsPageSelenide {
 
     @Step("Assert logging of setting \"Selen\" radio button is correct")
     public void checkLoggingOfRadioButtons() {
-        assertEquals(LOG_PARSER.getActualLogRecord(0, DIfferentElementsPageRadioButtons.class),
+        assertEquals(LOG_PARSER.getActualLogRecord(0, DifferentElementsPageRadioButtons.class),
                 LOG_PARSER.generateExpectedRecord(SELEN));
     }
 
     @Step("Assert logging of drop down is correct")
     public void checkLoggingOfDropDownMenu() {
-        assertEquals(LOG_PARSER.getActualLogRecord(0, DIfferentElementsPageDropDownItems.class),
+        assertEquals(LOG_PARSER.getActualLogRecord(0, DifferentElementsPageDropDownItems.class),
                 LOG_PARSER.generateExpectedRecord(YELLOW));
     }
 

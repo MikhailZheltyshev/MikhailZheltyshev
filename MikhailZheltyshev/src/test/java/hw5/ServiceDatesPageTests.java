@@ -7,7 +7,7 @@ import listeners.AllureAttachmentListener;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.DatesPageSelenide;
-import pageObjects.DifferentELementsPageSelenide;
+import pageObjects.DifferentElementsPageSelenide;
 import pageObjects.HomePageSelenide;
 
 import static com.codeborne.selenide.Selenide.page;
@@ -23,7 +23,7 @@ public class ServiceDatesPageTests extends SelenideTestBase {
     public void servicePageInterfaceCheckFailed() {
 
         HomePageSelenide homePage = page(HomePageSelenide.class);
-        DifferentELementsPageSelenide differentElementsPage = page(DifferentELementsPageSelenide.class);
+        DifferentElementsPageSelenide differentElementsPage = page(DifferentElementsPageSelenide.class);
         //1 Open test site by URL
         homePage.open(HOME_PAGE.url);
 
@@ -91,7 +91,7 @@ public class ServiceDatesPageTests extends SelenideTestBase {
     public void servicePageInterfaceCheck() {
 
         HomePageSelenide homePage = page(HomePageSelenide.class);
-        DifferentELementsPageSelenide differentElementsPage = page(DifferentELementsPageSelenide.class);
+        DifferentElementsPageSelenide differentElementsPage = page(DifferentElementsPageSelenide.class);
 
         //1 Open test site by URL
         homePage.open(HOME_PAGE.url);

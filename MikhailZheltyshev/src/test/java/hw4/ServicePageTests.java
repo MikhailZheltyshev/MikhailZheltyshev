@@ -3,7 +3,7 @@ package hw4;
 import base.SelenideTestBase;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pageObjects.DifferentELementsPageSelenide;
+import pageObjects.DifferentElementsPageSelenide;
 import pageObjects.HomePageSelenide;
 
 import static com.codeborne.selenide.Selenide.page;
@@ -13,12 +13,12 @@ import static enums.Users.PITER_CHAILOVSKII;
 public class ServicePageTests extends SelenideTestBase {
 
     private HomePageSelenide homePage;
-    private DifferentELementsPageSelenide differentELementsPage;
+    private DifferentElementsPageSelenide differentELementsPage;
 
     @BeforeClass
     public void beforeClass() {
         homePage = page(HomePageSelenide.class);
-        differentELementsPage = page(DifferentELementsPageSelenide.class);
+        differentELementsPage = page(DifferentElementsPageSelenide.class);
     }
 
     @Test
