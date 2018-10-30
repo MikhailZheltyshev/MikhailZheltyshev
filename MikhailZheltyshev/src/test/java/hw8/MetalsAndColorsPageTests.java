@@ -1,12 +1,10 @@
 package hw8;
 
-import com.epam.jdi.uitests.web.selenium.elements.composite.WebSite;
 import dataProviders.DataProviders;
 import jsonPojo.TestData;
 import org.testng.annotations.Test;
-import site.JdiExampleSite;
 
-import static enums.Users.*;
+import static enums.Users.PITER_CHAILOVSKII;
 import static site.JdiExampleSite.*;
 
 
