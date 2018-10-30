@@ -1,7 +1,6 @@
 package pageObjects;
 
 import com.codeborne.selenide.ElementsCollection;
-import enums.DatesPageSliderTypes;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import utils.ElementsLogHelper;

@@ -50,7 +50,7 @@ public class DatesPageTests extends SelenideTestBase {
         //9 Assert that for "From" and "To" sliders there are logs rows with corresponding values
         datesPageSelenide.checkSlidersSettingLog(0, 0);
 
-        //10 Using drag-and-drop set Range sliders. left sliders - the most rigth position, right slider - the most rigth position.
+        //10 Using drag-and-drop set Range sliders. left sliders - the most right position, right slider - the most rigth position.
         datesPageSelenide.setSlidersPosition(100, 100);
 
         //11 Assert that for "From" and "To" sliders there are logs rows with corresponding values
