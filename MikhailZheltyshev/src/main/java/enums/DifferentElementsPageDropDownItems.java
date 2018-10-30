@@ -8,7 +8,7 @@ public enum DifferentElementsPageDropDownItems {
 
     public String displayName;
 
-    DifferentElementsPageDropDownItems(String name){
+    DifferentElementsPageDropDownItems(String name) {
         displayName = name;
     }
 
