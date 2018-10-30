@@ -5,6 +5,7 @@ import com.epam.jdi.uitests.core.interfaces.complex.ICheckList;
 import com.epam.jdi.uitests.core.interfaces.complex.IDropDown;
 import com.epam.jdi.uitests.core.interfaces.complex.IDropList;
 import com.epam.jdi.uitests.web.selenium.elements.complex.CheckList;
+import com.epam.jdi.uitests.web.selenium.elements.complex.DropList;
 import com.epam.jdi.uitests.web.selenium.elements.complex.TextList;
 import com.epam.jdi.uitests.web.selenium.elements.composite.WebPage;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JFindBy;
@@ -63,6 +64,9 @@ public class MetalAndColorsPageJdi extends WebPage {
             jvalue = @JFindBy(css = "button")
     )
     public IDropList saladDL;
+
+    @FindBy(css = ".form-group.salad")
+    public DropList salad;
 
     @JFindBy(id = "salad-dropdown")
     public IButton button;

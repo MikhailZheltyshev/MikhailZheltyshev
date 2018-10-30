@@ -87,6 +87,12 @@ public class HomePageSelenideCucumber {
         Selenide.open(url);
     }
 
+    @Step("Open Home Page")
+    @Given("I am on \"Home Page\"")
+    public void open() {
+        Selenide.open("https://epam.github.io/JDI/index.html");
+    }
+
     @Step("Assert Browser title")
     @Then("The browser title is Home Page")
     public void checkTitle() {
