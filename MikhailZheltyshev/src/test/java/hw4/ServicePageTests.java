@@ -13,12 +13,12 @@ import static enums.Users.PITER_CHAILOVSKII;
 public class ServicePageTests extends SelenideTestBase {
 
     private HomePageSelenide homePage;
-    private DifferentElementsPageSelenide differentELementsPage;
+    private DifferentElementsPageSelenide differentElementsPage;
 
     @BeforeClass
     public void beforeClass() {
         homePage = page(HomePageSelenide.class);
-        differentELementsPage = page(DifferentElementsPageSelenide.class);
+        differentElementsPage = page(DifferentElementsPageSelenide.class);
     }
 
     @Test
@@ -54,36 +54,36 @@ public class ServicePageTests extends SelenideTestBase {
         homePage.openDifferentElementsPageThroughTheHeaderMenu();
 
         //8 Check interface on Different elements page, it contains all needed elements
-        differentELementsPage.checkDifferentElementsPageContent();
+        differentElementsPage.checkDifferentElementsPageContent();
 
         //9 Assert that there is Right Section
-        differentELementsPage.checkRightSectionExists();
+        differentElementsPage.checkRightSectionExists();
 
         //10 Assert that there is Left Section
-        differentELementsPage.checkLeftSectionExists();
+        differentElementsPage.checkLeftSectionExists();
 
         //11 Select checkboxes
-        differentELementsPage.selectWaterAndWindCheckBoxes();
+        differentElementsPage.selectWaterAndWindCheckBoxes();
 
         //12 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        differentELementsPage.checkLoggingOfCheckBoxesChecked();
+        differentElementsPage.checkLoggingOfCheckBoxesChecked();
 
         //13 Select radio
-        differentELementsPage.selectSelenRadioButton();
+        differentElementsPage.selectSelenRadioButton();
 
         //14 Assert that for radiobutton there is a log row and value is corresponded to the status of radiobutton. 
-        differentELementsPage.checkLoggingOfRadioButtons();
+        differentElementsPage.checkLoggingOfRadioButtons();
 
         //15 Select in dropdown
-        differentELementsPage.selectYellowFromDropDownMenu();
+        differentElementsPage.selectYellowFromDropDownMenu();
 
         //16 Assert that for dropdown there is a log row and value is corresponded to the selected value 
-        differentELementsPage.checkLoggingOfDropDownMenu();
+        differentElementsPage.checkLoggingOfDropDownMenu();
 
         //17 Unselect and assert checkboxes
-        differentELementsPage.unselectWaterAndWindCheckBoxes();
+        differentElementsPage.unselectWaterAndWindCheckBoxes();
 
         //18 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox
-        differentELementsPage.checkLoggingOfCheckBoxesUnchecked();
+        differentElementsPage.checkLoggingOfCheckBoxesUnchecked();
     }
 }
