@@ -34,4 +34,13 @@ public class Summary extends Section {
     @FindBy(id = "calculate-button")
     public IButton calculate;
 
+    public void selectSummary(int...var){
+        for(int num:var){
+            if (num % 2 == 0){
+                even.select(num);
+            } else {
+                odds.select(num);
+            }
+        }
+    }
 }

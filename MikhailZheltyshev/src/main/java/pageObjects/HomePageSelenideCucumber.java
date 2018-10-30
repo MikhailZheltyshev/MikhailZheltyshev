@@ -17,8 +17,10 @@ import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static enums.ServiceMenuButtons.DATES;
 import static enums.ServiceMenuButtons.DIFFERENT_ELEMENTS;
+import static enums.ServiceMenuButtons.USER_TABLE;
 import static enums.Urls.DATES_PAGE;
 import static enums.Urls.DIFFERENT_ELEMENTS_PAGE;
+import static enums.Urls.USER_TABLE_PAGE;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -148,6 +150,13 @@ public class HomePageSelenideCucumber {
         clickOnUpperSelect();
         upperServiceMenuElements.find(Condition.text(DATES.name)).click();
         assertEquals(WebDriverRunner.url(), DATES_PAGE.url);
+    }
+
+    @Step("Open through the header menu Service -> User Table")
+    public void openUserTablePageThroughTheHeaderMenu() {
+        clickOnUpperSelect();
+        upperServiceMenuElements.find(Condition.text(USER_TABLE.name)).click();
+        assertEquals(WebDriverRunner.url(), USER_TABLE_PAGE.url);
     }
 
     @Step("Assert that interface on Home page contains all needed elements.")
