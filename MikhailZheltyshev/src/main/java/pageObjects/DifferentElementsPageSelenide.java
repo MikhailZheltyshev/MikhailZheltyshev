@@ -70,7 +70,7 @@ public class DifferentElementsPageSelenide {
     @Step("Assert logging of checking {0} and {1} is correct")
     public void checkLoggingOfCheckBoxesChecked(DIfferentElementsPageCheckBoxes... checkboxes) {
         for (int i = checkboxes.length - 1; i >= 0; i--) {
-            assertEquals(LOG_PARSER.getActualLogRecord(i, DIfferentElementsPageCheckBoxes.class),
+            assertEquals(LOG_PARSER.getActualLogRecord(i),
                     LOG_PARSER.generateExpectedRecord(checkboxes[checkboxes.length - i - 1], true));
         }
     }
@@ -82,7 +82,7 @@ public class DifferentElementsPageSelenide {
 
     @Step("Assert logging of setting {0} radio button is correct")
     public void checkLoggingOfRadioButtons(DifferentElementsPageRadioButtons radioButton) {
-        assertEquals(LOG_PARSER.getActualLogRecord(0, DifferentElementsPageRadioButtons.class),
+        assertEquals(LOG_PARSER.getActualLogRecord(0),
                 LOG_PARSER.generateExpectedRecord(radioButton));
     }
 
@@ -105,14 +105,14 @@ public class DifferentElementsPageSelenide {
 
     @Step("Assert logging of drop down is correct")
     public void checkLoggingOfDropDownMenu(DifferentElementsPageDropDownItems item) {
-        assertEquals(LOG_PARSER.getActualLogRecord(0, DifferentElementsPageDropDownItems.class),
+        assertEquals(LOG_PARSER.getActualLogRecord(0),
                 LOG_PARSER.generateExpectedRecord(item));
     }
 
     @Step("Assert logging of unchecking {0} and {1} is correct")
     public void checkLoggingOfCheckBoxesUnchecked(DIfferentElementsPageCheckBoxes... checkboxes) {
         for (int i = checkboxes.length - 1; i >= 0; i--) {
-            assertEquals(LOG_PARSER.getActualLogRecord(i, DIfferentElementsPageCheckBoxes.class),
+            assertEquals(LOG_PARSER.getActualLogRecord(i),
                     LOG_PARSER.generateExpectedRecord(checkboxes[checkboxes.length - i - 1], false));
         }
     }

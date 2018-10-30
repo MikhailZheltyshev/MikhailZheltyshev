@@ -6,56 +6,47 @@ import enums.DifferentElementsPageDropDownItems;
 import enums.DifferentElementsPageRadioButtons;
 import enums.DatesPageSliderTypes;
 
+import java.util.regex.Pattern;
+
 import static com.codeborne.selenide.Selenide.$$;
 
 @SuppressWarnings("Duplicates")
 public class ElementsLogHelper {
 
-    private ElementsCollection currentLog;
+    private final String CHECKBOX_RECORD_MASK = "{CHECKBOX_NAME}: condition changed to {STATE}";
 
-    private String[] lastLogRow;
+    private final String METAL_RECORD_MASK = "metal: value changed to {METAL_NAME}";
+
+    private final String COLOR_RECORD_MASK = "Colors: value changed to {COLOR_NAME}";
+
+    private final String SLIDER_RECORD_MASK = "{SLIDER_NAME}:{SLIDER_POSITION} link clicked";
+
+    private ElementsCollection currentLog;
 
     private void updateLog() {
         currentLog = $$(".logs li");
     }
 
-    public String getActualLogRecordTemp(int recordIndex, Class elementType) {
+    public String getActualLogRecord(int recordIndex) {
         updateLog();
-        if (elementType == DIfferentElementsPageCheckBoxes.class) {
-            lastLogRow = currentLog.get(recordIndex).getText().replaceAll(":", "").split(" ");
-            return lastLogRow[1] + ": condition changed to " + lastLogRow[5];
-        } else if (elementType == DifferentElementsPageRadioButtons.class) {
-            lastLogRow = currentLog.get(recordIndex).getText().replaceAll(":", "").split(" ");
-            return "metal: value changed to " + lastLogRow[5];
-        } else if (elementType == DifferentElementsPageDropDownItems.class) {
-            lastLogRow = currentLog.get(recordIndex).getText().replaceAll(":", "").split(" ");
-            return "Colors: value changed to " + lastLogRow[5];
-        } else if (elementType == DatesPageSliderTypes.class) {
-            lastLogRow = currentLog.get(recordIndex).getText().split(" ");
-            String[] sliderAndPositionPair = (lastLogRow[1] + " " + lastLogRow[2]).split(":");
-            return sliderAndPositionPair[0] + ":" + sliderAndPositionPair[1] + " link clicked";
-        }
-        throw new UnsupportedOperationException("Element type is not supported");
-    }
-
-    public String getActualLogRecord(int recordIndex, Class elementType) {
-        updateLog();
-        return currentLog.get(recordIndex).getText().split(" ",2)[1];
+        return currentLog.get(recordIndex).getText().split(" ", 2)[1];
     }
 
     public String generateExpectedRecord(DIfferentElementsPageCheckBoxes expectedCheckBox, boolean state) {
-        return expectedCheckBox.displayName + ": condition changed to " + state;
+        return CHECKBOX_RECORD_MASK.replace("{CHECKBOX_NAME}", expectedCheckBox.displayName)
+                .replace("{STATE}", String.valueOf(state));
     }
 
     public String generateExpectedRecord(DifferentElementsPageRadioButtons expectedRadioButton) {
-        return "metal: value changed to " + expectedRadioButton.displayName;
+        return METAL_RECORD_MASK.replace("{METAL_NAME}", expectedRadioButton.displayName);
     }
 
     public String generateExpectedRecord(DifferentElementsPageDropDownItems expectedDropDownItem) {
-        return "Colors: value changed to " + expectedDropDownItem.displayName;
+        return COLOR_RECORD_MASK.replace("{COLOR_NAME}", expectedDropDownItem.displayName);
     }
 
     public String generateExpectedRecord(DatesPageSliderTypes slider, int expectedPosition) {
-        return slider.displayName + ":" + expectedPosition + " link clicked";
+        return SLIDER_RECORD_MASK.replace("{SLIDER_NAME}", slider.displayName)
+                .replace("{SLIDER_POSITION}", String.valueOf(expectedPosition));
     }
 }

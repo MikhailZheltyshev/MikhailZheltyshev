@@ -79,6 +79,6 @@ public class ServicePageTests extends SelenideTestBase {
         differentElementsPage.unselectCheckBoxes(WATER, WIND);
 
         //18 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox
-        differentElementsPage.checkLoggingOfCheckBoxesUnchecked(WATER,WIND);
+        differentElementsPage.checkLoggingOfCheckBoxesUnchecked(WATER, WIND);
     }
 }

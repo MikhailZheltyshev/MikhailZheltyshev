@@ -97,29 +97,29 @@ public class DifferentElementsPageSelenideCucumber {
 
     @Then("Checking of (.+) and (.+) will be properly logged")
     public void checkLoggingOfCheckBoxesChecked(String firstCheckBoxName, String secondCheckBoxName) {
-        assertEquals(LOG_PARSER.getActualLogRecord(1, DIfferentElementsPageCheckBoxes.class),
+        assertEquals(LOG_PARSER.getActualLogRecord(1),
                 LOG_PARSER.generateExpectedRecord(getCheckBoxEnumByName(firstCheckBoxName), true));
-        assertEquals(LOG_PARSER.getActualLogRecord(0, DIfferentElementsPageCheckBoxes.class),
+        assertEquals(LOG_PARSER.getActualLogRecord(0),
                 LOG_PARSER.generateExpectedRecord(getCheckBoxEnumByName(secondCheckBoxName), true));
     }
 
     @Then("Selecting of (.+) radio-button will be properly logged")
     public void checkLoggingOfRadioButtons(String radioButtonName) {
-        assertEquals(LOG_PARSER.getActualLogRecord(0, DifferentElementsPageRadioButtons.class),
+        assertEquals(LOG_PARSER.getActualLogRecord(0),
                 LOG_PARSER.generateExpectedRecord(getRadioButtonEnumByName(radioButtonName)));
     }
 
     @Then("Selecting of (.+) drop down menu item will be properly logged")
     public void checkLoggingOfDropDownMenu(String dropDownItemName) {
-        assertEquals(LOG_PARSER.getActualLogRecord(0, DifferentElementsPageDropDownItems.class),
+        assertEquals(LOG_PARSER.getActualLogRecord(0),
                 LOG_PARSER.generateExpectedRecord(getDropDownEnumByName(dropDownItemName)));
     }
 
     @Then("Un-selecting of (.+) and (.+) checboxes will be properly logged")
     public void checkLoggingOfCheckBoxesUnchecked(String firstChecBox, String secondCheckBox) {
-        assertEquals(LOG_PARSER.getActualLogRecord(1, DIfferentElementsPageCheckBoxes.class),
+        assertEquals(LOG_PARSER.getActualLogRecord(1),
                 LOG_PARSER.generateExpectedRecord(getCheckBoxEnumByName(firstChecBox), false));
-        assertEquals(LOG_PARSER.getActualLogRecord(0, DIfferentElementsPageCheckBoxes.class),
+        assertEquals(LOG_PARSER.getActualLogRecord(0),
                 LOG_PARSER.generateExpectedRecord(getCheckBoxEnumByName(secondCheckBox), false));
     }
 }

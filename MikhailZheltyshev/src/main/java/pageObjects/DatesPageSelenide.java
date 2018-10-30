@@ -35,14 +35,14 @@ public class DatesPageSelenide {
     @Step("Check that slider's setting From {0} to {1} was properly logged")
     public void checkSlidersSettingLog(int from, int to) {
         if (to == 100 && from == 100) {
-            assertEquals(LOG_PARSER.getActualLogRecord(1, DatesPageSliderTypes.class),
+            assertEquals(LOG_PARSER.getActualLogRecord(1),
                     LOG_PARSER.generateExpectedRecord(TO, to));
-            assertEquals(LOG_PARSER.getActualLogRecord(0, DatesPageSliderTypes.class),
+            assertEquals(LOG_PARSER.getActualLogRecord(0),
                     LOG_PARSER.generateExpectedRecord(FROM, from));
         } else {
-            assertEquals(LOG_PARSER.getActualLogRecord(0, DatesPageSliderTypes.class),
+            assertEquals(LOG_PARSER.getActualLogRecord(0),
                     LOG_PARSER.generateExpectedRecord(TO, to));
-            assertEquals(LOG_PARSER.getActualLogRecord(1, DatesPageSliderTypes.class),
+            assertEquals(LOG_PARSER.getActualLogRecord(1),
                     LOG_PARSER.generateExpectedRecord(FROM, from));
         }
     }
