@@ -4,7 +4,6 @@ import base.SelenideTestBase;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import listeners.AllureAttachmentListener;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.DatesPageSelenide;
