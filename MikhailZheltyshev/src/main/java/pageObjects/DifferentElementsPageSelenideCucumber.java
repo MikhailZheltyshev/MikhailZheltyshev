@@ -4,9 +4,6 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import enums.DIfferentElementsPageCheckBoxes;
-import enums.DifferentElementsPageDropDownItems;
-import enums.DifferentElementsPageRadioButtons;
 import org.openqa.selenium.support.FindBy;
 import utils.ElementsLogHelper;
 

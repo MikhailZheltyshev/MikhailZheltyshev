@@ -6,8 +6,6 @@ import enums.DifferentElementsPageDropDownItems;
 import enums.DifferentElementsPageRadioButtons;
 import enums.DatesPageSliderTypes;
 
-import java.util.regex.Pattern;
-
 import static com.codeborne.selenide.Selenide.$$;
 
 @SuppressWarnings("Duplicates")
