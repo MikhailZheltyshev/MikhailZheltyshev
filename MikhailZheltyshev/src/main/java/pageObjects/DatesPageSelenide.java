@@ -20,7 +20,7 @@ public class DatesPageSelenide {
     private final SliderHandler SLIDER_HANDLER = new SliderHandler();
 
     //=====================================================METHODS======================================================
-    @Step("Check that sliders was set From {0} to {1}")
+    @Step("Set sliders from {0} to {1}")
     public void setSlidersPosition(int from, int to) {
         if (SLIDER_HANDLER.getCurrentPosition(sliders.get(0)) == 0 && SLIDER_HANDLER.getCurrentPosition(sliders.get(1)) == 0) {
             SLIDER_HANDLER.setPosition(sliders.get(1), to);
@@ -31,7 +31,7 @@ public class DatesPageSelenide {
         }
     }
 
-    @Step("Check that slider's setting From {0} to {1} was properly logged")
+    @Step("Check that slider's setting from {0} to {1} was properly logged")
     public void checkSlidersSettingLog(int from, int to) {
         if (to == 100 && from == 100) {
             assertEquals(LOG_PARSER.getActualLogRecord(1),
