@@ -48,9 +48,8 @@ public class MetalsAndColorsPageTests extends MetalsAndColorsPageInit {
         //8 Select metal from the Metals drop-down menu using data-provider values
         metalAndColorsPage.metals.select(data.getMetals());
 
-        //9 Select vegetables from the Vegetables drop-list - DOESN'T WORK:(
-        //metalAndColorsPage.vegetables.select("Onion");
-        //metalAndColorsPage.saladDL.select("Onion");
+        //9 Select vegetables from the Vegetables drop-list
+        metalAndColorsPage.selectVegetables(data.getVegetables());
 
         //10 Click on Submit button
         metalAndColorsPage.submitBtn.click();
