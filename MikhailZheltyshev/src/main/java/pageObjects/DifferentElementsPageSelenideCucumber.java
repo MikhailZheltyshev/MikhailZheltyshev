@@ -4,21 +4,24 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import enums.DifferentElementsPageDropDownItems;
 import org.openqa.selenium.support.FindBy;
 import utils.ElementsLogHelper;
+
+import java.util.List;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.page;
 import static enums.DIfferentElementsPageCheckBoxes.getCheckBoxEnumByName;
-import static enums.DifferentElementsPageDropDownItems.getDropDownEnumByName;
+import static enums.DifferentElementsPageDropDownItems.*;
 import static enums.DifferentElementsPageRadioButtons.getRadioButtonEnumByName;
 import static org.testng.Assert.assertEquals;
 
 public class DifferentElementsPageSelenideCucumber {
 
-    public DifferentElementsPageSelenideCucumber(){
+    public DifferentElementsPageSelenideCucumber() {
         page(this);
     }
 
@@ -51,35 +54,12 @@ public class DifferentElementsPageSelenideCucumber {
     private final ElementsLogHelper LOG_PARSER = new ElementsLogHelper();
 
     //==================================================METHODS=========================================================
-    @When("I select (.+) radio-button")
-    public void selectSelenRadioButton(String radioButtonName) {
-        radioButtonElements.find(text(radioButtonName)).click();
-    }
-
     @Then("Interface on Different Elements Page contains all needed elements")
     public void checkDifferentElementsPageContent() {
         checkBoxElements.shouldHave(size(4));
         radioButtonElements.shouldHave(size(4));
         colorsDropDownMenuElement.shouldBe(visible);
         buttonElements.shouldHave(size(2));
-    }
-
-    @When("I select (.+) item from the Colors Drop Down menu")
-    public void selectYellowFromDropDownMenu(String dropDownItemName) {
-        colorsDropDownMenu.click();
-        dropDownMenuOptions.find(text(dropDownItemName)).click();
-    }
-
-    @When("I select (.+) and (.+) checkboxes")
-    public void selectWaterAndWindCheckBoxes(String firstCheckBox, String secondCheckbox) {
-        checkBoxElements.find(text(firstCheckBox)).click();
-        checkBoxElements.find(text(secondCheckbox)).click();
-    }
-
-    @When("I un-select (.+) and (.+) checkboxes")
-    public void unselectWaterAndWindCheckBoxes(String firstCheckBox, String secondCheckBox) {
-        checkBoxElements.find(text(firstCheckBox)).click();
-        checkBoxElements.find(text(secondCheckBox)).click();
     }
 
     @Then("The right section of the page is displayed")
@@ -89,34 +69,61 @@ public class DifferentElementsPageSelenideCucumber {
 
     @Then("The left section of the page is displayed")
     public void checkLeftSectionExists() {
-        rightSectionElement.exists();
+        leftSectionElement.exists();
     }
 
-    @Then("Checking of (.+) and (.+) will be properly logged")
-    public void checkLoggingOfCheckBoxesChecked(String firstCheckBoxName, String secondCheckBoxName) {
-        assertEquals(LOG_PARSER.getActualLogRecord(1),
-                LOG_PARSER.generateExpectedRecord(getCheckBoxEnumByName(firstCheckBoxName), true));
-        assertEquals(LOG_PARSER.getActualLogRecord(0),
-                LOG_PARSER.generateExpectedRecord(getCheckBoxEnumByName(secondCheckBoxName), true));
+    @When("I select checkboxes:")
+    public void selectCheckBoxes(List<String> checkboxes) {
+        for (String checkbox : checkboxes) {
+            checkBoxElements.find(text(checkbox)).click();
+        }
+    }
+
+    @When("I un-select checkboxes:")
+    public void unselectCheckBoxes(List<String> checkboxes) {
+        for (String checkbox : checkboxes) {
+            checkBoxElements.find(text(checkbox)).click();
+        }
+    }
+
+    @Then("Checking of following checkboxes will be properly logged:")
+    public void checkLoggingOfCheckBoxesChecked(List<String> checkboxes) {
+        for (int i = checkboxes.size() - 1; i >= 0; i--) {
+            assertEquals(LOG_PARSER.getActualLogRecord(i),
+                    LOG_PARSER.generateExpectedRecord(getCheckBoxEnumByName(checkboxes.get(checkboxes.size() - i - 1))
+                            , true));
+        }
+    }
+
+    @When("I select (.+) radio-button")
+    public void selectRadioButton(String radioButton) {
+        radioButtonElements.find(text(radioButton)).click();
     }
 
     @Then("Selecting of (.+) radio-button will be properly logged")
-    public void checkLoggingOfRadioButtons(String radioButtonName) {
+    public void checkLoggingOfRadioButtons(String radioButton) {
         assertEquals(LOG_PARSER.getActualLogRecord(0),
-                LOG_PARSER.generateExpectedRecord(getRadioButtonEnumByName(radioButtonName)));
+                LOG_PARSER.generateExpectedRecord(getRadioButtonEnumByName(radioButton)));
+    }
+
+    @When("I select (.+) item from the Colors Drop Down menu")
+    public void selectItemFromDropDownMenu(String item) {
+        colorsDropDownMenu.click();
+        dropDownMenuOptions.find(text(item)).click();
     }
 
     @Then("Selecting of (.+) drop down menu item will be properly logged")
-    public void checkLoggingOfDropDownMenu(String dropDownItemName) {
+    public void checkLoggingOfDropDownMenu(String item) {
         assertEquals(LOG_PARSER.getActualLogRecord(0),
-                LOG_PARSER.generateExpectedRecord(getDropDownEnumByName(dropDownItemName)));
+                LOG_PARSER.generateExpectedRecord(getDropDownEnumByName(item)));
     }
 
-    @Then("Un-selecting of (.+) and (.+) checboxes will be properly logged")
-    public void checkLoggingOfCheckBoxesUnchecked(String firstChecBox, String secondCheckBox) {
-        assertEquals(LOG_PARSER.getActualLogRecord(1),
-                LOG_PARSER.generateExpectedRecord(getCheckBoxEnumByName(firstChecBox), false));
-        assertEquals(LOG_PARSER.getActualLogRecord(0),
-                LOG_PARSER.generateExpectedRecord(getCheckBoxEnumByName(secondCheckBox), false));
+    @Then("Un-selecting of following checboxes will be properly logged:")
+    public void checkLoggingOfCheckBoxesUnchecked(List<String> checkboxes) {
+        for (int i = checkboxes.size() - 1; i >= 0; i--) {
+            assertEquals(LOG_PARSER.getActualLogRecord(i),
+                    LOG_PARSER.generateExpectedRecord(getCheckBoxEnumByName(checkboxes.get(checkboxes.size() - i - 1))
+                            , false));
+        }
     }
 }

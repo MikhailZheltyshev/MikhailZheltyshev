@@ -1,9 +1,12 @@
 package pageObjects;
 
 import com.codeborne.selenide.*;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import enums.ServiceMenuCategories;
+import enums.Users;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
@@ -18,15 +21,14 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static enums.ServiceMenuButtons.DATES;
 import static enums.ServiceMenuButtons.DIFFERENT_ELEMENTS;
 import static enums.ServiceMenuButtons.USER_TABLE;
-import static enums.Urls.DATES_PAGE;
-import static enums.Urls.DIFFERENT_ELEMENTS_PAGE;
-import static enums.Urls.USER_TABLE_PAGE;
+import static enums.ServiceMenuCategories.*;
+import static enums.Urls.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class HomePageSelenideCucumber {
 
-    public HomePageSelenideCucumber(){
+    public HomePageSelenideCucumber() {
         page(this);
     }
 
@@ -72,25 +74,11 @@ public class HomePageSelenideCucumber {
 
     private final String EXPECTED_HOME_PAGE_TITLE = "Home Page";
 
-    private final List<String> EXPECTED_UPPER_SERVICE_MENU_CATEGORIES = Arrays.asList(
-            "Support", "Dates", "Complex Table", "Simple Table", "Table with pages", "Different elements"
-    );
-
-    private final List<String> EXPECTED_LEFT_SERVICE_MENU_CATEGORIES = Arrays.asList(
-            "Support", "Dates", "Complex Table", "Simple Table", "Table with pages", "Different elements"
-    );
-
     //==================================================METHODS=========================================================
     @Step("Open test site by URL")
-    @When("I'm on the Home Page by URL: (.+)")
-    public void open(String url) {
-        Selenide.open(url);
-    }
-
-    @Step("Open Home Page")
     @Given("I am on \"Home Page\"")
     public void open() {
-        Selenide.open("https://epam.github.io/JDI/index.html");
+        Selenide.open(HOME_PAGE.url);
     }
 
     @Step("Assert Browser title")
@@ -108,6 +96,14 @@ public class HomePageSelenideCucumber {
         submit.click();
     }
 
+    @When("I login as user \"(.+)\"")
+    public void login(String user) {
+        profileButton.click();
+        login.sendKeys(Users.getUserByName(user.toUpperCase()).login);
+        password.sendKeys(Users.getUserByName(user.toUpperCase()).password);
+        submit.click();
+    }
+
     @Step("Assert User name in the left-top side of screen that user is loggined")
     @Then("The user icon (.+) is displayed on the header")
     public void checkLoggedUserName(String expectedName) {
@@ -116,7 +112,7 @@ public class HomePageSelenideCucumber {
     }
 
     @Step("Click on \"Service\" subcategory in the header")
-    @When("I click on the header Service subcategory")
+    @When("I click on \"Service\" button in Header")
     public void clickOnUpperSelect() {
         upperServiceButton.click();
     }
@@ -124,7 +120,7 @@ public class HomePageSelenideCucumber {
     @Step("Check that upper \"Service\" drop down contains correct options")
     @Then("Upper Service drop down opens with all needed options")
     public void checkUpperServiceMenuContent() {
-        for (String category : EXPECTED_UPPER_SERVICE_MENU_CATEGORIES) {
+        for (String category : getExpectedCategoriesList()) {
             assertTrue(upperServiceMenuElements.texts().contains(category.toUpperCase()));
         }
     }
@@ -138,13 +134,13 @@ public class HomePageSelenideCucumber {
     @Step("Check that left \"Service\" drop down contains correct options")
     @Then("Left Service drop down opens with all needed options")
     public void checkLeftServiceMenuContent() {
-        for (String category : EXPECTED_LEFT_SERVICE_MENU_CATEGORIES) {
+        for (String category : getExpectedCategoriesList()) {
             assertTrue(leftServiceMenuElements.texts().contains(category));
         }
     }
 
     @Step("Open through the header menu Service -> Different Elements Page")
-    @Given("I've navigated to the Different Elements page through the upper Service menu")
+    @Then("I navigate to the Different Elements page through the upper Service menu")
     public void openDifferentElementsPageThroughTheHeaderMenu() {
         clickOnUpperSelect();
         upperServiceMenuElements.find(Condition.text(DIFFERENT_ELEMENTS.name)).click();
@@ -159,6 +155,7 @@ public class HomePageSelenideCucumber {
     }
 
     @Step("Open through the header menu Service -> User Table")
+    @And("I click on \"User Table\" button in Service dropdown")
     public void openUserTablePageThroughTheHeaderMenu() {
         clickOnUpperSelect();
         upperServiceMenuElements.find(Condition.text(USER_TABLE.name)).click();
@@ -179,7 +176,4 @@ public class HomePageSelenideCucumber {
         mainHeaderElement.shouldBe(visible);
         mainSubHeader.shouldBe(visible);
     }
-
-
-
 }

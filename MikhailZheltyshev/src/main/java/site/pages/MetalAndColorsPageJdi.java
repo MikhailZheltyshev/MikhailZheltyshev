@@ -59,11 +59,18 @@ public class MetalAndColorsPageJdi extends WebPage {
     public IDropList vegetables;
 
     @JDropList(
-            jroot = @JFindBy(css = ".form-group.salad"),
-            jlist = @JFindBy(tagName = "li"),
-            jvalue = @JFindBy(css = "button")
+            root = @FindBy(id = "salad-dropdown"),
+            list = @FindBy(tagName = "li"),
+            value = @FindBy(tagName = "button")
     )
     public IDropList saladDL;
+
+    @JDropdown(
+            root = @FindBy(id = "salad-dropdown"),
+            list = @FindBy(tagName = "li"),
+            value = @FindBy(tagName = "button")
+    )
+    public IDropDown vegetablesL;
 
     @FindBy(css = ".form-group.salad")
     public DropList salad;

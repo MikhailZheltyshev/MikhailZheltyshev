@@ -13,4 +13,12 @@ public enum Users {
         this.password = password;
         this.displayName = displayName;
     }
+
+    public static Users getUserByName(String displayName) {
+        if (displayName.equals(PITER_CHAILOVSKII.displayName)) {
+            return PITER_CHAILOVSKII;
+        } else {
+            throw new UnsupportedOperationException("Enum wasn't found!");
+        }
+    }
 }
