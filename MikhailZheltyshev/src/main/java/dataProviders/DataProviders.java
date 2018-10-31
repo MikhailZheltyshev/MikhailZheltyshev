@@ -33,7 +33,7 @@ public class DataProviders {
         JsonObject jDataSet = new JsonParser().parse(new FileReader
                 ("src/test/resources/JDI_ex8_metalsColorsDataSet.json")).getAsJsonObject();
         Object[][] result = new Object[jDataSet.size()][1];
-        for (int i = 1; i <= jDataSet.size()-1; i++){
+        for (int i = 1; i <= jDataSet.size(); i++){
             result[i - 1][0] = gson.fromJson(jDataSet.get("data_" + i), TestData.class);
         }
         return result;

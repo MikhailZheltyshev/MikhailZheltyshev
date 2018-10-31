@@ -3,14 +3,11 @@ package site.pages;
 import com.epam.jdi.uitests.core.interfaces.common.IButton;
 import com.epam.jdi.uitests.core.interfaces.complex.ICheckList;
 import com.epam.jdi.uitests.core.interfaces.complex.IDropDown;
-import com.epam.jdi.uitests.core.interfaces.complex.IDropList;
 import com.epam.jdi.uitests.web.selenium.elements.complex.CheckList;
-import com.epam.jdi.uitests.web.selenium.elements.complex.DropList;
 import com.epam.jdi.uitests.web.selenium.elements.complex.TextList;
 import com.epam.jdi.uitests.web.selenium.elements.composite.WebPage;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JFindBy;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JPage;
-import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JDropList;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JDropdown;
 import enums.jdi.ColorsList;
 import enums.jdi.MetalsList;
@@ -70,18 +67,34 @@ public class MetalAndColorsPageJdi extends WebPage {
 
     private final String DEFAULT_VEGETABLE_ITEM = "Vegetables";
 
+    private final String SUMMARY_ROW_MASK = "Summary: {SUMMARY}";
+    private final String ELEMENTS_ROW_MASK = "Elements:{ELEMENTS}";
+    private final String COLOR_ROW_MASK = "Color: {COLORS}";
+    private final String METAL_ROW_MASK = "Metal: {METALS}";
+    private final String VEGETABLES_ROW_MASK = "Vegetables:{VEGETABLES}";
+
     //=================================================ACTIONS==========================================================
     public List<String> getExpectedResultTextList(TestData data) {
-        String summaryRow = "Summary: " + (data.getSummary()[0] + data.getSummary()[1]);
-        StringBuilder elementsRow = new StringBuilder("Elements:");
-        for (String veg : data.getElements()) {
-            elementsRow.append(" ").append(veg).append(",");
+        String summaryRow = SUMMARY_ROW_MASK.replace("{SUMMARY}",
+                String.valueOf(data.getSummaryOdd() + data.getSummaryEven()));
+
+        StringBuilder elemBuilder = new StringBuilder();
+        for (String elem : data.getElements()) {
+            elemBuilder.append(" ").append(elem).append(",");
         }
-        elementsRow = new StringBuilder(elementsRow.substring(0, elementsRow.length() - 1));
-        String colorRow = "Color: " + data.getColor();
-        String metalRow = "Metal: " + data.getMetals();
-        String vegetableRow = "Vegetables: " + "Vegetables";
-        return Arrays.asList(summaryRow, elementsRow.toString(), colorRow, metalRow, vegetableRow);
+
+        StringBuilder vegBuilder = new StringBuilder();
+        for (String veg : data.getVegetables()) {
+            vegBuilder.append(" ").append(veg).append(",");
+        }
+        String elementsRow = ELEMENTS_ROW_MASK.replace("{ELEMENTS}",
+                elemBuilder.substring(0, elemBuilder.length() - 1));
+        String vegetablesRow = VEGETABLES_ROW_MASK.replace("{VEGETABLES}",
+                vegBuilder.substring(0, vegBuilder.length() - 1));
+
+        String colorRow = COLOR_ROW_MASK.replace("{COLORS}", data.getColor());
+        String metalRow = METAL_ROW_MASK.replace("{METALS}", data.getMetals());
+        return Arrays.asList(summaryRow, elementsRow, colorRow, metalRow, vegetablesRow);
     }
 
     public void selectVegetables(String... salad) {

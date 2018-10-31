@@ -5,6 +5,7 @@ import com.epam.jdi.uitests.web.selenium.elements.composite.WebSite;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JSite;
 import com.epam.web.matcher.junit.Assert;
 import entities.User;
+import enums.Users;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
 import site.pages.HomePageJdi;
@@ -30,8 +31,8 @@ public class JdiExampleSite extends WebSite {
     }
 
     @Step
-    public static void checkLoggedInUserName(String expectedUserName) {
-        Assert.areEquals(profilePhoto.getText(), expectedUserName);
+    public static void checkLoggedInUserName(Users user) {
+        Assert.areEquals(profilePhoto.getText(), user.displayName);
     }
 
     @Step
