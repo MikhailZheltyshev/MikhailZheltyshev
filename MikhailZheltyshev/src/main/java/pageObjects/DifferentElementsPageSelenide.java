@@ -53,21 +53,21 @@ public class DifferentElementsPageSelenide {
         buttonElements.shouldHave(size(2));
     }
 
-    @Step("Select {0} and {1} checkboxes")
+    @Step("Select {0} checkboxes")
     public void selectCheckBoxes(DIfferentElementsPageCheckBoxes... checkboxes) {
         for (DIfferentElementsPageCheckBoxes checkbox : checkboxes) {
             checkBoxElements.find(text(checkbox.displayName)).click();
         }
     }
 
-    @Step("Unselect {0} and {1} checkboxes")
+    @Step("Unselect {0} checkboxes")
     public void unselectCheckBoxes(DIfferentElementsPageCheckBoxes... checkboxes) {
         for (DIfferentElementsPageCheckBoxes checkbox : checkboxes) {
             checkBoxElements.find(text(checkbox.displayName)).click();
         }
     }
 
-    @Step("Assert logging of checking {0} and {1} is correct")
+    @Step("Assert logging of checking {0} is correct")
     public void checkLoggingOfCheckBoxesChecked(DIfferentElementsPageCheckBoxes... checkboxes) {
         for (int i = checkboxes.length - 1; i >= 0; i--) {
             assertEquals(LOG_PARSER.getActualLogRecord(i),
@@ -109,7 +109,7 @@ public class DifferentElementsPageSelenide {
                 LOG_PARSER.generateExpectedRecord(item));
     }
 
-    @Step("Assert logging of unchecking {0} and {1} is correct")
+    @Step("Assert logging of unchecking {0} is correct")
     public void checkLoggingOfCheckBoxesUnchecked(DIfferentElementsPageCheckBoxes... checkboxes) {
         for (int i = checkboxes.length - 1; i >= 0; i--) {
             assertEquals(LOG_PARSER.getActualLogRecord(i),
