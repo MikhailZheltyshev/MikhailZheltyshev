@@ -158,7 +158,7 @@ public class ServiceDatesPageTests extends SelenideTestBase {
         //3 Perform login
         homePage.login(PITER_CHAILOVSKII);
 
-        //4 Assert User name in the left-top side of screen that user is loggined
+        //4 Assert User name in the left-top side of screen that user is logged
         homePage.checkLoggedUserName(PITER_CHAILOVSKII);
 
         //5 Open through the header menu Service -> Dates Page
