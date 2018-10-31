@@ -11,6 +11,8 @@ import java.io.FileReader;
 
 public class DataProviders {
 
+    private final String DATA_ITEM_PREFIX = "data_";
+
     @DataProvider(parallel = true)
     public Object[][] checkTextsOnIndexDataProvider() {
         return new Object[][]{
@@ -34,7 +36,7 @@ public class DataProviders {
                 ("src/test/resources/JDI_ex8_metalsColorsDataSet.json")).getAsJsonObject();
         Object[][] result = new Object[jDataSet.size()][1];
         for (int i = 1; i <= jDataSet.size(); i++){
-            result[i - 1][0] = gson.fromJson(jDataSet.get("data_" + i), TestData.class);
+            result[i - 1][0] = gson.fromJson(jDataSet.get(DATA_ITEM_PREFIX + i), TestData.class);
         }
         return result;
     }
