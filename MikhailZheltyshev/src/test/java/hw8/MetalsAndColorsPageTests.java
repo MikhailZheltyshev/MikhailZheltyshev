@@ -50,7 +50,7 @@ public class MetalsAndColorsPageTests extends MetalsAndColorsPageInit {
 
         //9 Select vegetables from the Vegetables drop-list - DOESN'T WORK:(
         //metalAndColorsPage.vegetables.select("Onion");
-        metalAndColorsPage.saladDL.select("Onion");
+        //metalAndColorsPage.saladDL.select("Onion");
 
         //10 Click on Submit button
         metalAndColorsPage.submitBtn.click();
@@ -92,9 +92,7 @@ public class MetalsAndColorsPageTests extends MetalsAndColorsPageInit {
 
         //9 Select vegetables from the Vegetables drop-list - DOESN'T WORK:(
         //metalAndColorsPage.vegetables.select("Onion");
-        metalAndColorsPage.vegetablesL.select("Onion");
-        metalAndColorsPage.vegetablesL.select("Tomato");
-        metalAndColorsPage.vegetablesL.select("Vegetables");
+        metalAndColorsPage.selectVegetables("Onion","Tomato");
 
         //10 Click on Submit button
         metalAndColorsPage.submitBtn.click();

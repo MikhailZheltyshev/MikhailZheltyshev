@@ -27,7 +27,7 @@ import java.util.List;
 
 @JPage(url = "/metals-colors.html", title = "Metal and Colors")
 public class MetalAndColorsPageJdi extends WebPage {
-
+    //=======================================WEB-ELEMENTS AND CONSTANTS=================================================
     @FindBy(id = "summary-block")
     public Summary summary;
 
@@ -50,33 +50,12 @@ public class MetalAndColorsPageJdi extends WebPage {
             jexpand = @JFindBy(css = ".caret"))
     public IDropDown<MetalsList> metals;
 
-    @JDropList(
-            jroot = @JFindBy(css = ".form-group.salad"),
-            jlist = @JFindBy(tagName = "li"),
-            jexpand = @JFindBy(css = ".caret"),
-            jvalue = @JFindBy(tagName = "button")
-    )
-    public IDropList vegetables;
-
-    @JDropList(
-            root = @FindBy(id = "salad-dropdown"),
-            list = @FindBy(tagName = "li"),
-            value = @FindBy(tagName = "button")
-    )
-    public IDropList saladDL;
-
     @JDropdown(
             root = @FindBy(id = "salad-dropdown"),
             list = @FindBy(tagName = "li"),
             value = @FindBy(tagName = "button")
     )
-    public IDropDown vegetablesL;
-
-    @FindBy(css = ".form-group.salad")
-    public DropList salad;
-
-    @JFindBy(id = "salad-dropdown")
-    public IButton button;
+    public IDropDown vegetables;
 
     @FindBy(css = "#elements-checklist p")
     public ICheckList<Nature> nature = new CheckList<Nature>() {
@@ -89,17 +68,9 @@ public class MetalAndColorsPageJdi extends WebPage {
     @FindBy(id = "submit-button")
     public IButton submitBtn;
 
-    public String getExpectedResultText(TestData data) {
-        String summaryRow = "Summary: " + data.getSummary()[0] + data.getSummary()[1];
-        String colorRow = "Color: " + data.getColor();
-        String metalRow = "Metal: " + data.getMetals();
-        String vegetableRow = "Vegetables: " + data.getVegetables()[0];
-        return summaryRow +
-                colorRow +
-                metalRow +
-                vegetableRow;
-    }
+    private final String DEFAULT_VEGETABLE_ITEM = "Vegetables";
 
+    //=================================================ACTIONS==========================================================
     public List<String> getExpectedResultTextList(TestData data) {
         String summaryRow = "Summary: " + (data.getSummary()[0] + data.getSummary()[1]);
         StringBuilder elementsRow = new StringBuilder("Elements:");
@@ -111,6 +82,13 @@ public class MetalAndColorsPageJdi extends WebPage {
         String metalRow = "Metal: " + data.getMetals();
         String vegetableRow = "Vegetables: " + "Vegetables";
         return Arrays.asList(summaryRow, elementsRow.toString(), colorRow, metalRow, vegetableRow);
+    }
+
+    public void selectVegetables(String... salad) {
+        vegetables.select(DEFAULT_VEGETABLE_ITEM);
+        for (String vegetable : salad) {
+            vegetables.select(vegetable);
+        }
     }
 }
 
