@@ -15,9 +15,11 @@ import site.sections.LoginForm;
 
 @JSite("https://epam.github.io/JDI/")
 public class JdiExampleSite extends WebSite {
+
     public static HomePageJdi homePage;
     public static MetalAndColorsPageJdi metalAndColorsPage;
 
+    //=======================================WEB-ELEMENTS AND CONSTANTS=================================================
     public static LoginForm loginForm;
     public static HeaderMenu headerMenu;
 
@@ -40,3 +42,4 @@ public class JdiExampleSite extends WebSite {
         headerMenu.navigation.clickOn("Metals & Colors");
     }
 }
+

@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginForm extends Form<User> {
 
+    //=======================================WEB-ELEMENTS AND CONSTANTS=================================================
     @FindBy(id = "Name")
     private TextField name;
 

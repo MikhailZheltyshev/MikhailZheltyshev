@@ -1,6 +1,5 @@
 package site.sections;
 
-import com.epam.jdi.uitests.web.selenium.elements.common.Text;
 import com.epam.jdi.uitests.web.selenium.elements.complex.TextList;
 import com.epam.jdi.uitests.web.selenium.elements.composite.Section;
 import jsonPojo.TestData;
@@ -9,22 +8,11 @@ import org.openqa.selenium.support.FindBy;
 import java.util.Arrays;
 import java.util.List;
 
-public class Results extends Section {
+public class ResultsSection extends Section {
 
-    @FindBy(css = ".results li")
+    //=======================================WEB-ELEMENTS AND CONSTANTS=================================================
+    @FindBy(css="li")
     private TextList resultsList;
-
-    @FindBy(css = ".summ-res")
-    private Text summary;
-
-    @FindBy(css = ".col-res")
-    private Text colors;
-
-    @FindBy(css = ".met-res")
-    private Text metals;
-
-    @FindBy(css = ".sal-res")
-    private Text salad;
 
     private final String SUMMARY_ROW_MASK = "Summary: {SUMMARY}";
     private final String ELEMENTS_ROW_MASK = "Elements:{ELEMENTS}";
@@ -32,11 +20,12 @@ public class Results extends Section {
     private final String METAL_ROW_MASK = "Metal: {METALS}";
     private final String VEGETABLES_ROW_MASK = "Vegetables:{VEGETABLES}";
 
-    public List<String> getActualResult() {
+    //==============================================ACTIONS=============================================================
+    public List<String> getActual() {
         return resultsList.getTextList();
     }
 
-    public List<String> getExpectedResult(TestData data) {
+    public List<String> getExpected(TestData data) {
         String summaryRow = SUMMARY_ROW_MASK.replace("{SUMMARY}",
                 String.valueOf(data.getSummaryOdd() + data.getSummaryEven()));
 

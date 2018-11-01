@@ -7,7 +7,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import static enums.Users.PITER_CHAILOVSKII;
-import static org.testng.Assert.*;
+import static org.testng.AssertJUnit.assertEquals;
 import static site.JdiExampleSite.*;
 
 
@@ -36,26 +36,13 @@ public class MetalsAndColorsPageTests extends MetalsAndColorsPageInit {
         //5 Open Metals And Colors Page by the Header menu
         openMetalAndColorsPageByHeader();
 
-        //6 Select summary radio-buttons using data-provider values
-        metalAndColorsPage.selectSummary(data.getSummaryOdd(),data.getSummaryEven());
+        //6 Fill Metals And Colors Form using data provided
+        metalAndColorsPage.metalsAndColorsForm.fill(data);
 
-        //7 Select nature element check-box using data-provider values
-        metalAndColorsPage.selectElements(data.getElements());
+        //7 Submit Metals And Colors Form
+        metalAndColorsPage.metalsAndColorsForm.submit();
 
-        //8 Select color from the Colors drop-down menu using data-provider values
-        metalAndColorsPage.selectColor(data.getColor());
-
-        //9 Select metal from the Metals drop-down menu using data-provider values
-        metalAndColorsPage.selectMetal(data.getMetal());
-
-        //10 Select vegetables from the Vegetables drop-list
-        metalAndColorsPage.selectVegetables(data.getVegetables());
-
-        //11 Click on Submit button
-        metalAndColorsPage.clickSubmit();
-
-        //12 Assert the results list displayed is corresponding to the previously selected values
-        assertEquals(metalAndColorsPage.getActualResult(),
-                metalAndColorsPage.getExpectedResult(data));
+        //8 Assert the results list displayed is corresponding to the previously selected values
+        assertEquals(metalAndColorsPage.results.getActual(), metalAndColorsPage.results.getExpected(data));
     }
 }
