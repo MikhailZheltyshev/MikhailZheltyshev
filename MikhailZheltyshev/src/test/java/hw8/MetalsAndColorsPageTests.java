@@ -7,8 +7,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import static enums.Users.PITER_CHAILOVSKII;
-import static org.testng.AssertJUnit.assertEquals;
 import static site.JdiExampleSite.*;
+import static utils.MetalAndColorPageResultsHandler.checkResult;
 
 
 public class MetalsAndColorsPageTests extends MetalsAndColorsPageInit {
@@ -43,6 +43,6 @@ public class MetalsAndColorsPageTests extends MetalsAndColorsPageInit {
         metalAndColorsPage.metalsAndColorsForm.submit();
 
         //8 Assert the results list displayed is corresponding to the previously selected values
-        assertEquals(metalAndColorsPage.results.getActual(), metalAndColorsPage.results.getExpected(data));
+        checkResult(data);
     }
 }

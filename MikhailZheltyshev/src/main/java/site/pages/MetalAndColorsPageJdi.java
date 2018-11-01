@@ -15,6 +15,9 @@ public class MetalAndColorsPageJdi extends WebPage {
 
     @FindBy(css=".form")
     public MetalsAndColorsForm metalsAndColorsForm;
+
+    //==================================================ACTIONS=========================================================
+
 }
 
 
