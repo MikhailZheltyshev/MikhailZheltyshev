@@ -23,7 +23,7 @@ HW 1 Mobile TA
 
 *5.	What should be improved/changed in existing test code? Why, for what?
     
-    1.  We have used absolute paths to our .apk file – so our test project won’t run properly on other device since the absolute paths will differ on every device. Therefore, we should replace the absolute paths with relative ones. It will allow us to run the tests on different machines with no dependency on absolute path to our project.
+    1.  We have used absolute paths to our .apk file – so our test project won’t run properly on other PC since the absolute paths will differ on every machine. Therefore, we should replace the absolute paths with relative ones. It will allow us to run the tests on different machines with no dependency on absolute path to our project.
     
     2. Code comments need to be organized to provide our colleges with more documentation on our project to improve teamwork efficiency. 
     
@@ -34,6 +34,7 @@ HW 1 Mobile TA
     5. Also it is better to move driver initialization class from scenarios folder to some other project outside the tests scope. 
     
     6. Thread.sleep() is not a good practice in real-life projects. It just blocks our application and stop particular thread running with pointless computer resources consumption. In addition, it really slows down our test application with pointless waits.
+    
     7. No test asserts are presented, which makes our tests pointless.
  
 
