@@ -19,7 +19,16 @@ HW 1 Mobile TA
 
 *4.	Connect a real device to Appium (describe required actions) and run tests. Are there any difference with run on emulator?
     
-    It does not seem there is any difference (except some real device manual preparations – you need to set some proper settings in developer mode section in device preferences etc.)
+    To allow our tests to control the real device we need to perform some preparations:
+       - Unlock developer options in device preferences (by tapping multiple times on "Build Number" option in Preferences > About Phone section)
+       - Enter unlocked Developer options and allow USB debuggin
+       - Connect your device to the PC with adb drivers for your device installed
+       - Start Appium server and start Appium inspector session
+       - Change "deviceName" property to paricular real device name (to know device name execute command "adb devices" via cmd) in Appium session config and in DriverSetup.class caps of our project.
+       - Establish session
+       - Allow debugging session on your device if needed
+       
+    It does not seem there is any difference (except some real device manual preparations) for running appium session on real device.
 
 *5.	What should be improved/changed in existing test code? Why, for what?
     
