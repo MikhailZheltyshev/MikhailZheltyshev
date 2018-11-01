@@ -38,7 +38,7 @@ public class DatesPageTests extends SelenideTestBase {
         //5 Open through the header menu Service -> Dates Page
         homePage.openDatesPageThroughTheHeaderMenu();
 
-        //6 Using drag-and-drop set Range sliders. left sliders - the most left position, right slider - the most rigth position
+        //6 Using drag-and-drop set Range sliders. left sliders - the most left position, right slider - the most right position
         datesPageSelenide.setSlidersPosition(0, 100);
 
         //7 Assert that for "From" and "To" sliders there are logs rows with corresponding values
@@ -50,7 +50,7 @@ public class DatesPageTests extends SelenideTestBase {
         //9 Assert that for "From" and "To" sliders there are logs rows with corresponding values
         datesPageSelenide.checkSlidersSettingLog(0, 0);
 
-        //10 Using drag-and-drop set Range sliders. left sliders - the most right position, right slider - the most rigth position.
+        //10 Using drag-and-drop set Range sliders. left sliders - the most right position, right slider - the most right position.
         datesPageSelenide.setSlidersPosition(100, 100);
 
         //11 Assert that for "From" and "To" sliders there are logs rows with corresponding values
