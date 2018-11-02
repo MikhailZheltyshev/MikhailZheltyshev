@@ -19,6 +19,7 @@ public class MetalsAndColorsPageTests extends MetalsAndColorsPageInit {
     }
 
     @Test(dataProvider = "checkMetalsAndColorsPageDataProvider", dataProviderClass = DataProviders.class)
+    // TODO the name of the "data" should be specified...
     public void metalsColorsTest(TestData data) {
 
         //1 Open Home Page
@@ -28,12 +29,14 @@ public class MetalsAndColorsPageTests extends MetalsAndColorsPageInit {
         homePage.checkOpened();
 
         //3 Login as PITER CHAILOVSKI
+        // TODO should be parametrised
         login();
 
         //4 Check User Name corresponds to the logged user
         checkLoggedInUserName(PITER_CHAILOVSKII);
 
         //5 Open Metals And Colors Page by the Header menu
+        // TODO should be parametrised, Site.page.openPage(Pages.PAGE_1)
         openMetalAndColorsPageByHeader();
 
         //6 Fill Metals And Colors Form using data provided

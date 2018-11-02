@@ -31,6 +31,7 @@ public class DataProviders {
 
     @DataProvider
     public Object[][] checkMetalsAndColorsPageDataProvider() throws FileNotFoundException {
+        // TODO Data "key" string might be changed in a quite different way, your code should not be linked with its name
         Gson gson = new Gson();
         JsonObject jDataSet = new JsonParser().parse(new FileReader
                 ("src/test/resources/JDI_ex8_metalsColorsDataSet.json")).getAsJsonObject();

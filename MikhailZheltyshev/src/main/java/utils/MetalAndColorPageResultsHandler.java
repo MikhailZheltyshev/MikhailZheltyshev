@@ -21,6 +21,7 @@ public class MetalAndColorPageResultsHandler {
         return metalAndColorsPage.results.resultsList.getTextList();
     }
 
+    // TODO have you ever heard about String.format ?
     private static List<String> getExpected(TestData data) {
         String summaryRow = SUMMARY_ROW_MASK.replace("{SUMMARY}",
                 String.valueOf(data.getSummaryOdd() + data.getSummaryEven()));

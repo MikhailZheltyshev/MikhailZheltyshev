@@ -78,6 +78,7 @@ public class MetalsAndColorsForm extends Form<TestData> {
 
     private void selectSummary(int... summaryRadios) {
         for (int radio : summaryRadios)
+            // TODO this is really cool algorithm, but not so obvious...
             if (radio % 2 == 0) {
                 summary.even.select(String.valueOf(radio));
             } else {
