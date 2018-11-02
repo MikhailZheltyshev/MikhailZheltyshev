@@ -13,7 +13,6 @@ public class DriverSetup {
     protected void prepareNative() throws MalformedURLException { // exception required by java.net.URL
         DesiredCapabilities capabilities = new DesiredCapabilities();
         //mandatory capabilities
-        //capabilities.setCapability("device","Android"); // mandatory???????
         capabilities.setCapability("deviceName","aaf89146");
         capabilities.setCapability("platformName","Android");
 
