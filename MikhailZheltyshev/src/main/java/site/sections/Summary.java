@@ -22,9 +22,9 @@ public class Summary extends Section {
 
     public void select(int value) {
         if (value % 2 == 0) {
-            odds.select(String.valueOf(value));
-        } else {
             even.select(String.valueOf(value));
+        } else {
+            odds.select(String.valueOf(value));
         }
     }
 }

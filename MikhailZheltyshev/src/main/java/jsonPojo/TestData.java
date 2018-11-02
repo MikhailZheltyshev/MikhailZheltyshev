@@ -10,16 +10,16 @@ public class TestData {
     private String metals;
     private String[] vegetables;
 
-    public int[] getSummary() {
-        return summary;
+    public int getSummaryEven() {
+        return summary[1];
     }
 
     public int getSummaryOdd() {
         return summary[0];
     }
 
-    public int getSummaryEven() {
-        return summary[1];
+    public int[] getSummary() {
+        return summary;
     }
 
     public void setSummary(int[] summary) {
