@@ -11,6 +11,12 @@ HW 1 Mobile TA
 
     By add_btn_xpath = By.xpath("//android.widget.Button[@content-desc='Add Contact']");
     By add_btn_class_name = By.className("android.widget.Button");
+    
+    There are some differences in locator's syntaxis and regarding appium search strategies:
+    
+    ID - Native element identifier.
+    Class name - full name of the UIAutomator2 class.
+    XPath - Search the app XML source using xpath.
 
 *3.	Modify existing tests to run on a real device. What should be changed? 
 
@@ -22,13 +28,13 @@ HW 1 Mobile TA
     To allow our tests to control the real device we need to perform some preparations:
        - Unlock developer options in device preferences (by tapping multiple times on "Build Number" option in Preferences > About Phone section)
        - Enter unlocked Developer options and allow USB debuggin
-       - Connect your device to the PC with adb drivers for your device installed
-       - Start Appium server and start Appium inspector session
+       - Connect your device to the PC with adb drivers for your device and android sdk installed
+       - Start Appium server and Appium inspector session configuration
        - Change "deviceName" property to paricular real device name (to know device name execute command "adb devices" via cmd) in Appium session config and in DriverSetup.class caps of our project.
-       - Establish session
+       - Start Inspector's session
        - Allow debugging session on your device if needed
        
-    It does not seem there is any difference (except some real device manual preparations) for running appium session on real device.
+    It does not seem there is any difference (except some manual preparations for the real device) for running appium session on real device.
 
 *5.	What should be improved/changed in existing test code? Why, for what?
     
@@ -42,7 +48,7 @@ HW 1 Mobile TA
     
     5. Also it is better to move driver initialization class from scenarios folder to some other project outside the tests scope. 
     
-    6. Thread.sleep() is not a good practice in real-life projects. It just blocks our application and stop particular thread running with pointless computer resources consumption. In addition, it really slows down our test application with pointless waits.
+    6. Thread.sleep() is not a good practice for real-life projects. It just blocks our application and stop particular thread running with pointless computer resources consumption. In addition, it really slows down our test application with pointless waits.
     
     7. No test asserts are presented, which makes our tests pointless.
  
