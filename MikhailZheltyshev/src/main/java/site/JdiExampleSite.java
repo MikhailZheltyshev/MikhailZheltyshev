@@ -6,6 +6,7 @@ import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JSite;
 import com.epam.web.matcher.junit.Assert;
 import entities.User;
 import enums.Users;
+import enums.jdi.Pages;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
 import site.pages.HomePageJdi;
@@ -27,9 +28,9 @@ public class JdiExampleSite extends WebSite {
     public static Label profilePhoto;
 
     @Step
-    public static void login() {
+    public static void login(Users user) {
         profilePhoto.click();
-        loginForm.loginAs(new User());
+        loginForm.loginAs(new User(user.login, user.password));
     }
 
     @Step
@@ -38,8 +39,8 @@ public class JdiExampleSite extends WebSite {
     }
 
     @Step
-    public static void openMetalAndColorsPageByHeader() {
-        headerMenu.navigation.clickOn("Metals & Colors");
+    public static void openPageByHeader(Pages page) {
+        headerMenu.navigation.clickOn(page.displayName);
     }
 }
 

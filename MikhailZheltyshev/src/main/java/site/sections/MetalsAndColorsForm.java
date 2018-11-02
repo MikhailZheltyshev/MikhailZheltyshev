@@ -59,7 +59,7 @@ public class MetalsAndColorsForm extends Form<TestData> {
     //==============================================================ACTIONS==============================================
     @Override
     public void fill(TestData entity) {
-        selectSummary(entity.getSummaryOdd(), entity.getSummaryEven());
+        selectSummary(entity.getSummary());
         selectElements(entity.getElements());
         selectColor(entity.getColor());
         selectMetal(entity.getMetal());
@@ -77,12 +77,9 @@ public class MetalsAndColorsForm extends Form<TestData> {
     }
 
     private void selectSummary(int... summaryRadios) {
-        for (int radio : summaryRadios)
-            if (radio % 2 == 0) {
-                summary.even.select(String.valueOf(radio));
-            } else {
-                summary.odds.select(String.valueOf(radio));
-            }
+        for (int radio : summaryRadios) {
+            summary.select(radio);
+        }
     }
 
     private void selectElements(String... elements) {

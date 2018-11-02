@@ -18,4 +18,13 @@ public class Summary extends Section {
     @FindBy(id = "calculate-button")
     public IButton calculate;
 
+    //================================================ACTIONS===========================================================
+
+    public void select(int value) {
+        if (value % 2 == 0) {
+            odds.select(String.valueOf(value));
+        } else {
+            even.select(String.valueOf(value));
+        }
+    }
 }

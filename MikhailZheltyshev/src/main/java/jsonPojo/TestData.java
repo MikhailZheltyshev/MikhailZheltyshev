@@ -10,6 +10,10 @@ public class TestData {
     private String metals;
     private String[] vegetables;
 
+    public int[] getSummary() {
+        return summary;
+    }
+
     public int getSummaryOdd() {
         return summary[0];
     }
