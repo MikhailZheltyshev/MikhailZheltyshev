@@ -1,28 +1,34 @@
 package appium.hooks;
 
 import appium.setup.Driver;
+import appium.setup.PropertyFile;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
 
-import java.io.IOException;
-
+@Test(groups = {"native","web"})
 public class Hooks extends Driver {
-    /**
-     * Required variables will be initialized by inherited constructor
-     * @throws IOException
-     */
-    Hooks() throws IOException {
-        super();
-    }
-
-    @BeforeSuite(description = "Prepare driver to run test(s)")
-    public void setUp() throws Exception {
+    @BeforeSuite(groups = {"web"})
+    void setWeb() throws Exception {
+        setPropertyFile(PropertyFile.WEB);
         prepareDriver();
-        System.out.println("Driver prepared");
-
     }
 
-    @AfterSuite(description = "Close driver on all tests completion")
+    @BeforeSuite(groups = {"native"})
+    void setNative() throws Exception {
+        setPropertyFile(PropertyFile.NATIVE);
+        prepareDriver();
+    }
+
+    @BeforeSuite(groups = {"hybrid"})
+    void setHybrid() throws Exception {
+        setPropertyFile(PropertyFile.HYBRID);
+        prepareDriver();
+    }
+
+    @AfterSuite(description = "Close driver on all tests completion",
+            alwaysRun = true
+    )
     public void tearDown() throws Exception {
         driver().quit();
         System.out.println("Driver closed");

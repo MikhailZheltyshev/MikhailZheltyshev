@@ -6,10 +6,15 @@ import java.util.Properties;
 
 public class TestProperties {
 
+    String currentPropertyFile;
     Properties currentProps = new Properties();
 
+    protected void setPropertyFile(PropertyFile propertyFile){
+        currentPropertyFile = propertyFile.getName();
+    }
+
     Properties getCurrentProps() throws IOException {
-        FileInputStream in = new FileInputStream(System.getProperty("user.dir") + "/src/test/resources/appium_test.properties");
+        FileInputStream in = new FileInputStream(currentPropertyFile);
         currentProps.load(in);
         in.close();
         return currentProps;

@@ -6,40 +6,49 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 
-//TODO Need to implement TestProperties enum
-//TODO Fix Appium server's "Original error: No Chromedriver found that can automate Chrome '61.0.3163'."
+//TODO TestProperties.getCurrentProps() method fails with NullPointerException - fix is needed
 public class Driver extends TestProperties {
-    //protected AppiumDriver driver;
     private static AppiumDriver driverSingle = null;
     private static WebDriverWait waitSingle;
     protected DesiredCapabilities capabilities;
 
     // Properties to be read
-    protected String AUT; // (mobile) app under testing
-    protected String SUT; // site under testing
-    protected String TEST_PLATFORM;
-    protected String DRIVER;
+    protected static String AUT; // (mobile) app under testing
+    protected static String SUT; // site under testing
+    protected static String TEST_PLATFORM;
+    protected static String DRIVER;
+    protected static String DEVICE_NAME;
 
-    // Constructor initializes properties on driver creation
-    protected Driver() throws IOException {
-        AUT = getProp("aut");
-        String t_sut = getProp("sut");
-        SUT = t_sut == null ? null : "http://" + t_sut;
-        TEST_PLATFORM = getProp("platform");
-        DRIVER = getProp("driver");
-    }
 
+    /**
+     * Set appropriate capabilities to Appium driver depending on platform and application
+     *
+     * @throws Exception
+     */
     protected void prepareDriver() throws Exception {
         capabilities = new DesiredCapabilities();
         String browserName;
 
+        System.out.println("Properties: " + currentPropertyFile);
+
+        // Assign property values to variables
+        String resourcePath = "./src/main/resources/";
+        String mobileAppName = getProp("aut");
+        AUT = mobileAppName == null ? null : resourcePath + mobileAppName;
+        System.out.println(AUT);
+        String t_sut = getProp("sut");
+        SUT = t_sut == null ? null : "http://" + t_sut;
+        TEST_PLATFORM = getProp("platform");
+        DRIVER = getProp("driver");
+        DEVICE_NAME = getProp("devicename");
+
         // Setup test platform: Android or iOS. Browser also depends on a platform.
         switch (TEST_PLATFORM) {
             case "Android":
-                capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "emul"); // default Android emulator
+                //capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"emulator-5554"); // default Android emulator
+                capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, DEVICE_NAME);
                 browserName = "Chrome";
                 break;
             case "iOS":
@@ -64,8 +73,10 @@ public class Driver extends TestProperties {
 
         // Init driver for local Appium server with capabilities have been set
         if (driverSingle == null) driverSingle = new AppiumDriver(new URL(DRIVER), capabilities);
+
         // Set an object to handle timeouts
         if (waitSingle == null) waitSingle = new WebDriverWait(driver(), 10);
+
     }
 
     protected AppiumDriver driver() throws Exception {
@@ -74,6 +85,7 @@ public class Driver extends TestProperties {
     }
 
     protected WebDriverWait driverWait() throws Exception {
+        if(waitSingle == null) waitSingle = new WebDriverWait(driver(), 10);
         return waitSingle;
     }
 }
