@@ -13,7 +13,7 @@ Appium Inspector. Are there any difference with id version?
     By add_btn_xpath = By.xpath("//android.widget.Button[@content-desc='Add Contact']");
     By add_btn_class_name = By.className("android.widget.Button");
     
-    There are some differences in locator's syntaxis and regarding appium search strategies:
+    There are some differences in locator's syntaxis and appium search strategies:
     
     ID - Native element identifier.
     Class name - full name of the UIAutomator2 class.
@@ -29,12 +29,12 @@ Appium Inspector. Are there any difference with id version?
     To allow our tests to control the real device we need to perform some preparations:
        - Unlock developer options in device preferences (by tapping multiple times on "Build Number" option in
        Preferences > About Phone section)
-       - Enter unlocked Developer options and allow USB debuggin
-       - Connect your device to the PC with adb drivers for your device and android sdk installed
-       - Start Appium server and Appium inspector session configuration
+       - Enter unlocked Developer options and allow USB debugging
+       - Connect your device to the PC with adb drivers for your device and android sdk installed and configured
+       - Start Appium server
        - Change "deviceName" property to paricular real device name (to know device name execute command "adb devices"
         via cmd) in Appium session config and in DriverSetup.class caps of our project.
-       - Start Inspector's session
+       - Start running your tests ("deviceName" cap should be correct)
        - Allow debugging session on your device if needed
        
     It does not seem there is any difference (except some manual preparations for the real device) for running appium
@@ -50,10 +50,10 @@ Appium Inspector. Are there any difference with id version?
      teamwork efficiency.
     
     3. We need to avoid hardcoded values to ensure better flexibility (for possible future changes) and further code
-     maintenance. For example, sut URL can be replaced with a constant variable.
+     maintenance. For example, SUT URL could be replaced with a constant variable.
     
     4. It is good practice to separate test logic from test data (PO pattern). Currently we declare button selector’s
-     variables inside the Test methods, but what if we need to reuse some of them?
+     variables inside the Test methods, but what if we'll need to reuse some of them?
     
     5. Also it is better to move driver initialization class from scenarios folder to some other project outside the tests scope. 
     
