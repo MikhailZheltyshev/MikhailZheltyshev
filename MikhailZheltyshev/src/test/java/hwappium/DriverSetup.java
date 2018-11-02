@@ -16,7 +16,7 @@ public class DriverSetup {
         capabilities.setCapability("deviceName","aaf89146");
         capabilities.setCapability("platformName","Android");
 
-        File app = new File("C:\\Users\\mihal\\Documents\\GitHub\\MikhailZheltyshev\\MikhailZheltyshev","ContactManager.apk");
+        File app = new File("ContactManager.apk");
 
         capabilities.setCapability("app", app.getAbsolutePath());
 
@@ -33,7 +33,6 @@ public class DriverSetup {
 
         // specific web capabilities
         capabilities.setCapability("browserName", "Chrome");
-        //capabilities.setCapability("browserName", "Browser");
 
         // Init driver for local Appium server with capabilities have been set
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),

@@ -14,21 +14,20 @@ public class FirstSimpleTest extends DriverSetup {
     }
 
     @Test
-    public void SimplestTest() throws InterruptedException {
+    public void SimplestTest() {
         By add_btn_id = By.id("com.example.android.contactmanager:id/addContactButton");
+
         //added alternative locators
         By add_btn_xpath = By.xpath("//android.widget.Button[@content-desc='Add Contact']");
         By add_btn_class_name = By.className("android.widget.Button");
 
         driver.findElement(add_btn_xpath).click();
         System.out.println("Simplest Appium test done");
-        Thread.sleep(1000);
     }
 
     @Test(description = "Open website")
-    public void webTest() throws InterruptedException {
+    public void webTest() {
         driver.get("http://iana.org");
-        Thread.sleep(5000);
         System.out.println("Site opening done");
     }
 
