@@ -7,6 +7,6 @@ public class SelenideTestBase {
 
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite() {
-        Configuration.browser = "chrome";
+        Configuration.browser = "firefox";
     }
 }
