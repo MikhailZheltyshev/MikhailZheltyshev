@@ -14,7 +14,7 @@ public class TestProperties {
     }
 
     Properties getCurrentProps() throws IOException {
-        FileInputStream in = new FileInputStream(currentPropertyFile);
+        FileInputStream in = new FileInputStream("native.properties");
         currentProps.load(in);
         in.close();
         return currentProps;

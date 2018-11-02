@@ -2,9 +2,7 @@ package appium.hooks;
 
 import appium.setup.Driver;
 import appium.setup.PropertyFile;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 @Test(groups = {"native","web"})
 public class Hooks extends Driver {
