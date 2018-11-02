@@ -11,7 +11,7 @@ public class SimpleTest extends SimpleTestsInit {
     @Test
     public void loginTest() {
         homePage.open();
-        login();
+        //login();
         homePage.checkOpened();
 
     }
