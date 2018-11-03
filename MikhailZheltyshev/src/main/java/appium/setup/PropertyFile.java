@@ -1,7 +1,7 @@
 package appium.setup;
 
 public enum PropertyFile {
-    NATIVE("nativetests"), WEB("webtests"), HYBRID("hybrid");
+    NATIVE("native"), WEB("web");
 
     private String currentAppType;
 

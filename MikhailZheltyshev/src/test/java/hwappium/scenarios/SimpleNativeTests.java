@@ -1,18 +1,16 @@
-package hwappium.scenarios.appium_native;
+package hwappium.scenarios;
 
-import appium.setup.Driver;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
 
-@Test(groups = "native")
-public class SimpleNativeTests extends Driver {
-    protected SimpleNativeTests() throws IOException {
+public class SimpleNativeTests extends Hooks {
+    protected SimpleNativeTests() {
         super();
     }
 
-    @Test(description = "Just click on button 'Add contact'")
+    @Test(description = "Just click on button 'Add contact'",
+            groups = "native")
     public void simplestTest() throws Exception {
         String app_package_name = "com.example.android.contactmanager:id/";
         By add_btn = By.id(app_package_name + "addContactButton");

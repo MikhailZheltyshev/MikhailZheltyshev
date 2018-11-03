@@ -1,4 +1,4 @@
-package appium.hooks;
+package hwappium.scenarios;
 
 import appium.setup.Driver;
 import appium.setup.PropertyFile;
@@ -18,15 +18,7 @@ public class Hooks extends Driver {
         prepareDriver();
     }
 
-    @BeforeSuite(groups = {"hybrid"})
-    void setHybrid() throws Exception {
-        setPropertyFile(PropertyFile.HYBRID);
-        prepareDriver();
-    }
-
-    @AfterSuite(description = "Close driver on all tests completion",
-            alwaysRun = true
-    )
+    @AfterSuite(description = "Close driver on all tests completion")
     public void tearDown() throws Exception {
         driver().quit();
         System.out.println("Driver closed");

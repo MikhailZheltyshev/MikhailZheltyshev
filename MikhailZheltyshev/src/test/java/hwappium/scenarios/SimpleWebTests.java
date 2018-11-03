@@ -1,14 +1,12 @@
-package hwappium.scenarios.web;
+package hwappium.scenarios;
 
-import appium.setup.Driver;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-
 @Test(groups = "web")
-public class SimpleWebTests extends Driver {
-    protected SimpleWebTests() throws IOException {
+public class SimpleWebTests extends Hooks {
+    protected SimpleWebTests() {
         super();
     }
 

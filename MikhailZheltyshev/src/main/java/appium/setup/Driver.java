@@ -40,6 +40,7 @@ public class Driver extends TestProperties {
         System.out.println(AUT);
         String t_sut = getProp("sut");
         SUT = t_sut == null ? null : "http://" + t_sut;
+        System.out.println(SUT);
         TEST_PLATFORM = getProp("platform");
         DRIVER = getProp("driver");
         DEVICE_NAME = getProp("devicename");
