@@ -4,7 +4,6 @@ import com.codeborne.selenide.ElementsCollection;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import utils.DatesLogHelper;
-import utils.ElementsLogHelper;
 import utils.SliderHandler;
 
 import static enums.DatesPageSliderTypes.FROM;

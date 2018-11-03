@@ -9,16 +9,15 @@ import enums.Users;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
-import static com.codeborne.selenide.CollectionCondition.*;
+import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static enums.ServiceMenuButtons.*;
-import static enums.ServiceMenuButtons.DATES;
-import static enums.ServiceMenuButtons.DIFFERENT_ELEMENTS;
-import static enums.ServiceMenuCategories.*;
-import static enums.Urls.*;
+import static enums.ServiceMenuButtons.getButtonByName;
+import static enums.ServiceMenuCategories.getExpectedCategoriesList;
+import static enums.Urls.DIFFERENT_ELEMENTS_PAGE;
+import static enums.Urls.getPageEnumByName;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 

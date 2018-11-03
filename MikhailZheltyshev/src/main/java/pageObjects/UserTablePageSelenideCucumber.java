@@ -14,13 +14,9 @@ import java.util.List;
 import java.util.Map;
 
 import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selectors.byValue;
 import static com.codeborne.selenide.Selenide.page;
-import static enums.DatesPageSliderTypes.TO;
 import static enums.Urls.getPageEnumByName;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class UserTablePageSelenideCucumber {
 
