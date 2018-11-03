@@ -8,6 +8,7 @@ import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
 import org.openqa.selenium.support.FindBy;
 import utils.UserTableHelper;
+import utils.UserTableLogHelper;
 
 import java.util.List;
 import java.util.Map;
@@ -16,8 +17,10 @@ import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byValue;
 import static com.codeborne.selenide.Selenide.page;
+import static enums.DatesPageSliderTypes.TO;
 import static enums.Urls.getPageEnumByName;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class UserTablePageSelenideCucumber {
 
@@ -51,6 +54,7 @@ public class UserTablePageSelenideCucumber {
     private ElementsCollection descriptionCheckBoxes;
 
     private final UserTableHelper TABLE_HELPER = new UserTableHelper();
+    private final UserTableLogHelper LOG_PARSER = new UserTableLogHelper();
 
     //======================================================METHODS=====================================================
 
@@ -96,7 +100,23 @@ public class UserTablePageSelenideCucumber {
     }
 
     @When("I select 'vip' checkbox for \"(.+)\"")
-    public void selectVipCheckBoxFor(String fullName){
+    public void selectVipCheckBoxFor(String fullName) {
         TABLE_HELPER.selectVipCheckBox(fullName);
+    }
+
+    @Then("(\\d+) log row has \"(.+)\" text in log section")
+    public void checkLogRow(int rowIndex, String expectedText) {
+        assertEquals(LOG_PARSER.getActualLogRecord(rowIndex - 1), expectedText);
+    }
+
+    @When("I click on dropdown in column Type for user (.+)")
+    public void clickOnTypeDropDownFor(String fullName) {
+        TABLE_HELPER.openTypeDropDown(fullName);
+    }
+
+    @Then("droplist contains values:")
+    public void checkDropDownContent(DataTable expectedDropDownContent) {
+        assertEquals(TABLE_HELPER.getOpenedDropListContent(),
+                expectedDropDownContent.subTable(1, 0).asList());
     }
 }
