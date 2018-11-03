@@ -14,9 +14,9 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static enums.ServiceMenuButtons.*;
 import static enums.ServiceMenuButtons.DATES;
 import static enums.ServiceMenuButtons.DIFFERENT_ELEMENTS;
-import static enums.ServiceMenuButtons.USER_TABLE;
 import static enums.ServiceMenuCategories.*;
 import static enums.Urls.*;
 import static org.testng.Assert.assertEquals;
@@ -68,19 +68,17 @@ public class HomePageSelenideCucumber {
     @FindBy(css = ".main-txt.text-center")
     private SelenideElement mainSubHeader;
 
-    private final String EXPECTED_HOME_PAGE_TITLE = "Home Page";
-
     //==================================================METHODS=========================================================
     @Step("Open test site by URL")
-    @Given("I am on \"Home Page\"")
-    public void open() {
-        Selenide.open(HOME_PAGE.url);
+    @Given("I am on \"(.+)\"")
+    public void open(String page) {
+        Selenide.open(getPageEnumByName(page).url);
     }
 
     @Step("Assert Browser title")
-    @Then("The browser title is Home Page")
-    public void checkTitle() {
-        assertEquals(getWebDriver().getTitle(), EXPECTED_HOME_PAGE_TITLE);
+    @Then("The browser title is (.+)")
+    public void checkTitle(String browserTitle) {
+        assertEquals(getWebDriver().getTitle(), getPageEnumByName(browserTitle).title);
     }
 
     @Step("Perform login")
@@ -139,23 +137,15 @@ public class HomePageSelenideCucumber {
     @Then("I navigate to the Different Elements page through the upper Service menu")
     public void openDifferentElementsPageThroughTheHeaderMenu() {
         clickOnUpperSelect();
-        upperServiceMenuElements.find(Condition.text(DIFFERENT_ELEMENTS.name)).click();
+        upperServiceMenuElements.find(Condition.text(DIFFERENT_ELEMENTS_PAGE.url)).click();
         assertEquals(WebDriverRunner.url(), DIFFERENT_ELEMENTS_PAGE.url);
     }
 
-    @Step("Open through the header menu Service -> Dates Page")
-    public void openDatesPageThroughTheHeaderMenu() {
-        clickOnUpperSelect();
-        upperServiceMenuElements.find(Condition.text(DATES.name)).click();
-        assertEquals(WebDriverRunner.url(), DATES_PAGE.url);
-    }
-
     @Step("Open through the header menu Service -> User Table")
-    @And("I click on \"User Table\" button in Service dropdown")
-    public void openUserTablePageThroughTheHeaderMenu() {
-        clickOnUpperSelect();
-        upperServiceMenuElements.find(Condition.text(USER_TABLE.name)).click();
-        assertEquals(WebDriverRunner.url(), USER_TABLE_PAGE.url);
+    @And("I click on \"(.+)\" button in Service dropdown")
+    public void openPageThroughTheHeaderMenu(String selectItem) {
+        upperServiceMenuElements.find(Condition.text(getButtonByName(selectItem).name)).click();
+        assertEquals(WebDriverRunner.url(), getPageEnumByName(selectItem).url);
     }
 
     @Step("Assert that interface on Home page contains all needed elements.")

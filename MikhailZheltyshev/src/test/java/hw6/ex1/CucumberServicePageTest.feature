@@ -10,7 +10,9 @@ Feature: Service Page tests
     Then Upper Service drop down opens with all needed options
     When I click on the left Service subcategory
     Then Left Service drop down opens with all needed options
-    Then I navigate to the Different Elements page through the upper Service menu
+    When I click on "Service" button in Header
+    And I click on "Different Elements" button in Service dropdown
+    Then "Different Elements" page is opened
     Then Interface on Different Elements Page contains all needed elements
     Then The right section of the page is displayed
     Then The left section of the page is displayed

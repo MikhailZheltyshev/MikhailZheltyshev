@@ -15,4 +15,30 @@ public enum ServiceMenuButtons {
     ServiceMenuButtons(String name) {
         this.name = name;
     }
+
+    public static ServiceMenuButtons getButtonByName(String displayName) {
+        if (displayName.toUpperCase().equals(SUPPORT.name)) {
+            return SUPPORT;
+        }
+        if (displayName.toUpperCase().equals(DATES.name)) {
+            return DATES;
+        }
+        if (displayName.toUpperCase().equals(COMPLEX_TABLE.name)) {
+            return COMPLEX_TABLE;
+        }
+        if (displayName.toUpperCase().equals(SIMPLE_TABLE.name)) {
+            return SIMPLE_TABLE;
+        }
+        if (displayName.toUpperCase().equals(USER_TABLE.name)) {
+            return USER_TABLE;
+        }
+        if (displayName.toUpperCase().equals(TABLES_WITH_PAGES.name)) {
+            return TABLES_WITH_PAGES;
+        }
+        if (displayName.toUpperCase().equals(DIFFERENT_ELEMENTS.name)) {
+            return DIFFERENT_ELEMENTS;
+        } else {
+            throw new UnsupportedOperationException("Enum wasn't found!");
+        }
+    }
 }

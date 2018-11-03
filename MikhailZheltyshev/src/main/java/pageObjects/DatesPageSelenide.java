@@ -3,6 +3,7 @@ package pageObjects;
 import com.codeborne.selenide.ElementsCollection;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
+import utils.DatesLogHelper;
 import utils.ElementsLogHelper;
 import utils.SliderHandler;
 
@@ -16,7 +17,7 @@ public class DatesPageSelenide {
     @FindBy(css = ".ui-slider-handle")
     private ElementsCollection sliders;
 
-    private final ElementsLogHelper LOG_PARSER = new ElementsLogHelper();
+    private final DatesLogHelper LOG_PARSER = new DatesLogHelper();
     private final SliderHandler SLIDER_HANDLER = new SliderHandler();
 
     //=====================================================METHODS======================================================
