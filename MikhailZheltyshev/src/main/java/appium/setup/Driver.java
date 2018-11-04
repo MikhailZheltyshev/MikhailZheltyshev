@@ -2,31 +2,25 @@ package appium.setup;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.net.URL;
 
-//TODO TestProperties.getCurrentProps() method fails with NullPointerException - fix is needed
 public class Driver extends TestProperties {
     private static AppiumDriver driverSingle = null;
     private static WebDriverWait waitSingle;
     protected DesiredCapabilities capabilities;
 
-    // Properties to be read
-    protected static String AUT; // (mobile) app under testing
-    protected static String SUT; // site under testing
+    // Properties fields
+    protected static String AUT;
+    protected static String SUT;
     protected static String TEST_PLATFORM;
     protected static String DRIVER;
     protected static String DEVICE_NAME;
 
-
-    /**
-     * Set appropriate capabilities to Appium driver depending on platform and application
-     *
-     * @throws Exception
-     */
     protected void prepareDriver() throws Exception {
         capabilities = new DesiredCapabilities();
         String browserName;
