@@ -1,7 +1,10 @@
-package appium.setup;
+package setup;
 
 public enum PropertyFile {
-    NATIVE("native"), WEB("web");
+
+    NATIVE("nativetests"),
+    WEB("webtests"),
+    HYBRID("hybridtests");
 
     private String currentAppType;
 
@@ -9,8 +12,7 @@ public enum PropertyFile {
         this.currentAppType = current;
     }
 
-    public String getName() {
+    public String getFileName() {
         return currentAppType + ".properties";
     }
-
 }

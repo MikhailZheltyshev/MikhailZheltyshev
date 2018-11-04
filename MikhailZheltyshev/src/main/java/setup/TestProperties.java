@@ -1,16 +1,15 @@
-package appium.setup;
+package setup;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
 public class TestProperties {
-
-    static String currentPropertyFile;
+    String currentPropertyFile;
     Properties currentProps = new Properties();
 
     protected void setPropertyFile(PropertyFile propertyFile){
-        currentPropertyFile = propertyFile.getName();
+        currentPropertyFile = propertyFile.getFileName();
     }
 
     Properties getCurrentProps() throws IOException {
@@ -21,8 +20,7 @@ public class TestProperties {
     }
 
     protected String getProp(String propKey) throws IOException {
-        if (!currentProps.containsKey(propKey)) currentProps = getCurrentProps();
-        // "default" form used to handle the absence of parameter
+        if(!currentProps.containsKey(propKey)) currentProps = getCurrentProps();
         return currentProps.getProperty(propKey, null);
     }
 }
