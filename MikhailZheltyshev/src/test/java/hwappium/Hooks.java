@@ -3,8 +3,8 @@ package hwappium;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import setup.Driver;
-import setup.PropertyFile;
+import appium_setup.Driver;
+import appium_setup.PropertyFile;
 
 @Test(groups = {"native","web"})
 public class Hooks extends Driver {

@@ -1,31 +1,41 @@
 package hwappium.nativetests;
 
+import appium_setup.PropertyFile;
 import hwappium.Hooks;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import setup.PropertyFile;
 
 import java.util.Arrays;
 import java.util.List;
 
+import static appium_helper.KeyBoardHelper.checkKeyBoardAppears;
+
 @Test(groups = "native")
 public class SimpleNativeTests extends Hooks {
-
+    /**
+     * Constructor to pass PropertyFile type into Hooks to run proper prepareDriver() in @BeforeSuite.
+     */
     protected SimpleNativeTests() {
         super(PropertyFile.NATIVE);
     }
 
-    @Test(description = "Click on the button 'Add contact' and check content of opened screen")
+    @Test(description = "Go to the \"Add Contact\" screen and check it content")
     public void simplestAddContactScreenTest() throws Exception {
+        //Prefix for elements
         String app_package_name = "com.example.android.contactmanager:id/";
         By add_btn = By.id(app_package_name + "addContactButton");
         driver().findElement(add_btn).click();
+
+        //WebElement for Add Contact screen title
         By add_contact_title = By.id("android:id/title");
 
         //Check that "Add contact" title is displayed
         Assert.assertTrue(driver().findElement(add_contact_title).isDisplayed());
+
+        //Assert virtual keyboard appears using helper method
+        Assert.assertTrue(checkKeyBoardAppears(driver()));
 
         //WebElements for each title
         WebElement target_account_title = driver().findElement(By.id("Target Account"));
@@ -43,11 +53,13 @@ public class SimpleNativeTests extends Hooks {
         for (WebElement title : desiredTitles) {
             Assert.assertTrue(title.isDisplayed());
         }
+
         //Assert titles have expected texts
         for (int i = 0 ; i < expectedTitles.size(); i++){
             Assert.assertEquals(desiredTitles.get(i).getText(),expectedTitles.get(i));
         }
 
+        //Find all necessary fields on "Add Contact" screen
         WebElement target_account_spinner = driver().findElement(By.id(app_package_name + "accountSpinner"));
         WebElement contact_name_field = driver().findElement(By.id(app_package_name + "contactNameEditText"));
         WebElement contact_phone_field = driver().findElement(By.id(app_package_name + "contactPhoneEditText"));

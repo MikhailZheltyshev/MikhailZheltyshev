@@ -19,7 +19,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.9.13.6</version>
+            <version>6.14.3</version>
         </dependency>
 
         <dependency>
@@ -102,6 +102,13 @@
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
             <version>6.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>3.2.0</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>

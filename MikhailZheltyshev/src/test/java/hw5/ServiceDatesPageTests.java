@@ -188,5 +188,4 @@ public class ServiceDatesPageTests extends SelenideTestBase {
         //13 Assert that for "From" and "To" sliders there are logs rows with corresponding values
         datesPageSelenide.checkSlidersSettingLog(30, 70);
     }
-
 }
