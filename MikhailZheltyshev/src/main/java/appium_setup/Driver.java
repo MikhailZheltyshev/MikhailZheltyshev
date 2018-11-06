@@ -20,6 +20,8 @@ public class Driver extends TestProperties {
     private static String DRIVER;
     private static String DEVICE_NAME;
     private static String UDID;
+    private static String APP_PACKAGE;
+    private static String APP_ACTIVITY;
 
     protected void prepareDriver() throws Exception {
         capabilities = new DesiredCapabilities();
@@ -38,11 +40,15 @@ public class Driver extends TestProperties {
         DRIVER = getProp("driver");
         DEVICE_NAME = getProp("devicename");
         UDID = getProp("udid");
+        APP_PACKAGE = getProp("apppackage");
+        APP_ACTIVITY = getProp("appactivity");
 
         //Check type of test platform to set proper browserName capability
         switch (TEST_PLATFORM) {
             case "Android":
                 capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, DEVICE_NAME);
+                capabilities.setCapability("appPackage", APP_PACKAGE);
+                capabilities.setCapability("appActivity", APP_ACTIVITY);
                 browserName = "Chrome";
                 break;
             case "iOS":
