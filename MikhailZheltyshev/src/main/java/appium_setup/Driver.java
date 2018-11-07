@@ -47,8 +47,6 @@ public class Driver extends TestProperties {
         switch (TEST_PLATFORM) {
             case "Android":
                 capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, DEVICE_NAME);
-                capabilities.setCapability("appPackage", APP_PACKAGE);
-                capabilities.setCapability("appActivity", APP_ACTIVITY);
                 browserName = "Chrome";
                 break;
             case "iOS":
@@ -64,7 +62,9 @@ public class Driver extends TestProperties {
         //If SUT null and AUT is not null - we deal with NATIVE test
         if (AUT != null && SUT == null) {
             File app = new File(AUT);
-            capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
+            //capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
+            capabilities.setCapability("appPackage", APP_PACKAGE);
+            capabilities.setCapability("appActivity", APP_ACTIVITY);
             //And if opposite - we deal with WEB test
         } else if (SUT != null && AUT == null) {
             capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, browserName);
