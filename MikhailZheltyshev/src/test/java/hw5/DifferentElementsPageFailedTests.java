@@ -1,19 +1,25 @@
-package hw4;
+package hw5;
 
 import base.SelenideTestBase;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
+import listeners.AllureAttachmentListener;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.DifferentElementsPageSelenide;
 import pageObjects.HomePageSelenide;
 
 import static com.codeborne.selenide.Selenide.page;
-import static enums.DIfferentElementsPageCheckBoxes.WATER;
-import static enums.DIfferentElementsPageCheckBoxes.WIND;
+import static enums.DIfferentElementsPageCheckBoxes.*;
 import static enums.DifferentElementsPageDropDownItems.YELLOW;
 import static enums.DifferentElementsPageRadioButtons.SELEN;
 import static enums.Users.PITER_CHAILOVSKII;
 
-public class ServicePageTests extends SelenideTestBase {
+@Feature("UI Tests")
+@Story("Service And Dates Pages Testing")
+@Listeners(AllureAttachmentListener.class)
+public class DifferentElementsPageFailedTests extends SelenideTestBase {
 
     private HomePageSelenide homePage;
     private DifferentElementsPageSelenide differentElementsPage;
@@ -25,7 +31,7 @@ public class ServicePageTests extends SelenideTestBase {
     }
 
     @Test
-    public void servicePageInterfaceCheck() {
+    public void servicePageInterfaceCheckFailed() {
 
         //1 Open test site by URL
         homePage.open();
@@ -58,10 +64,10 @@ public class ServicePageTests extends SelenideTestBase {
         differentElementsPage.checkLeftSectionExists();
 
         //11 Select checkboxes
-        differentElementsPage.selectCheckBoxes(WATER, WIND);
+        differentElementsPage.selectCheckBoxes(EARTH, FIRE);
 
         //12 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        differentElementsPage.checkLoggingOfCheckBoxesChecked(WATER, WIND);
+        differentElementsPage.checkLoggingOfCheckBoxes(true, WATER, WIND);
 
         //13 Select radio
         differentElementsPage.selectRadioButton(SELEN);
@@ -79,6 +85,6 @@ public class ServicePageTests extends SelenideTestBase {
         differentElementsPage.unselectCheckBoxes(WATER, WIND);
 
         //18 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox
-        differentElementsPage.checkLoggingOfCheckBoxesUnchecked(WATER, WIND);
+        differentElementsPage.checkLoggingOfCheckBoxes(false, WATER, WIND);
     }
 }

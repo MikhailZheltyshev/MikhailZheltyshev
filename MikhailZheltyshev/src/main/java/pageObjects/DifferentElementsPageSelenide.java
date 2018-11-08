@@ -67,14 +67,6 @@ public class DifferentElementsPageSelenide {
         }
     }
 
-    @Step("Assert logging of checking {0} is correct")
-    public void checkLoggingOfCheckBoxesChecked(DIfferentElementsPageCheckBoxes... checkboxes) {
-        for (int i = checkboxes.length - 1; i >= 0; i--) {
-            assertEquals(LOG_PARSER.getActualLogRecord(i),
-                    LOG_PARSER.generateExpectedRecord(checkboxes[checkboxes.length - i - 1], true));
-        }
-    }
-
     @Step("Select {0} Radio Button")
     public void selectRadioButton(DifferentElementsPageRadioButtons radioButton) {
         radioButtonElements.find(text(radioButton.displayName)).click();
@@ -109,11 +101,11 @@ public class DifferentElementsPageSelenide {
                 LOG_PARSER.generateExpectedRecord(item));
     }
 
-    @Step("Assert logging of unchecking {0} is correct")
-    public void checkLoggingOfCheckBoxesUnchecked(DIfferentElementsPageCheckBoxes... checkboxes) {
+    @Step("Assert logging of setting {1} to {0} is correct")
+    public void checkLoggingOfCheckBoxes(boolean expectedState, DIfferentElementsPageCheckBoxes... checkboxes) {
         for (int i = checkboxes.length - 1; i >= 0; i--) {
             assertEquals(LOG_PARSER.getActualLogRecord(i),
-                    LOG_PARSER.generateExpectedRecord(checkboxes[checkboxes.length - i - 1], false));
+                    LOG_PARSER.generateExpectedRecord(checkboxes[checkboxes.length - i - 1], expectedState));
         }
     }
 }

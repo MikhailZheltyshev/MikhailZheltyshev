@@ -1,11 +1,7 @@
-package hw5;
+package hw4;
 
 import base.SelenideTestBase;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
-import listeners.AllureAttachmentListener;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.DifferentElementsPageSelenide;
 import pageObjects.HomePageSelenide;
@@ -17,10 +13,7 @@ import static enums.DifferentElementsPageDropDownItems.YELLOW;
 import static enums.DifferentElementsPageRadioButtons.SELEN;
 import static enums.Users.PITER_CHAILOVSKII;
 
-@Feature("UI Tests")
-@Story("Service And Dates Pages Testing")
-@Listeners(AllureAttachmentListener.class)
-public class ServicePageTests extends SelenideTestBase {
+public class DifferentElementsPageTests extends SelenideTestBase {
 
     private HomePageSelenide homePage;
     private DifferentElementsPageSelenide differentElementsPage;
@@ -68,7 +61,7 @@ public class ServicePageTests extends SelenideTestBase {
         differentElementsPage.selectCheckBoxes(WATER, WIND);
 
         //12 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        differentElementsPage.checkLoggingOfCheckBoxesChecked(WATER, WIND);
+        differentElementsPage.checkLoggingOfCheckBoxes(true, WATER, WIND);
 
         //13 Select radio
         differentElementsPage.selectRadioButton(SELEN);
@@ -86,6 +79,6 @@ public class ServicePageTests extends SelenideTestBase {
         differentElementsPage.unselectCheckBoxes(WATER, WIND);
 
         //18 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox
-        differentElementsPage.checkLoggingOfCheckBoxesUnchecked(WATER, WIND);
+        differentElementsPage.checkLoggingOfCheckBoxes(false, WATER, WIND);
     }
 }

@@ -5,8 +5,8 @@
 
         <classes>
             <class name="hw5.DatesPageTests"/>
-            <class name="hw5.ServicePageFailedTests"/>
-            <class name="hw5.ServicePageTests"/>
+            <class name="hw5.DifferentElementsPageFailedTests"/>
+            <class name="hw5.DifferentElementsPageTests"/>
         </classes>
 
     </test>

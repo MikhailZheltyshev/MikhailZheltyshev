@@ -11,7 +11,8 @@ import pageObjects.DifferentElementsPageSelenide;
 import pageObjects.HomePageSelenide;
 
 import static com.codeborne.selenide.Selenide.page;
-import static enums.DIfferentElementsPageCheckBoxes.*;
+import static enums.DIfferentElementsPageCheckBoxes.WATER;
+import static enums.DIfferentElementsPageCheckBoxes.WIND;
 import static enums.DifferentElementsPageDropDownItems.YELLOW;
 import static enums.DifferentElementsPageRadioButtons.SELEN;
 import static enums.Users.PITER_CHAILOVSKII;
@@ -19,7 +20,7 @@ import static enums.Users.PITER_CHAILOVSKII;
 @Feature("UI Tests")
 @Story("Service And Dates Pages Testing")
 @Listeners(AllureAttachmentListener.class)
-public class ServicePageFailedTests extends SelenideTestBase {
+public class DifferentElementsPageTests extends SelenideTestBase {
 
     private HomePageSelenide homePage;
     private DifferentElementsPageSelenide differentElementsPage;
@@ -31,7 +32,7 @@ public class ServicePageFailedTests extends SelenideTestBase {
     }
 
     @Test
-    public void servicePageInterfaceCheckFailed() {
+    public void servicePageInterfaceCheck() {
 
         //1 Open test site by URL
         homePage.open();
@@ -64,10 +65,10 @@ public class ServicePageFailedTests extends SelenideTestBase {
         differentElementsPage.checkLeftSectionExists();
 
         //11 Select checkboxes
-        differentElementsPage.selectCheckBoxes(EARTH, FIRE);
+        differentElementsPage.selectCheckBoxes(WATER, WIND);
 
         //12 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        differentElementsPage.checkLoggingOfCheckBoxesChecked(WATER, WIND);
+        differentElementsPage.checkLoggingOfCheckBoxes(true, WATER, WIND);
 
         //13 Select radio
         differentElementsPage.selectRadioButton(SELEN);
@@ -85,6 +86,6 @@ public class ServicePageFailedTests extends SelenideTestBase {
         differentElementsPage.unselectCheckBoxes(WATER, WIND);
 
         //18 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox
-        differentElementsPage.checkLoggingOfCheckBoxesUnchecked(WATER, WIND);
+        differentElementsPage.checkLoggingOfCheckBoxes(false, WATER, WIND);
     }
 }
