@@ -25,7 +25,7 @@ public class DifferentElementsPageTests extends SelenideTestBase {
     }
 
     @Test
-    public void servicePageInterfaceCheck() {
+    public void differentElementsPageInterfaceCheck() {
 
         //1 Open test site by URL
         homePage.open();

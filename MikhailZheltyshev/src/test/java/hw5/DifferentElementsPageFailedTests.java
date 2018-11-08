@@ -31,7 +31,7 @@ public class DifferentElementsPageFailedTests extends SelenideTestBase {
     }
 
     @Test
-    public void servicePageInterfaceCheckFailed() {
+    public void differentElementsPageInterfaceCheckFailed() {
 
         //1 Open test site by URL
         homePage.open();
