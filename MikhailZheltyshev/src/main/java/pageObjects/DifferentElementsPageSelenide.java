@@ -54,9 +54,9 @@ public class DifferentElementsPageSelenide {
     }
 
     @Step("Set {1} checkboxes to {0}")
-    public void setCheckBoxes(boolean targetState, DIfferentElementsPageCheckBoxes... checkboxes) {
+    public void selectCheckBoxes(boolean targetState, DIfferentElementsPageCheckBoxes... checkboxes) {
         for (DIfferentElementsPageCheckBoxes checkbox : checkboxes) {
-            setCheckbox(targetState, checkbox);
+            selectCheckBox(targetState, checkbox);
         }
     }
 
@@ -102,7 +102,7 @@ public class DifferentElementsPageSelenide {
         }
     }
 
-    private void setCheckbox(boolean targetState, DIfferentElementsPageCheckBoxes checkbox) {
+    private void selectCheckBox(boolean targetState, DIfferentElementsPageCheckBoxes checkbox) {
         for (SelenideElement element : checkBoxElements) {
             if (element.parent().getText().equals(checkbox.displayName))
                 element.setSelected(targetState);

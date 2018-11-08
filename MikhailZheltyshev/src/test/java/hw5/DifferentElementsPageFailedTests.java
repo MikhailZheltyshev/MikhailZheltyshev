@@ -64,7 +64,7 @@ public class DifferentElementsPageFailedTests extends SelenideTestBase {
         differentElementsPage.checkLeftSectionExists();
 
         //11 Select checkboxes
-        differentElementsPage.setCheckBoxes(true, EARTH, FIRE);
+        differentElementsPage.selectCheckBoxes(true, EARTH, FIRE);
 
         //12 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
         differentElementsPage.checkLoggingOfCheckBoxes(true, WATER, WIND);
@@ -82,7 +82,7 @@ public class DifferentElementsPageFailedTests extends SelenideTestBase {
         differentElementsPage.checkLoggingOfDropDownMenu(YELLOW);
 
         //17 Unselect and assert checkboxes
-        differentElementsPage.setCheckBoxes(false, WATER, WIND);
+        differentElementsPage.selectCheckBoxes(false, WATER, WIND);
 
         //18 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox
         differentElementsPage.checkLoggingOfCheckBoxes(false, WATER, WIND);
