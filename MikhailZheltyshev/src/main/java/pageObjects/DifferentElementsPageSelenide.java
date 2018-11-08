@@ -18,7 +18,7 @@ public class DifferentElementsPageSelenide {
 
     //============================================WEB-ELEMENTS AND CONSTANTS============================================
 
-    @FindBy(css = ".label-checkbox")
+    @FindBy(css = ".label-checkbox input")
     private ElementsCollection checkBoxElements;
 
     @FindBy(css = ".label-radio")
@@ -53,17 +53,10 @@ public class DifferentElementsPageSelenide {
         buttonElements.shouldHave(size(2));
     }
 
-    @Step("Select {0} checkboxes")
-    public void selectCheckBoxes(DIfferentElementsPageCheckBoxes... checkboxes) {
+    @Step("Set {1} checkboxes to {0}")
+    public void setCheckBoxes(boolean targetState, DIfferentElementsPageCheckBoxes... checkboxes) {
         for (DIfferentElementsPageCheckBoxes checkbox : checkboxes) {
-            checkBoxElements.find(text(checkbox.displayName)).click();
-        }
-    }
-
-    @Step("Unselect {0} checkboxes")
-    public void unselectCheckBoxes(DIfferentElementsPageCheckBoxes... checkboxes) {
-        for (DIfferentElementsPageCheckBoxes checkbox : checkboxes) {
-            checkBoxElements.find(text(checkbox.displayName)).click();
+            setCheckbox(targetState, checkbox);
         }
     }
 
@@ -106,6 +99,13 @@ public class DifferentElementsPageSelenide {
         for (int i = checkboxes.length - 1; i >= 0; i--) {
             assertEquals(LOG_PARSER.getActualLogRecord(i),
                     LOG_PARSER.generateExpectedRecord(checkboxes[checkboxes.length - i - 1], expectedState));
+        }
+    }
+
+    private void setCheckbox(boolean targetState, DIfferentElementsPageCheckBoxes checkbox) {
+        for (SelenideElement element : checkBoxElements) {
+            if (element.parent().getText().equals(checkbox.displayName))
+                element.setSelected(targetState);
         }
     }
 }
