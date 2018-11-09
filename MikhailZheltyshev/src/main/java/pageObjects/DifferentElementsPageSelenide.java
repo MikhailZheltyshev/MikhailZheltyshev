@@ -94,7 +94,7 @@ public class DifferentElementsPageSelenide {
                 LOG_PARSER.generateExpectedRecord(item));
     }
 
-    @Step("Assert logging of setting {1} to {0} is correct")
+    @Step("Assert logging of setting {1} checkboxes to {0} is correct")
     public void checkLoggingOfCheckBoxes(boolean expectedState, DIfferentElementsPageCheckBoxes... checkboxes) {
         for (int i = checkboxes.length - 1; i >= 0; i--) {
             assertEquals(LOG_PARSER.getActualLogRecord(i),

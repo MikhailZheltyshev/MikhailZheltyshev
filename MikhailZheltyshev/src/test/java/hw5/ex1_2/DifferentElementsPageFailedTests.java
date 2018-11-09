@@ -17,7 +17,7 @@ import static enums.DifferentElementsPageRadioButtons.SELEN;
 import static enums.Users.PITER_CHAILOVSKII;
 
 @Feature("UI Tests")
-@Story("Service And Dates Pages Testing")
+@Story("Different Elements Page Testing")
 @Listeners(AllureAttachmentListener.class)
 public class DifferentElementsPageFailedTests extends SelenideTestBase {
 

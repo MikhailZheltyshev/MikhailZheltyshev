@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.page;
 import static enums.DIfferentElementsPageCheckBoxes.getCheckBoxEnumByName;
-import static enums.DifferentElementsPageDropDownItems.*;
+import static enums.DifferentElementsPageDropDownItems.getDropDownEnumByName;
 import static enums.DifferentElementsPageRadioButtons.getRadioButtonEnumByName;
 import static org.testng.Assert.assertEquals;
 
@@ -26,29 +26,29 @@ public class DifferentElementsPageSelenideCucumber {
 
     //============================================WEB-ELEMENTS AND CONSTANTS============================================
 
-    @FindBy(css = ".label-checkbox")
-    ElementsCollection checkBoxElements;
+    @FindBy(css = ".label-checkbox input")
+    private ElementsCollection checkBoxElements;
 
     @FindBy(css = ".label-radio")
-    ElementsCollection radioButtonElements;
+    private ElementsCollection radioButtonElements;
 
     @FindBy(css = "select.uui-form-element")
-    SelenideElement colorsDropDownMenuElement;
+    private SelenideElement colorsDropDownMenuElement;
 
     @FindBy(css = ".colors")
-    SelenideElement colorsDropDownMenu;
+    private SelenideElement colorsDropDownMenu;
 
     @FindBy(css = "[class = 'uui-button']")
-    ElementsCollection buttonElements;
+    private ElementsCollection buttonElements;
 
     @FindBy(css = ".right-fix-panel")
-    SelenideElement rightSectionElement;
+    private SelenideElement rightSectionElement;
 
     @FindBy(css = "._mCS_1")
-    SelenideElement leftSectionElement;
+    private SelenideElement leftSectionElement;
 
     @FindBy(css = "option")
-    ElementsCollection dropDownMenuOptions;
+    private ElementsCollection dropDownMenuOptions;
 
     private final ElementsLogHelper LOG_PARSER = new ElementsLogHelper();
 
@@ -71,26 +71,19 @@ public class DifferentElementsPageSelenideCucumber {
         leftSectionElement.exists();
     }
 
-    @When("I select checkboxes:")
-    public void selectCheckBoxes(List<String> checkboxes) {
+    @When("I set following checkboxes to (.+):")
+    public void selectCheckBoxes(String targetState, List<String> checkboxes) {
         for (String checkbox : checkboxes) {
-            checkBoxElements.find(text(checkbox)).click();
+            selectCheckBox(Boolean.valueOf(targetState), checkbox);
         }
     }
 
-    @When("I un-select checkboxes:")
-    public void unselectCheckBoxes(List<String> checkboxes) {
-        for (String checkbox : checkboxes) {
-            checkBoxElements.find(text(checkbox)).click();
-        }
-    }
-
-    @Then("Checking of following checkboxes will be properly logged:")
-    public void checkLoggingOfCheckBoxesChecked(List<String> checkboxes) {
+    @Then("Setting of the following checkboxes to (.+) will be properly logged:")
+    public void checkLoggingOfCheckBoxes(String expectedState, List<String> checkboxes) {
         for (int i = checkboxes.size() - 1; i >= 0; i--) {
             assertEquals(LOG_PARSER.getActualLogRecord(i),
-                    LOG_PARSER.generateExpectedRecord(getCheckBoxEnumByName(checkboxes.get(checkboxes.size() - i - 1))
-                            , true));
+                    LOG_PARSER.generateExpectedRecord(getCheckBoxEnumByName(checkboxes.get(checkboxes.size() - i - 1)),
+                            Boolean.valueOf(expectedState)));
         }
     }
 
@@ -117,12 +110,10 @@ public class DifferentElementsPageSelenideCucumber {
                 LOG_PARSER.generateExpectedRecord(getDropDownEnumByName(item)));
     }
 
-    @Then("Un-selecting of following checboxes will be properly logged:")
-    public void checkLoggingOfCheckBoxesUnchecked(List<String> checkboxes) {
-        for (int i = checkboxes.size() - 1; i >= 0; i--) {
-            assertEquals(LOG_PARSER.getActualLogRecord(i),
-                    LOG_PARSER.generateExpectedRecord(getCheckBoxEnumByName(checkboxes.get(checkboxes.size() - i - 1))
-                            , false));
+    private void selectCheckBox(boolean targetState, String checkbox) {
+        for (SelenideElement element : checkBoxElements) {
+            if (element.parent().getText().equals(getCheckBoxEnumByName(checkbox).displayName))
+                element.setSelected(targetState);
         }
     }
 }
