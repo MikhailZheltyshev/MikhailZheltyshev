@@ -6,10 +6,12 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import enums.Users;
+import io.cucumber.datatable.DataTable;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.text;
@@ -149,13 +151,14 @@ public class HomePageSelenideCucumber {
     }
 
     @Step("Assert that interface on Home page contains all needed elements.")
-    @Then("Interface on Home Page contains all needed elements")
-    public void checkInterfaceOfHomePage() {
-        benefitIcons.shouldHave(size(4));
+    @Then("Interface on Home Page contains all needed elements:")
+    public void checkInterfaceOfHomePage(DataTable dataTable) {
+        Map<String, Integer> expectedTable = dataTable.asMap(String.class, Integer.class);
+        benefitIcons.shouldHave(size(expectedTable.get("Benefit pictures")));
         for (SelenideElement icon : benefitIcons) {
             icon.shouldBe(visible);
         }
-        textsUnderIconsElements.shouldHave(size(4));
+        textsUnderIconsElements.shouldHave(size(expectedTable.get("Benefit texts")));
         for (SelenideElement text : textsUnderIconsElements) {
             text.shouldBe(visible);
         }

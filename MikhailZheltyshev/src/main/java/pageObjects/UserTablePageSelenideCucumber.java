@@ -55,7 +55,7 @@ public class UserTablePageSelenideCucumber {
     //======================================================METHODS=====================================================
 
     @Then("\"(.+)\" page is opened")
-    public void checkPageIsOpenned(String pageName) {
+    public void checkPageIsOpened(String pageName) {
         assertEquals(WebDriverRunner.url(), getPageEnumByName(pageName).url);
     }
 
@@ -90,8 +90,8 @@ public class UserTablePageSelenideCucumber {
         for (int i = 0; i < expectedTable.size(); i++) {
             assertEquals(userNumbers.get(i).getText(), expectedTable.get(i).get("Number"));
             assertEquals(usersNames.get(i).getText(), expectedTable.get(i).get("User"));
-            //TODO No break line character expected...
-            assertEquals(descriptionTexts.get(i).getText().replace("\n", " "), expectedTable.get(i).get("Description"));
+            assertEquals(descriptionTexts.get(i).getText().replace("\n", " "),
+                    expectedTable.get(i).get("Description"));
         }
     }
 
@@ -113,6 +113,6 @@ public class UserTablePageSelenideCucumber {
     @Then("droplist contains values:")
     public void checkDropDownContent(DataTable expectedDropDownContent) {
         assertEquals(TABLE_HELPER.getOpenedDropListContent(),
-                expectedDropDownContent.subTable(1, 0).asList());
+                expectedDropDownContent.asList());
     }
 }

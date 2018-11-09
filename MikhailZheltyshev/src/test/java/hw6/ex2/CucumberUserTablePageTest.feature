@@ -24,7 +24,6 @@ Feature: User Table Page tests
     Then 1 log row has "Vip: condition changed to true" text in log section
     When I click on dropdown in column Type for user Roman
     Then droplist contains values:
-      | Dropdown Values |
       | Admin           |
       | User            |
       | Manager         |
