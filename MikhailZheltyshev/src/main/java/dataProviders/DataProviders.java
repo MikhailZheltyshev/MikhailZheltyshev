@@ -37,7 +37,6 @@ public class DataProviders {
         for (String key : jDataSet.keySet()) {
             result[counter++][0] = gson.fromJson(jDataSet.get(key), TestData.class);
         }
-
         return result;
     }
 }
