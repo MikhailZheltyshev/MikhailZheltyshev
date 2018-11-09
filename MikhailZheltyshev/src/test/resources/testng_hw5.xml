@@ -4,9 +4,9 @@
     <test name="HW 5 Tests">
 
         <classes>
-            <class name="hw5.ex1_2.DatesPageTests"/>
-            <class name="hw5.ex1_2.DifferentElementsPageFailedTests"/>
-            <class name="hw5.ex1_2.DifferentElementsPageTests"/>
+            <class name="hw5.DifferentElementsPageFailedTests"/>
+            <class name="hw5.DatesPageTests"/>
+            <class name="hw5.DifferentElementsPageTests"/>
         </classes>
 
     </test>

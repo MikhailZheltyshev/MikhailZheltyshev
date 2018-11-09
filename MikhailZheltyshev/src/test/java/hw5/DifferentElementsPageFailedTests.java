@@ -1,4 +1,4 @@
-package hw5.ex1_2;
+package hw5;
 
 import base.SelenideTestBase;
 import io.qameta.allure.Feature;
@@ -17,7 +17,7 @@ import static enums.DifferentElementsPageRadioButtons.SELEN;
 import static enums.Users.PITER_CHAILOVSKII;
 
 @Feature("UI Tests")
-@Story("Different Elements Page Testing")
+@Story("Failed Different Elements Page Testing")
 @Listeners(AllureAttachmentListener.class)
 public class DifferentElementsPageFailedTests extends SelenideTestBase {
 
