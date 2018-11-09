@@ -2,6 +2,7 @@ package hw5;
 
 import base.SelenideTestBase;
 import io.qameta.allure.Feature;
+import io.qameta.allure.Issue;
 import io.qameta.allure.Story;
 import listeners.AllureAttachmentListener;
 import org.testng.annotations.BeforeClass;
@@ -27,6 +28,7 @@ public class DatesPageTests extends SelenideTestBase {
         datesPage = page(DatesPageSelenide.class);
     }
 
+    @Issue("Setting to (30,70) bug")
     @Test
     public void datesPageInterfaceCheck() {
 

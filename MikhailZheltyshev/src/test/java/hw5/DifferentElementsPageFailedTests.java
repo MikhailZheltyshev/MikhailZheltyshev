@@ -2,6 +2,7 @@ package hw5;
 
 import base.SelenideTestBase;
 import io.qameta.allure.Feature;
+import io.qameta.allure.Issue;
 import io.qameta.allure.Story;
 import listeners.AllureAttachmentListener;
 import org.testng.annotations.BeforeClass;
@@ -30,6 +31,7 @@ public class DifferentElementsPageFailedTests extends SelenideTestBase {
         differentElementsPage = page(DifferentElementsPageSelenide.class);
     }
 
+    @Issue("Wrong [EARTH,FIRE] checkboxes checked to fail test")
     @Test
     public void differentElementsPageInterfaceCheckFailed() {
 
