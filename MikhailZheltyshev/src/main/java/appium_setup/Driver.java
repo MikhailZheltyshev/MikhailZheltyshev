@@ -50,7 +50,7 @@ public class Driver extends TestProperties {
                 browserName = "Chrome";
                 break;
             case "iOS":
-                //capabilities.setCapability(MobileCapabilityType.UDID,UDID);
+                capabilities.setCapability(MobileCapabilityType.UDID,UDID);
                 browserName = "Safari";
                 break;
             default:
