@@ -151,7 +151,7 @@ public class HomePageSelenideCucumber {
     }
 
     @Step("Assert that interface on Home page contains all needed elements.")
-    @Then("Interface on Home Page contains all needed elements:")
+    @And("Interface on Home Page contains all needed elements:")
     public void checkInterfaceOfHomePage(DataTable dataTable) {
         Map<String, Integer> expectedTable = dataTable.asMap(String.class, Integer.class);
         benefitIcons.shouldHave(size(expectedTable.get("Benefit pictures")));

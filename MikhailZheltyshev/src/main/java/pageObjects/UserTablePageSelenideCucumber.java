@@ -90,8 +90,7 @@ public class UserTablePageSelenideCucumber {
         for (int i = 0; i < expectedTable.size(); i++) {
             assertEquals(userNumbers.get(i).getText(), expectedTable.get(i).get("Number"));
             assertEquals(usersNames.get(i).getText(), expectedTable.get(i).get("User"));
-            assertEquals(descriptionTexts.get(i).getText().replace("\n", " "),
-                    expectedTable.get(i).get("Description"));
+            assertEquals(descriptionTexts.get(i).getText(), expectedTable.get(i).get("Description"));
         }
     }
 

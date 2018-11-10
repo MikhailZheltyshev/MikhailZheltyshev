@@ -16,14 +16,13 @@ Feature: User Table Page tests
       | 1      | Roman            | Lorem ipsum                  |
       | 2      | Sergey Ivan      | Lorem ipsum                  |
       | 3      | Vladzimir        | Lorem ipsum                  |
-      | 4      | Helen Bennett    | Lorem ipsum some description |
-      | 5      | Yoshi Tannamuri  | Lorem ipsum some description |
-      | 6      | Giovanni Rovelli | Lorem ipsum some description |
-
+      | 4      | Helen Bennett    | Lorem ipsum\nsome description |
+      | 5      | Yoshi Tannamuri  | Lorem ipsum\nsome description |
+      | 6      | Giovanni Rovelli | Lorem ipsum\nsome description |
     When I select 'vip' checkbox for "Sergey Ivan"
     Then 1 log row has "Vip: condition changed to true" text in log section
     When I click on dropdown in column Type for user Roman
     Then droplist contains values:
-      | Admin           |
-      | User            |
-      | Manager         |
+      | Admin   |
+      | User    |
+      | Manager |

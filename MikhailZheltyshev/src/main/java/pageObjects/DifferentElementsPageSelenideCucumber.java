@@ -2,6 +2,7 @@ package pageObjects;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
@@ -55,7 +56,7 @@ public class DifferentElementsPageSelenideCucumber {
     private final ElementsLogHelper LOG_PARSER = new ElementsLogHelper();
 
     //==================================================METHODS=========================================================
-    @Then("Interface on Different Elements Page contains all needed elements:")
+    @And("Interface on Different Elements Page contains all needed elements:")
     public void checkDifferentElementsPageContent(DataTable dataTable) {
         Map<String, Integer> expectedTable = dataTable.asMap(String.class, Integer.class);
         checkBoxElements.shouldHave(size(expectedTable.get("Checkboxes")));
@@ -64,12 +65,12 @@ public class DifferentElementsPageSelenideCucumber {
         buttonElements.shouldHave(size(expectedTable.get("Buttons")));
     }
 
-    @Then("The right section of the page is displayed")
+    @And("The right section of the page is displayed")
     public void checkRightSectionExists() {
         rightSectionElement.exists();
     }
 
-    @Then("The left section of the page is displayed")
+    @And("The left section of the page is displayed")
     public void checkLeftSectionExists() {
         leftSectionElement.exists();
     }
