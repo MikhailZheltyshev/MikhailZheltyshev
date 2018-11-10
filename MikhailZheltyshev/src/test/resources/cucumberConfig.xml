@@ -1,10 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Test Suite">
-    <test name="Simple Test">
+    <test name="Simple Cucumber Test">
 
         <classes>
-            <class name="runners.Cucumber6_1TestngRunner"/>
+            <class name="runners.CucumberTestngRunnerHW6"/>
         </classes>
 
     </test>
