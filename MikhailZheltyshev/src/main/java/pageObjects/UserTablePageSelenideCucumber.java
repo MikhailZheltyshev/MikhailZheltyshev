@@ -112,6 +112,6 @@ public class UserTablePageSelenideCucumber {
     @Then("droplist contains values:")
     public void checkDropDownContent(DataTable expectedDropDownContent) {
         assertEquals(TABLE_HELPER.getOpenedDropListContent(),
-                expectedDropDownContent.asList());
+                expectedDropDownContent.subTable(1,0).asList());
     }
 }
