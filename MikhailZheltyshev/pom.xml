@@ -11,7 +11,7 @@
     <properties>
         <suiteXmlFile>testng_hw5.xml</suiteXmlFile>
         <allure.version>2.0-BETA22</allure.version>
-        <aspectj.version>1.8.12</aspectj.version>
+        <aspectj.version>1.8.13</aspectj.version>
         <driver>chrome</driver>
     </properties>
 
@@ -37,10 +37,18 @@
             <version>4.14.2</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-generator -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-generator</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+
+
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>${allure.version}</version>
+            <version>2.7.0</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.testng</groupId>
@@ -95,18 +103,6 @@
             <version>3.0.2</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.5</version>
-        </dependency>
-
         <!--JDI-->
         <dependency>
             <groupId>com.epam.jdi</groupId>
@@ -128,7 +124,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.2</version>
+                <version>3.8.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -168,6 +164,10 @@
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>2.9</version>
+                <configuration>
+                    <allureDownloadUrl>https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.4.1/allure-2.4.1.zip</allureDownloadUrl>
+                    <reportVersion>2.4.1</reportVersion>
+                </configuration>
             </plugin>
         </plugins>
     </reporting>
