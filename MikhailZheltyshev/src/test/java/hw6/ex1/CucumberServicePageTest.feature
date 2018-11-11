@@ -60,4 +60,3 @@ Feature: Different Elements Page tests
     Then Setting of the following checkboxes to false will be properly logged:
       | Water |
       | Wind  |
-
