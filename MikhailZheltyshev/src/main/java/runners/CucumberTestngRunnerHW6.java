@@ -6,7 +6,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeSuite;
 
-import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
+import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 
 @CucumberOptions(features = "src/test/java/hw6", glue = "pageObjects")
 public class CucumberTestngRunnerHW6 extends AbstractTestNGCucumberTests {
@@ -18,6 +18,6 @@ public class CucumberTestngRunnerHW6 extends AbstractTestNGCucumberTests {
 
     @AfterMethod
     public void afterScenario() {
-        clearBrowserCache();
+        closeWebDriver();
     }
 }
