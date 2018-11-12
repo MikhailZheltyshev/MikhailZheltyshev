@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <suiteXmlFile>testng_hw5.xml</suiteXmlFile>
+        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
         <allure.version>2.0-BETA22</allure.version>
         <aspectj.version>1.8.12</aspectj.version>
         <driver>chrome</driver>
