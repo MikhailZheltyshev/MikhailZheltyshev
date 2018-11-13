@@ -1,6 +1,6 @@
 {
-    "sut":"www.iana.org",
-    "test_platform":"Android",
-    "driver":"http://127.0.0.1:4723/wd/hub",
-    "device_name":"aaf89146"
+  "sut": "www.iana.org",
+  "test_platform": "Android",
+  "driver": "http://127.0.0.1:4723/wd/hub",
+  "device_name": "aaf89146"
 }

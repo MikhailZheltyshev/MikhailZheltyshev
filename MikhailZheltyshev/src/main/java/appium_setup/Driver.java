@@ -86,6 +86,7 @@ public class Driver {
             throw new Exception("Unclear type of mobile app");
         }
         // Init driver with new AppiumDriver object
+        System.out.println(capabilities);
         if (driverSingle == null) driverSingle = new AppiumDriver(new URL(DRIVER), capabilities);
 
         // Set an object to handle timeouts
