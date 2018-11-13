@@ -6,24 +6,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import appium_setup.PropertyFile;
-import io.restassured.RestAssured;
+
 import java.util.List;
 
 @Test(groups = "web")
 public class SimpleWebTests extends Hooks {
 
-    /**
-     * Constructor to pass PropertyFile type into Hooks to run proper prepareDriver() in @BeforeSuite.
-     */
-    protected SimpleWebTests() {
-        super(PropertyFile.WEB);
-    }
-
     @Test(description = "Open website")
     public void webTest() throws Exception {
         //Assert that page returns "200" status code
-        Assert.assertEquals(RestAssured.get(SUT).statusCode(),200);
+        //Assert.assertEquals(RestAssured.get(SUT).statusCode(),200);
 
         driver().get(SUT);
         driverWait().until(ExpectedConditions.urlToBe(SUT+"/"));

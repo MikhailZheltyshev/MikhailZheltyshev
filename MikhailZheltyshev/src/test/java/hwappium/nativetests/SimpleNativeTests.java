@@ -1,6 +1,5 @@
 package hwappium.nativetests;
 
-import appium_setup.PropertyFile;
 import hwappium.Hooks;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -14,12 +13,6 @@ import static appium_helper.KeyBoardHelper.checkKeyBoardAppears;
 
 @Test(groups = "native")
 public class SimpleNativeTests extends Hooks {
-    /**
-     * Constructor to pass PropertyFile type into Hooks to run proper prepareDriver() in @BeforeSuite.
-     */
-    protected SimpleNativeTests() {
-        super(PropertyFile.NATIVE);
-    }
 
     @Test(description = "Go to the \"Add Contact\" screen and check it content")
     public void simplestAddContactScreenTest() throws Exception {

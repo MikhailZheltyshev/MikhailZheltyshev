@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <suiteXmlFile>testng_hw5.xml</suiteXmlFile>
+        <suiteXmlFile>/appium/local_android_emulator_5554_native.xml</suiteXmlFile>
         <allure.version>2.6.0</allure.version>
         <aspectj.version>1.8.12</aspectj.version>
         <driver>chrome</driver>

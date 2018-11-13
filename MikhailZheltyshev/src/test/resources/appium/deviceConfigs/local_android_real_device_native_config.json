@@ -1,0 +1,6 @@
+{
+    "aut":"ContactManager.apk",
+    "test_platform":"Android",
+    "driver":"http://127.0.0.1:4723/wd/hub",
+    "device_name":"aaf89146"
+}

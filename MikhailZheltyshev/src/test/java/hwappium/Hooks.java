@@ -1,22 +1,18 @@
 package hwappium;
 
+import appium_setup.Driver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import appium_setup.Driver;
-import appium_setup.PropertyFile;
 
 @Test(groups = {"native","web"})
 public class Hooks extends Driver {
-    private PropertyFile currentProps;
-
-    public Hooks(PropertyFile props) {
-        this.currentProps = props;
-    }
 
     @BeforeSuite(description = "Prepare driver to run test(s)")
-    public void setUp() throws Exception {
-        setPropertyFile(currentProps);
+    @Parameters("pathToConfig")
+    public void setUp(String pathToConfig) throws Exception {
+        loadConfig(pathToConfig);
         prepareDriver();
         System.out.println("Driver prepared");
 
