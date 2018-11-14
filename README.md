@@ -1,7 +1,7 @@
 # MikhailZheltyshev
 ### HW 3 Mobile TA
 
-   *1*.	Add support of appPackage and appActivity parameters for Android devices 
+   1.	Add support of appPackage and appActivity parameters for Android devices 
    (reading from a .properties file and then setting in the    DesiredCapabilities). Locally
    installed Appium DT has no need in these parameters, but for Appium server of Minsk Mobile Farm it’s mandatory.
        
