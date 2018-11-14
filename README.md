@@ -1,11 +1,11 @@
 # MikhailZheltyshev
 HW 3 Mobile TA
 
-        1.	Add support of appPackage and appActivity parameters for Android devices (reading from a .properties file and then setting in the    DesiredCapabilities). Locally installed Appium DT has no need in these parameters, but for Appium server of Minsk Mobile Farm it’s      mandatory.
-        
-        Done, corresponding fields and its initializations are added to Driver.class. Driver URL was changed to the mobileFarm url with a valid token added.
+   1.	Add support of appPackage and appActivity parameters for Android devices (reading from a .properties file and then setting in the    DesiredCapabilities). Locally installed Appium DT has no need in these parameters, but for Appium server of Minsk Mobile Farm it’s      mandatory.
+       
+                Done, corresponding fields and its initializations are added to Driver.class. Driver URL was changed to the mobileFarm url with a valid token added.
 
-        a.	Or try to use autoLaunch capability with app as before. Does this approach work?    
+   a.	Or try to use autoLaunch capability with app as before. Does this approach work?    
     
     No, this approach doesn’t work. Server returns the following response:
     {  
@@ -15,11 +15,15 @@ HW 3 Mobile TA
        },
        "sessionId":null
     }
-        2.	Change settings to run web test on a certain iOS device on Mobile Test Farm. Run test with your changes. Did test pass? Done and test passed. “devicename” value was changed and “udid” key with corresponding target device’s udid value.
-        3.	Change settings to run native test on a certain/random Android device on Mobile Test Farm. Run test with your changes. Did test pass?
-        Test passed. 
-        4.	What’s wrong with our code? How to fix/improve it? Implement your suggestions.
-        1.	Currently it is not convenient to change properties each time we want to run our tests on different device. We should store our devices with corresponding capabilities and properties as objects in some .json or .xml files.
+   2.	Change settings to run web test on a certain iOS device on Mobile Test Farm. Run test with your changes. Did test pass? Done and test passed. “devicename” value was changed and “udid” key with corresponding target device’s udid value.
+   
+   3.	Change settings to run native test on a certain/random Android device on Mobile Test Farm. Run test with your changes. Did test pass?
+               
+    Test passed. 
+        
+  4.	What’s wrong with our code? How to fix/improve it? Implement your suggestions.
+    
+    1.	Currently it is not convenient to change properties each time we want to run our tests on different device. We should store our devices with corresponding capabilities and properties as objects in some .json or .xml files.
         Solution:
         Properties replaced with JSON config files (are placed in “/src/test/resources/appium/deviceConfigs”), each of which contains number of capabilities specified for the particular device. Gson library is used to deserialize this json configs to POJO of the custom Device.class, which object stores all caps of the target device. 
     Now we can easily reuse predefined configs for test devices with power of flexible json format. 
@@ -27,10 +31,10 @@ HW 3 Mobile TA
 
         mvn clean test -DsuiteXmlFile=/appium/spb_farm_android_nexus5s_native.xml
 
-To start running of the web test on remote iOS device on SPb Mobile Farm, execute:
+    To start running of the web test on remote iOS device on SPb Mobile Farm, execute:
 
         mvn clean test -DsuiteXmlFile=/appium/spb_farm_ios_iphone5s_web.xml
 
-For more available configs see “/src/test/resources/appium” package.
+    For more available configs see “/src/test/resources/appium” package.
 
     2.	It is better to replace (where possible) all “green” colored hardcoded values to Enums or constants. I’ve implemented enums for storing browser’s names, common constants (path to resources, https prefix for sut in our tests), error’s texts (unclear type of mobile device, unclear type of mobile platfrom) – see /src/main/java/appium_enums/ package. 
