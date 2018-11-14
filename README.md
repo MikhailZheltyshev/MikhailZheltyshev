@@ -20,7 +20,9 @@ HW 3 Mobile TA
        "sessionId":null
     }
     
-   2.	Change settings to run web test on a certain iOS device on Mobile Test Farm. Run test with your changes. Did test pass? Done and test passed. “devicename” value was changed and “udid” key with corresponding target device’s udid value.
+   2.	Change settings to run web test on a certain iOS device on Mobile Test Farm. Run test with your changes. Did test pass? 
+   
+    Done and test passed. “devicename” value was changed and “udid” key with corresponding target device’s udid value.
    
    3.	Change settings to run native test on a certain/random Android device on Mobile Test Farm. Run test with your changes. Did test pass?
                
