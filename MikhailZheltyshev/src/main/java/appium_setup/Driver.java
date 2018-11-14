@@ -44,8 +44,6 @@ public class Driver {
                 (pathToConfig)).getAsJsonObject();
         device = new Gson().fromJson(jDevice, Device.class);
 
-        System.out.println(device);
-        //String resourcePath = "./src/main/resources/";
         AUT = device.aut == null ? null :  PATH_TO_RESOURCES + device.aut;
         System.out.println("aut=" + AUT); //Write Current AUT to console
         SUT = device.sut == null ? null : HTTPS_PREFIX + device.sut;
