@@ -1,5 +1,5 @@
 # MikhailZheltyshev
-HW 3 Mobile TA
+### HW 3 Mobile TA
 
    1.	Add support of appPackage and appActivity parameters for Android devices 
    (reading from a .properties file and then setting in the    DesiredCapabilities). Locally
