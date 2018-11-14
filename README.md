@@ -41,7 +41,7 @@
     
     In addition, I’ve implemented corresponding testNG suiteXml config files to run tests using different configurations
     of devices (there are testNG configs for tests on emulator, real local or remote devices added to the test resources
-    directory). E.g., now you can start running of the native test by executing following command in CMD (from the project’s root):
+    directory). E.g., now you can start running of the native test on SPb Mobile Farm by executing following command in CMD (from the project’s root):
 
         mvn clean test -DsuiteXmlFile=/appium/spb_farm_android_nexus5s_native.xml
 
