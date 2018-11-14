@@ -13,6 +13,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.net.URL;
 
+import static appium_enums.AdditionalCaps.APP_ACTIVITY_CAP;
+import static appium_enums.AdditionalCaps.APP_PACKAGE_CAP;
+import static appium_enums.Browsers.CHROME;
+import static appium_enums.Browsers.SAFARI;
+import static appium_enums.CommonConstants.HTTPS_PREFIX;
+import static appium_enums.CommonConstants.PATH_TO_RESOURCES;
+import static appium_enums.ErrorsTexts.UNCLEAR_TYPE_OF_MOBILE_APP;
+import static appium_enums.ErrorsTexts.UNKNOWN_MOBILE_PLATFORM;
+
 public class Driver {
     private static AppiumDriver driverSingle = null;
     private static WebDriverWait waitSingle;
@@ -36,10 +45,10 @@ public class Driver {
         device = new Gson().fromJson(jDevice, Device.class);
 
         System.out.println(device);
-        String resourcePath = "./src/main/resources/";
-        AUT = device.aut == null ? null :  resourcePath + device.aut;
+        //String resourcePath = "./src/main/resources/";
+        AUT = device.aut == null ? null :  PATH_TO_RESOURCES + device.aut;
         System.out.println("aut=" + AUT); //Write Current AUT to console
-        SUT = device.sut == null ? null : "https://" + device.sut;
+        SUT = device.sut == null ? null : HTTPS_PREFIX + device.sut;
         System.out.println("sut=" + SUT); //Write Current SUT to console
         TEST_PLATFORM = device.test_platform;
         DRIVER = device.driver;
@@ -57,14 +66,14 @@ public class Driver {
         switch (TEST_PLATFORM) {
             case "Android":
                 capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, DEVICE_NAME);
-                browserName = "Chrome";
+                browserName = CHROME.browser;
                 break;
             case "iOS":
                 capabilities.setCapability(MobileCapabilityType.UDID,UDID);
-                browserName = "Safari";
+                browserName = SAFARI.browser;
                 break;
             default:
-                throw new Exception("Unknown mobile platform");
+                throw new Exception(UNKNOWN_MOBILE_PLATFORM.text);
         }
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, TEST_PLATFORM);
 
@@ -73,17 +82,17 @@ public class Driver {
         if (AUT != null && SUT == null) {
             //Check if device is remote (located on farm) to use proper capabilities to load apk
             if(device.isRemote) {
-                capabilities.setCapability("appPackage", APP_PACKAGE);
-                capabilities.setCapability("appActivity", APP_ACTIVITY);
+                capabilities.setCapability(APP_PACKAGE_CAP.capName, APP_PACKAGE);
+                capabilities.setCapability(APP_ACTIVITY_CAP.capName, APP_ACTIVITY);
             } else {
                 File app = new File(AUT);
                 capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
             }
-            //And if opposite - we deal with WEB test
+            //And if there us no AUT specified - we are dealing with WEB test
         } else if (SUT != null && AUT == null) {
             capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, browserName);
         } else {
-            throw new Exception("Unclear type of mobile app");
+            throw new Exception(UNCLEAR_TYPE_OF_MOBILE_APP.text);
         }
         // Init driver with new AppiumDriver object
         System.out.println(capabilities);
