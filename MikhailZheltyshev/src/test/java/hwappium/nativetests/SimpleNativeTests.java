@@ -14,7 +14,7 @@ import static appium_helper.KeyBoardHelper.checkKeyBoardAppears;
 @Test(groups = "native")
 public class SimpleNativeTests extends Hooks {
 
-    @Test(description = "Go to the \"Add Contact\" screen and check it content")
+    @Test(description = "Open the \"Add Contact\" screen and check it content")
     public void simplestAddContactScreenTest() throws Exception {
         //Prefix for elements
         String app_package_name = "com.example.android.contactmanager:id/";

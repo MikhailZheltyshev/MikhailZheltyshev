@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Native Test Suite on android device from SPb farm" verbose="1">
+    <parameter name="pathToConfig" value="src/test/resources/appium/deviceConfigs/spb_farm_android_nexus5s_web_config.json"/>
+    <test name="Simple Web Test">
+
+        <classes>
+            <class name="hwappium.nativetests.SimpleNativeTests"/>
+        </classes>
+
+    </test>
+</suite>

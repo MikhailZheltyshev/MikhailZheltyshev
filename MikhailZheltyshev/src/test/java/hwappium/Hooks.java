@@ -9,6 +9,12 @@ import org.testng.annotations.Test;
 @Test(groups = {"native","web"})
 public class Hooks extends Driver {
 
+    /**
+     *
+     * @param pathToConfig defines path to target device config to load. The parameter passed into the method from the
+     *                     selected testng suiteXml config file.
+     * @throws Exception if specified path to the config wasn't found.
+     */
     @BeforeSuite(description = "Prepare driver to run test(s)")
     @Parameters("pathToConfig")
     public void setUp(String pathToConfig) throws Exception {
