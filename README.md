@@ -46,13 +46,10 @@
         mvn clean test -DsuiteXmlFile=/appium/spb_farm_android_nexus5s_native.xml
 
     To start running of the web test on remote iOS device on SPb Mobile Farm, execute:
-```cmd
-$ npm install --production
-$ NODE_ENV=production node app
-```
+
         mvn clean test -DsuiteXmlFile=/appium/spb_farm_ios_iphone5s_web.xml
 
-    For more available configs see “/src/test/resources/appium” package.
+    For more available configs see _“/src/test/resources/appium” package._
 
     2.	It is better to replace (where possible) all “green” colored hardcoded values to Enums or constants. 
     I’ve implemented enums for storing browser’s names, common constants (path to resources, https prefix for 
