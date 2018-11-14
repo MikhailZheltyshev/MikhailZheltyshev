@@ -30,18 +30,17 @@
         
   4.	What’s wrong with our code? How to fix/improve it? Implement your suggestions.
     
-    1.	Currently it is not convenient to change properties each time we want to run our tests on
-    different device. We should store our devices with corresponding capabilities and properties as 
-    objects in some .json or .xml files.
-        Solution:
-        Properties replaced with JSON config files (are placed in “/src/test/resources/appium/deviceConfigs”), 
-        each of which contains number of capabilities specified for the particular device. Gson library is used 
-        to deserialize this json configs to POJO of the custom Device.class, which object stores all caps of the target device. 
-        Now we can easily reuse predefined configs for test devices with power of flexible json format. 
-    
-    In addition, I’ve implemented corresponding testNG suiteXml config files to run tests using different configurations
-    of devices (there are testNG configs for tests on emulator, real local or remote devices added to the test resources
-    directory). E.g., now you can start running of the native test on SPb Mobile Farm by executing following command in CMD (from the project’s root):
+*Currently it is not convenient to change properties each time we want to run our tests on
+different device. We should store our devices with corresponding capabilities and properties as 
+objects in some .json or .xml files.
+_Solution:_
+Properties replaced with JSON config files (are placed in “/src/test/resources/appium/deviceConfigs”), 
+each of which contains number of capabilities specified for the particular device. Gson library is used 
+to deserialize this json configs to POJO of the custom Device.class, which object stores all caps of the target device. 
+Now we can easily reuse predefined configs for test devices with power of flexible json format.     
+In addition, I’ve implemented corresponding testNG suiteXml config files to run tests using different configurations
+of devices (there are testNG configs for tests on emulator, real local or remote devices added to the test resources
+directory). E.g., now you can start running of the native test on SPb Mobile Farm by executing following command in CMD (from the project’s root):
 
         mvn clean test -DsuiteXmlFile=/appium/spb_farm_android_nexus5s_native.xml
 
