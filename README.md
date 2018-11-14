@@ -49,7 +49,7 @@
 
         mvn clean test -DsuiteXmlFile=/appium/spb_farm_ios_iphone5s_web.xml
 
-    For more available configs see _“/src/test/resources/appium” package._
+    For more available configs see “/src/test/resources/appium” package.
 
     2.	It is better to replace (where possible) all “green” colored hardcoded values to Enums or constants. 
     I’ve implemented enums for storing browser’s names, common constants (path to resources, https prefix for 
