@@ -5,7 +5,7 @@
     <test name="Simple Web Test">
 
         <classes>
-            <class name="hwappium.nativetests.SimpleNativeTests"/>
+            <class name="hwappium.webtests.SimpleWebTests"/>
         </classes>
 
     </test>
